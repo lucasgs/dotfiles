@@ -1,0 +1,3 @@
+alias wall="nitrogen --set-zoom-fill --random /home/lucas/Pictures/wallpapers"
+alias neofetch="neofetch --color_blocks off"
+alias pac="sudo pacman -S "
