@@ -94,11 +94,11 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+	{ "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+	{ "manual", terminal .. " -e man awesome" },
+	{ "edit config", editor_cmd .. " " .. awesome.conffile },
+	{ "restart", awesome.restart },
+	{ "quit", function() awesome.quit() end },
 }
 
 sysmenu = {
@@ -114,20 +114,20 @@ wwwmenu = {
 }
 
 devmenu = {
+	{ "android studio", "android-studio" },
+	{ "vscode", "code" },
 	{ "geany", "geany" },
-    { "android studio", "/home/lucas/bin/android-studio/bin/studio.sh" },
-    { "vscode", "code" },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-									{ "www", wwwmenu },
-									{ "dev", devmenu},
-									{ "sys", sysmenu},
-									{ "files", "thunar" },
-                                    { "open terminal", terminal },
-                                    
-                                  }
-                        })
+mymainmenu = awful.menu({ items = { 
+	{ "terminal", terminal },
+	{ "files", "thunar" },
+	{ "awesome", myawesomemenu, beautiful.awesome_icon },
+	{ "www", wwwmenu },
+	{ "dev", devmenu},
+	{ "sys", sysmenu},
+}
+			})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -203,7 +203,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "WWW", "DEV", "SYS"}, s, awful.layout.layouts[1])
+    tags = awful.tag({ "WWW", "DEV", "SYS"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -348,11 +348,11 @@ globalkeys = gears.table.join(
     --awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
     --awful.key({ modkey },            "r",     function () awful.spawn(string.format("dmenu_run",
 	  --          beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-	            awful.key({ modkey }, "r",     function () awful.spawn("rofi -show run")
+	            awful.key({ modkey }, "x",     function () awful.spawn("rofi -show run")
 		    end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
+    awful.key({ modkey }, "r",
               function ()
                   awful.prompt.run {
                     prompt       = "Run Lua code: ",
@@ -365,6 +365,7 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
+              
 )
 
 clientkeys = gears.table.join(
@@ -512,6 +513,8 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
+	  --"sun-awt-X11-XFramePeer", 
+	  --"jetbrains-studio",
           "xtightvncviewer"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -530,6 +533,28 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = false }
     },
+
+
+    {
+        rule = {
+            class = "jetbrains-.*",
+        }, properties = { focus = true, buttons = clientbuttons_jetbrains }
+    },
+    {
+        rule = {
+            class = "jetbrains-.*",
+            name = "win.*"
+        }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore }
+    },
+
+   --[[  { rule = { class = "Firefox" },
+        properties = { screen = 1, tag = "1"} 
+    }, ]]
+
+    { rule = { class = "chromium" },
+        properties = { screen = 1, tag = "1" } 
+    },
+
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
