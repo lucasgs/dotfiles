@@ -45,6 +45,7 @@ return packer.startup(function(use)
     use 'kyazdani42/nvim-tree.lua' -- file explorer
     use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
     use {"ellisonleao/glow.nvim"} -- Markdown preview
+    use "terrortylor/nvim-comment" -- Text commenter
 
     -- treesitter
     use {
