@@ -79,3 +79,10 @@ lspconfig['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+--lspconfig['kotlin_language_server'] {
+--
+    --on_attach = on_attach,
+    --flags = lsp_flags,
+--}
+
