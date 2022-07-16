@@ -11,9 +11,11 @@ keymap("n", "<Leader>q", "<cmd>q!<CR>", opts)
 keymap("n", "<Leader>w", "<cmd>w<CR>", opts)
 keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
 keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
-keymap("n", "<F4>", "<cmd>terminal<CR>", opts)
+--keymap("n", "<F4>", "<cmd>terminal<CR>", opts)
+-- keymap("n", "<F4>", "<cmd>sp term://zsh<CR>", opts)
+keymap('n', '<Leader>t', '<cmd>sp term://zsh<CR>', opts)
 
-keymap('n', '<Leader>t', '<cmd>echo "this is just a test"<CR>', opts)
+keymap('n', '<Leader>l', '<cmd>echo "this is just a test"<CR>', opts)
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
