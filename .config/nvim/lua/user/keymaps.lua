@@ -1,4 +1,4 @@
-local opts = { noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
 --Remap space as leader key
@@ -6,7 +6,7 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- General 
+-- General
 keymap("n", "<Leader>q", "<cmd>q!<CR>", opts)
 keymap("n", "<Leader>w", "<cmd>w<CR>", opts)
 keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
@@ -41,9 +41,9 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-	-- LSP
+  -- LSP
   keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
   keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
   keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
@@ -55,18 +55,16 @@ local on_attach = function(client, bufnr)
   keymap('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   keymap('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
 
-	-- Diagnostic
-	keymap('n', '<leader>dn', vim.diagnostic.goto_next, bufopts)
-	keymap('n', '<leader>dp', vim.diagnostic.goto_prev, bufopts)
-
+  -- Diagnostic
+  keymap('n', '<leader>dn', vim.diagnostic.goto_next, bufopts)
+  keymap('n', '<leader>dp', vim.diagnostic.goto_prev, bufopts)
 
 end
 
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
-	return
+  return
 end
-
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -76,13 +74,13 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-lspconfig['pyright'].setup{
+lspconfig['pyright'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
 }
 
-lspconfig['tsserver'].setup{
+lspconfig['tsserver'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
@@ -94,7 +92,14 @@ lspconfig['html'].setup {
   capabilities = capabilities,
 }
 
-lspconfig['emmet_ls'].setup{
+lspconfig['emmet_ls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+}
+
+lspconfig['sumneko_lua'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
@@ -102,7 +107,6 @@ lspconfig['emmet_ls'].setup{
 
 --lspconfig['kotlin_language_server'] {
 --
-    --on_attach = on_attach,
-    --flags = lsp_flags,
+--on_attach = on_attach,
+--flags = lsp_flags,
 --}
-
