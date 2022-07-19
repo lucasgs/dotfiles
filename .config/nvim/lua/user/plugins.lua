@@ -89,6 +89,11 @@ return packer.startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  -- telescope / fuzzy finder
+  use { 'nvim-telescope/telescope.nvim',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
+
   if packer_bootstrap then
     require("packer").sync()
   end

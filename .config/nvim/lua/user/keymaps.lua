@@ -33,80 +33,12 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Find files using Telescope command-line sugar.
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
-
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-  -- LSP
-  keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
-  keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  keymap('n', 'K', vim.lsp.buf.hover, bufopts)
-  keymap('n', 'gr', vim.lsp.buf.references, bufopts)
-  keymap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  keymap('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  keymap('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  keymap('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  keymap('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
-
-  -- Diagnostic
-  keymap('n', '<leader>dn', vim.diagnostic.goto_next, bufopts)
-  keymap('n', '<leader>dp', vim.diagnostic.goto_prev, bufopts)
-
-end
-
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
-
-lspconfig['pyright'].setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
-}
-
-lspconfig['tsserver'].setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
-}
-
-lspconfig['html'].setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
-}
-
-lspconfig['emmet_ls'].setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-}
-
-lspconfig['sumneko_lua'].setup {
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities,
-}
-
---lspconfig['kotlin_language_server'] {
---
---on_attach = on_attach,
---flags = lsp_flags,
---}
