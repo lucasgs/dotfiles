@@ -94,6 +94,9 @@ return packer.startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
+  -- toggleterm
+  use "akinsho/toggleterm.nvim"
+
   if packer_bootstrap then
     require("packer").sync()
   end

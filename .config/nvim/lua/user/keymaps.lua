@@ -13,7 +13,9 @@ keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
 keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
 --keymap("n", "<F4>", "<cmd>terminal<CR>", opts)
 -- keymap("n", "<F4>", "<cmd>sp term://zsh<CR>", opts)
-keymap('n', '<Leader>t', '<cmd>sp term://zsh<CR>', opts)
+-- keymap('n', '<Leader>t', '<cmd>sp term://zsh<CR>', opts)
+-- keymap('n', '<Leader>t', '<cmd>ToggleTerm<CR>', opts)
+keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts)
 
 keymap('n', '<Leader>l', '<cmd>echo "this is just a test"<CR>', opts)
 
@@ -42,3 +44,20 @@ keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
+
+-- Visual --
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+-- Move text up and down
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "p", '"_dP', opts)
+
+-- Visual Block --
+-- Move text up and down
+keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
