@@ -8,35 +8,33 @@ if not luasnip_status_ok then
   return
 end
 
---   פּ ﯟ   some other good icons
 local kind_icons = {
-  Text = "",
-  Method = "m",
+  Text = "",
+  Method = "",
   Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
   Interface = "",
   Module = "",
-  Property = "",
+  Property = "ﰠ",
   Unit = "",
   Value = "",
   Enum = "",
   Keyword = "",
-  Snippet = "",
+  Snippet = "",
   Color = "",
   File = "",
   Reference = "",
   Folder = "",
   EnumMember = "",
-  Constant = "",
+  Constant = "",
   Struct = "",
   Event = "",
   Operator = "",
-  TypeParameter = "",
+  TypeParameter = ""
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
   -- Load snippet support
@@ -47,14 +45,14 @@ cmp.setup {
   },
 
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
   },
 
--- Completion settings
+  -- Completion settings
   completion = {
     --completeopt = 'menu,menuone,noselect'
-    keyword_length = 2
+    -- keyword_length = 2
   },
 
   -- Key mapping
@@ -91,20 +89,20 @@ cmp.setup {
     end
   },
 
-  -- formatting = {
-  --   fields = { "kind", "abbr", "menu" },
-  --   format = function(entry, vim_item)
-  --     -- Kind icons
-  --     vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-  --     -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-  --     vim_item.menu = ({
-  --       luasnip = "[Snippet]",
-  --       buffer = "[Buffer]",
-  --       path = "[Path]",
-  --     })[entry.source.name]
-  --     return vim_item
-  --   end,
-  -- },
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.menu = ({
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
 
   -- Load sources, see: https://github.com/topics/nvim-cmp
   sources = {
