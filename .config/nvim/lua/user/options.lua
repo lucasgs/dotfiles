@@ -27,7 +27,7 @@ local options = {
   termguicolors = true,
   tabstop = 2,
   wildmenu = true,
-  wrap = false,
+  wrap = true,
 }
 
 for k, v in pairs(options) do
