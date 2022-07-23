@@ -1,6 +1,14 @@
-local cmp_status_ok, telescope = pcall(require, 'telescope')
-if not cmp_status_ok then
+local status_ok, telescope = pcall(require, 'telescope')
+if not status_ok then
   return
 end
 
-telescope.setup {}
+telescope.setup({
+  -- defaults = {
+  --   mappings = {
+  --     i = {
+  --       ["<esc>"] = actions.close
+  --     },
+  --   },
+  -- }
+})

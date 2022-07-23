@@ -44,6 +44,9 @@ return packer.startup(function(use)
   -- lsp
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
+  -- lsp installer
+  use "williamboman/nvim-lsp-installer"
+
   -- autocompletion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
