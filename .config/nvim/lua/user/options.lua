@@ -10,6 +10,7 @@ local options = {
   ignorecase = true,
   incsearch = true,
   expandtab = true,
+  laststatus = 3,
   mouse = "a",
   number = true,
   pumheight = 10,
