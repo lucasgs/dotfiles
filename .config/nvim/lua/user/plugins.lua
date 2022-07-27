@@ -88,6 +88,7 @@ return packer.startup(function(use)
     as = "catppuccin",
     --run = ":CatppuccinCompile",
   }
+  use 'folke/tokyonight.nvim'
 
   -- status line
   use {

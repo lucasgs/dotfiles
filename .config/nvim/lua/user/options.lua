@@ -1,5 +1,6 @@
 local options = {
   backup = false,
+  background = "dark",
   clipboard = "unnamedplus",
   completeopt = "menuone,noselect,noinsert",
   cursorline = true,
