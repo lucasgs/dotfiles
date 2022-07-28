@@ -89,7 +89,8 @@ cmp.setup {
     --   end
     -- end
 
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = function(fallback)
       -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
       if cmp.visible() then
         local entry = cmp.get_selected_entry()
@@ -101,7 +102,8 @@ cmp.setup {
       else
         fallback()
       end
-    end, { "i", "s", "c", }),
+    end,
+    -- end, { "i", "s", "c", }),
   },
 
   formatting = {
