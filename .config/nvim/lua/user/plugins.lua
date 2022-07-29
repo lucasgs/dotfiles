@@ -104,8 +104,11 @@ return packer.startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  -- toggleterm
+  -- manage term inside nvim
   use "akinsho/toggleterm.nvim"
+
+  -- complete pairs
+  use "windwp/nvim-autopairs"
 
   if packer_bootstrap then
     require("packer").sync()
