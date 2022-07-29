@@ -17,6 +17,9 @@ keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
 -- keymap('n', '<Leader>t', '<cmd>ToggleTerm<CR>', opts)
 keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts)
 
+-- source current buffer
+keymap('n', '<Leader>so', '<cmd>so %<CR>', opts)
+
 keymap('n', '<Leader>l', '<cmd>echo "this is just a test"<CR>', opts)
 
 -- Window navigation
@@ -32,8 +35,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
--- keymap("n", "<S-l>", ":bnext<CR>", opts)
--- keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Find files using Telescope command-line sugar.
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
