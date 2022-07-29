@@ -6,14 +6,23 @@
 --  return
 --end
 
-local status_ok, catppuccin = pcall(require, "catppuccin")
-if not status_ok then
-  return
-end
+-- local status_ok, catppuccin = pcall(require, "catppuccin")
+-- if not status_ok then
+--   return
+-- end
+--
+-- catppuccin.setup {}
+--
+-- vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+-- vim.cmd [[colorscheme catppuccin]]
 
-catppuccin.setup {}
+-- Example config in Lua
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-vim.cmd [[colorscheme catppuccin]]
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
--- vim.cmd [[colorscheme tokyonight]]
+-- Load the colorscheme
+vim.cmd [[colorscheme tokyonight]]

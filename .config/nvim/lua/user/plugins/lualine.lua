@@ -3,4 +3,10 @@ if not status_ok then
   return
 end
 
-lualine.setup {}
+lualine.setup {
+  options = {
+    theme = 'tokyonight',
+    section_separators = '',
+    component_separators = '',
+  }
+}
