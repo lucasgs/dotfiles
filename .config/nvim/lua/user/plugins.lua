@@ -110,6 +110,9 @@ return packer.startup(function(use)
   -- complete pairs
   use "windwp/nvim-autopairs"
 
+  -- rust
+  use 'simrat39/rust-tools.nvim'
+
   if packer_bootstrap then
     require("packer").sync()
   end
