@@ -8,9 +8,13 @@ prompt pure
 
 source ~/.aliases
 
+# Where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"
+
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export FLUTTER_HOME="$HOME/sdk/flutter"
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin"
+export LOCAL="$HOME/.local"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
