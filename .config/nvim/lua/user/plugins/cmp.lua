@@ -55,6 +55,10 @@ cmp.setup {
     -- keyword_length = 2
   },
 
+  experimental = {
+    ghost_text = false,
+  },
+
   -- Key mapping
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -125,6 +129,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim-lua' },
     { name = 'path' },
     { name = 'buffer' },
   },

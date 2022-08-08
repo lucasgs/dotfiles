@@ -9,7 +9,20 @@ if not cmp_status_ok then
 end
 
 -- Diagnostic options, see: `:help vim.diagnostic.config`
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+  virtual_text = false,
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    -- focusable = true,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
 
 -- Show line diagnostics automatically in hover window
 vim.cmd([[
@@ -74,11 +87,12 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
   -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>dl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Define `root_dir` when needed
@@ -94,14 +108,19 @@ end
 local servers = { 'bashls', 'pyright', 'clangd', 'html', 'cssls', 'tsserver', 'sumneko_lua', 'rust_analyzer' }
 
 -- Call setup
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+for _, server in ipairs(servers) do
+
+  local opts = {
     on_attach = on_attach,
     root_dir = root_dir,
     capabilities = capabilities,
-    flags = {
-      -- default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
   }
+
+  local has_custom_opts, server_opts = pcall(require, "user.plugins.lsp.settings." .. server)
+  if has_custom_opts then
+    opts = vim.tbl_deep_extend("force", opts, server_opts)
+  end
+
+  lspconfig[server].setup(opts)
+
 end

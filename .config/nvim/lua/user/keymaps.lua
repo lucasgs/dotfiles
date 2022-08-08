@@ -22,7 +22,8 @@ keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts)
 -- source current buffer
 keymap('n', '<Leader>so', '<cmd>so %<CR>', opts)
 
-keymap('n', '<Leader>l', '<cmd>echo "this is just a test"<CR>', opts)
+-- make current file executable
+keymap('n', '<Leader>x', '<cmd>!chmod +x %<CR>', opts)
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -42,11 +43,10 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Find files using Telescope command-line sugar.
 -- keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>ff",
-  "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
-  opts)
+keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+-- keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
   opts)

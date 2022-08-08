@@ -30,6 +30,8 @@ local options = {
   tabstop = 2,
   wildmenu = true,
   wrap = true,
+  updatetime = 50,
+  -- colorcolumn = "80",
 }
 
 for k, v in pairs(options) do
