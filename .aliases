@@ -1,9 +1,9 @@
 # directory listing
-alias l='ls -lFh'     #size,show type,human readable
-alias la='ls -lAFh'   #long list,show almost all,show type,human readable
-alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
-alias ll='ls -la'      #long list
-alias ls="ls -G"   # add colors
+alias l='ls -GlFh'     #size,show type,human readable
+alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
+alias lt='ls -GltFh'   #long list,sorted by date,show type,human readable
+alias ll='ls -Gla'      #long list
+alias ls='ls -G'   # add colors
 
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file
 
@@ -32,9 +32,17 @@ alias tkss='tmux kill-session -t'
 # git
 alias g='git'
 alias gst='git status'
-  
+alias gpp='git pull -p'
+alias gll='git log'
+alias gl='git log --oneline'
+alias glg='(){ git log --oneline -G"$1" }'  
+alias gls='(){ git log --oneline -S"$1" }'  
+alias gd='git diff'
+
 alias dupgrade='brew upgrade'
 alias nv='nvim'
 alias nvc='nv ~/.config/nvim'
 alias lz='lazygit'
-alias cheat='f() { curl cheat.sh/$1 };f'
+alias cheat='(){ curl cheat.sh/"$1" }'
+alias joke='(){curl https://v2.jokeapi.dev/joke/Any}'
+alias jokes='(){curl "https://v2.jokeapi.dev/joke/Any?lang=es"}'
