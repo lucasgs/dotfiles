@@ -75,10 +75,10 @@ return packer.startup(function(use)
 
   -- text commenter
   use {
-	  'numToStr/Comment.nvim',
-	  config = function()
-		  require('Comment').setup()
-	  end
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
   }
 
   -- treesitter
@@ -95,6 +95,8 @@ return packer.startup(function(use)
     --run = ":CatppuccinCompile",
   }
   use 'folke/tokyonight.nvim'
+  use 'tjdevries/colorbuddy.vim'
+  use 'tjdevries/gruvbuddy.nvim'
 
   -- status line
   use {
