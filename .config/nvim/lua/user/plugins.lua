@@ -73,7 +73,12 @@ return packer.startup(function(use)
   use { "ellisonleao/glow.nvim" }
 
   -- text commenter
-  use "terrortylor/nvim-comment"
+  use {
+	  'numToStr/Comment.nvim',
+	  config = function()
+		  require('Comment').setup()
+	  end
+  }
 
   -- treesitter
   use {
