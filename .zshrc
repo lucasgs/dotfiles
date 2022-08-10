@@ -1,6 +1,15 @@
 # set default editor
 export EDITOR='nvim'
 
+# oh-my-zsh config
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
 # pure theme
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
@@ -28,3 +37,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
