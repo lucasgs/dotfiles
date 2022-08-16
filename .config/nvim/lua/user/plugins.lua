@@ -41,6 +41,9 @@ packer.init {
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
 
+  -- useful functions
+  use 'nvim-lua/plenary.nvim'
+
   -- lsp
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
@@ -111,6 +114,9 @@ return packer.startup(function(use)
   use { 'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+
+  -- telescope extensions
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- manage term inside nvim
   use "akinsho/toggleterm.nvim"

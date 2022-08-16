@@ -9,10 +9,10 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- General
-keymap("n", "<Leader>q", "<cmd>q!<CR>", opts)
+keymap("n", "<Leader>q", "<cmd>q<CR>", opts)
+keymap("n", "<Leader>qq", "<cmd>qa<CR>", opts)
 keymap("n", "<Leader>w", "<cmd>w<CR>", opts)
 keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
-keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
 --keymap("n", "<F4>", "<cmd>terminal<CR>", opts)
 -- keymap("n", "<F4>", "<cmd>sp term://zsh<CR>", opts)
 -- keymap('n', '<Leader>t', '<cmd>sp term://zsh<CR>', opts)
@@ -50,6 +50,15 @@ keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffe
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
   opts)
+
+-- no highlighting
+keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
+keymap("n", "<leader>h", "<cmd>nohl<CR>", opts)
+
+-- quick fix list
+keymap("n", "<leader>co", "<cmd>copen<CR>", opts)
+keymap("n", "<leader>cc", "<cmd>cclose<CR>", opts)
+
 
 -- Insert --
 -- Press jk fast to enter
