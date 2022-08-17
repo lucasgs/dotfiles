@@ -72,41 +72,40 @@ cmp.setup {
       select = true,
     },
 
-
     -- Tab mapping
-    -- ['<Tab>'] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   else
-    --     fallback()
-    --   end
-    -- end,
-    -- ['<S-Tab>'] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end
-
-    -- ["<Tab>"] = cmp.mapping(function(fallback)
-    ["<Tab>"] = function(fallback)
-      -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+    ['<Tab>'] = function(fallback)
       if cmp.visible() then
-        local entry = cmp.get_selected_entry()
-        if not entry then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          cmp.confirm()
-        end
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end
     end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end
+
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    -- ["<Tab>"] = function(fallback)
+    --   -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+    --   if cmp.visible() then
+    --     local entry = cmp.get_selected_entry()
+    --     if not entry then
+    --       cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+    --     else
+    --       cmp.confirm()
+    --     end
+    --   else
+    --     fallback()
+    --   end
+    -- end,
     -- end, { "i", "s", "c", }),
   },
 

@@ -20,6 +20,9 @@ source ~/.aliases
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
 
+# make back-i-search work in vi mode-keys to 
+bindkey "^R" history-incremental-search-backward
+
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export FLUTTER_HOME="$HOME/sdk/flutter"
 export LOCAL="$HOME/.local"

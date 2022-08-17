@@ -8,22 +8,6 @@ if not cmp_status_ok then
   return
 end
 
--- Diagnostic options, see: `:help vim.diagnostic.config`
-vim.diagnostic.config({
-  virtual_text = false,
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-  float = {
-    -- focusable = true,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
-  },
-})
-
 -- Show line diagnostics automatically in hover window
 vim.cmd([[
   autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus = false })
