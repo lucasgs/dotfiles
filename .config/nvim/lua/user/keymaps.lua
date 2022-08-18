@@ -9,7 +9,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- General
-keymap("n", "<Leader>q", "<cmd>q<CR>", opts)
+-- keymap("n", "<Leader>q", "<cmd>q<CR>", opts)
+keymap("n", "<Leader>q", "<cmd>Bdelete<CR>", opts)
 keymap("n", "<Leader>qq", "<cmd>qa<CR>", opts)
 keymap("n", "<Leader>w", "<cmd>w<CR>", opts)
 keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)

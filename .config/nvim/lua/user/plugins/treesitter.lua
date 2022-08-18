@@ -15,5 +15,5 @@ configs.setup({
     enable = true,
   },
   -- indent = { enable = false, disable = { "python", "css" } },
-  indent = { enable = false, },
+  indent = { enable = true, },
 })

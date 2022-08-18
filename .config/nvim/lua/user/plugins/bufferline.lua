@@ -4,9 +4,11 @@ if not status_ok then
 end
 bufferline.setup {
   options = {
+    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     mode = "buffers",
     numbers = "none", -- "buffer_id",
     modified_icon = "樂", --"ﰂ", -- "[+]",
+    separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
     diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = true,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
