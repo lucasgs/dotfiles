@@ -54,12 +54,15 @@ keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_stra
 
 -- no highlighting
 keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
-keymap("n", "<leader>h", "<cmd>nohl<CR>", opts)
+-- keymap("n", "<leader>h", "<cmd>nohl<CR>", opts)
 
 -- quick fix list
 keymap("n", "<leader>co", "<cmd>copen<CR>", opts)
 keymap("n", "<leader>cc", "<cmd>cclose<CR>", opts)
 
+-- move page and center
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
 
 -- Insert --
 -- Press jk fast to enter
