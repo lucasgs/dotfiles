@@ -109,8 +109,8 @@ return packer.startup(function(use)
   }
 
   -- buffer line
-  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-  use { "moll/vim-bbye" }
+  -- use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+  -- use { "moll/vim-bbye" }
 
   -- telescope / fuzzy finder
   use { 'nvim-telescope/telescope.nvim',
@@ -124,7 +124,7 @@ return packer.startup(function(use)
   use "akinsho/toggleterm.nvim"
 
   -- complete pairs
-  use "windwp/nvim-autopairs"
+  -- use "windwp/nvim-autopairs"
 
   -- rust
   use 'simrat39/rust-tools.nvim'
