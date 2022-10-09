@@ -15,7 +15,7 @@ local options = {
   mouse = "a",
   number = true,
   pumheight = 10,
-  relativenumber = false,
+  relativenumber = true,
   scrolloff = 8,
   showmode = false,
   shiftwidth = 2,
@@ -33,16 +33,6 @@ local options = {
   updatetime = 50,
   -- colorcolumn = "80",
 }
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_browse_split = 4
-vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 25
-
--- augroup ProjectDrawer
---   autocmd!
---   autocmd VimEnter * :Vexplore
--- augroup END
 
 for k, v in pairs(options) do
   vim.opt[k] = v
