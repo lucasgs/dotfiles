@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function stow_package() {
+  echo "stow $1"
+  stow -D $1
+  stow --target $HOME $1
+}
+
+packages="alacritty kitty nvim tmux zsh all"
+
+for package in $packages; do
+  stow_package $package
+done
+
+case "$(uname -s)" in
+
+  Darwin)
+    # echo 'Mac OS X'
+    ;;
+
+  Linux)
+    stow_package "x"
+    ;;
+
+  CYGWIN* | MINGW32* | MSYS* | MINGW*)
+    # echo 'MS Windows'
+    ;;
+  *)
+    # echo 'Other OS'
+    ;;
+esac
+
