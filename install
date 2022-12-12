@@ -6,7 +6,7 @@ function stow_package() {
   stow --target $HOME $1
 }
 
-packages="alacritty kitty nvim tmux zsh all"
+packages="alacritty kitty nvim tmux zsh bin all"
 
 for package in $packages; do
   stow_package $package
