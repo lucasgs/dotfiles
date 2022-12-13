@@ -129,6 +129,8 @@ return packer.startup(function(use)
   -- rust
   use 'simrat39/rust-tools.nvim'
 
+  use 'ThePrimeagen/vim-be-good'
+
   if packer_bootstrap then
     require("packer").sync()
   end
