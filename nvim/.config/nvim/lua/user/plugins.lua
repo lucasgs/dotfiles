@@ -90,6 +90,7 @@ return packer.startup(function(use)
     run = ':TSUpdate'
   }
   use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- colorschemes
   use 'rafi/awesome-vim-colorschemes' -- Retro Scheme
