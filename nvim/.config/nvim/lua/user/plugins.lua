@@ -45,13 +45,17 @@ return packer.startup(function(use)
   use 'nvim-lua/plenary.nvim'
 
   -- lsp
-  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+  use { -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
 
-  -- lsp installer
-  -- use "williamboman/nvim-lsp-installer"
-
-  -- mason
-  use "williamboman/mason.nvim"
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
+    },
+  }
 
   -- autocompletion
   use 'hrsh7th/nvim-cmp'
