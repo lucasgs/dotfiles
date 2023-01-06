@@ -55,6 +55,7 @@ keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_stra
 -- no highlighting
 keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
 -- keymap("n", "<leader>h", "<cmd>nohl<CR>", opts)
+keymap("n", "<esc>", ":noh<cr>", opts)
 
 -- quick fix list
 keymap("n", "<leader>co", "<cmd>copen<CR>", opts)
