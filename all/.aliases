@@ -17,9 +17,9 @@ alias ff='find . -type f -name'
 alias h='history'
 alias help='man'
 
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
 
 # tmux
 alias ta='tmux attach -t'
@@ -70,4 +70,6 @@ alias days='cal -h | cut -c 4-17 | tail -n +3  | wc -w'
 alias locserv='python3 -m http.server'
 alias qrcode='(){ curl qrcode.show/$1 ;}'
 alias wr='curl wttr.in/mar%20del%20plata'
-alias notes="nvim ~/notes"
+#alias notes="nvim ~/notes"
+# alias notes='cd ~/notes; nv "+Telescope find_files"'
+alias notes='cd ~/notes; nv'
