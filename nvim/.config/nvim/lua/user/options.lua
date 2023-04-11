@@ -34,6 +34,17 @@ local options = {
   -- colorcolumn = "80",
 }
 
+local globals = {
+  netrw_banner = 0, -- don't show the banner on top
+  netrw_liststyle = 3, -- show list as a tree
+  netrw_browse_split = 0, -- reuse the same window
+  netrw_winsize = 25
+}
+
 for k, v in pairs(options) do
   vim.opt[k] = v
+end
+
+for k, v in pairs(globals) do
+  vim.g[k] = v
 end
