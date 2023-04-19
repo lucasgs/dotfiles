@@ -1,9 +1,9 @@
 # directory listing
+alias ls='gls --color=auto --group-directories-first'   # add colors
 alias l='ls -GlFh'     #size,show type,human readable
 alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
 alias lt='ls -GltFh'   #long list,sorted by date,show type,human readable
 alias ll='ls -Gla'      #long list
-alias ls='ls -G'   # add colors
 
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file
 
@@ -37,7 +37,7 @@ alias gfp='git fetch -p'
 alias gll='git log'
 alias gl='git log --oneline'
 alias glg='(){ git log --oneline -G"$1" }'  
-alias gls='(){ git log --oneline -S"$1" }'  
+# alias gls='(){ git log --oneline -S"$1" }'  
 alias gd='git diff'
 
 # android
@@ -60,6 +60,7 @@ alias fapk="find . -iname '*.apk'"
 # general
 alias dupgrade='brew upgrade'
 alias nv='nvim'
+alias n='nvim'
 alias nvc='nv ~/.config/nvim'
 alias lz='lazygit'
 alias cheat='(){ curl cheat.sh/"$1" }'
@@ -73,3 +74,7 @@ alias wr='curl wttr.in/mar%20del%20plata'
 alias notes="nvim ~/notes"
 # alias notes='cd ~/notes; nv "+Telescope find_files"'
 # alias notes='cd ~/notes; nv'
+
+alias nnn="nnn -e"
+
+alias ai="(){ cd ~/src/gpt4all/chat;./gpt4all-lora-quantized-OSX-m1 }";

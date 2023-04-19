@@ -73,9 +73,8 @@ return packer.startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
 
   --file explorer
-  use 'kyazdani42/nvim-tree.lua'
-
-  use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
+  -- use 'kyazdani42/nvim-tree.lua'
+  --use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
 
   -- markdown preview
   use { "ellisonleao/glow.nvim" }
@@ -97,7 +96,7 @@ return packer.startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
 
   -- colorschemes
-  use 'rafi/awesome-vim-colorschemes' -- Retro Scheme
+  -- use 'rafi/awesome-vim-colorschemes' -- Retro Scheme
   use {
     "catppuccin/nvim",
     as = "catppuccin",
@@ -106,6 +105,7 @@ return packer.startup(function(use)
   use 'folke/tokyonight.nvim'
   use 'tjdevries/colorbuddy.vim'
   use 'tjdevries/gruvbuddy.nvim'
+  use 'rebelot/kanagawa.nvim'
 
   -- status line
   use {
@@ -132,6 +132,28 @@ return packer.startup(function(use)
   -- use "windwp/nvim-autopairs"
 
   use 'ThePrimeagen/vim-be-good'
+
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
+
+  use {
+    "luukvbaal/nnn.nvim",
+    config = function() require("nnn").setup() end
+  }
+
+  -- markdown notes
+  use {
+    'JellyApple102/flote.nvim'
+  }
 
   if packer_bootstrap then
     require("packer").sync()

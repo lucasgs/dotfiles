@@ -12,6 +12,7 @@ toggleterm.setup({
     end
   end,
   open_mapping = [[<C-\>]],
+  --open_mapping = [[<Space>-t]],
   tide_numbers = true,
   shade_filetypes = {},
   shade_terminals = true,

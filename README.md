@@ -27,7 +27,7 @@ stow */ # Everything
 ```
 
 ```bash
-stow nvim  # Just the zsh config
+stow nvim  # Just the nvim config
 ```
 ```bash
 stow nvim tmux  # Several at once
