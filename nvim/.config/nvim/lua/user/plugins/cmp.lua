@@ -36,6 +36,8 @@ local kind_icons = {
   TypeParameter = ""
 }
 
+luasnip.config.setup {}
+
 cmp.setup {
   -- Load snippet support
   snippet = {
@@ -45,8 +47,10 @@ cmp.setup {
   },
 
   window = {
-    -- documentation = cmp.config.window.bordered(),
-    -- completion = cmp.config.window.bordered(),
+    documentation = true,
+    completion = {
+      border = "rounded",
+    }
   },
 
   -- Completion settings
@@ -143,12 +147,6 @@ cmp.setup {
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
-  },
-  window = {
-    documentation = true,
-    completion = {
-      border = "rounded",
-    }
   },
   -- Load sources, see: https://github.com/topics/nvim-cmp
   sources = {
