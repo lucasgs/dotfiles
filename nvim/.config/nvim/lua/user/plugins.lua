@@ -69,8 +69,13 @@ return packer.startup(function(use)
   -- use 'hrsh7th/vim-vsnip'
 
   -- snippets
-  use 'L3MON4D3/LuaSnip'
+  use({
+    "L3MON4D3/LuaSnip",
+    tag = "v1.2.*",
+    run = "make install_jsregexp"
+  })
   use 'saadparwaiz1/cmp_luasnip'
+  use "rafamadriz/friendly-snippets"
 
   --file explorer
   -- use 'kyazdani42/nvim-tree.lua'
@@ -154,6 +159,8 @@ return packer.startup(function(use)
   use {
     'JellyApple102/flote.nvim'
   }
+
+  -- use { "alexghergh/nvim-tmux-navigation" }
 
   if packer_bootstrap then
     require("packer").sync()

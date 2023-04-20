@@ -38,6 +38,14 @@ local kind_icons = {
 
 luasnip.config.setup {}
 
+-- local s = luasnip.snippet
+-- luasnip.add_snippets ("all",  {
+--   luasnip.parser.parse_snippet({trig = "expand"}, "This is what was expanded!"),
+--   luasnip.parser.parse_snippet({trig = "lsp"}, "$1 is ${2|hard,easy,challenging|}"),
+-- })
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
 cmp.setup {
   -- Load snippet support
   snippet = {
@@ -150,8 +158,8 @@ cmp.setup {
   },
   -- Load sources, see: https://github.com/topics/nvim-cmp
   sources = {
-    { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp' },
     { name = 'nvim-lua' },
     { name = 'path' },
     { name = 'buffer' },

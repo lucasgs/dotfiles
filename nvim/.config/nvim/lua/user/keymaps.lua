@@ -45,12 +45,12 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Find files using Telescope command-line sugar.
 -- keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>sf", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", opts)
-keymap("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", opts)
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 -- keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap("n", "<leader>sb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", opts)
-keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", opts)
-keymap("n", "<leader>sc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
+keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
   opts)
 
 -- no highlighting
