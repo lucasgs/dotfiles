@@ -16,6 +16,7 @@ prompt pure
 
 source ~/.aliases
 source ~/.vars
+source ~/nvims
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
