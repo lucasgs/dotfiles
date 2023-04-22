@@ -7,13 +7,10 @@ comment.setup(
   {
     ---Add a space b/w comment and the line
     padding = true,
-
     ---Whether the cursor should stay at its position
     sticky = true,
-
     ---Lines to be ignored while comment/uncomment.
     ignore = nil,
-
     ---LHS of toggle mappings in NORMAL mode
     toggler = {
       ---Line-comment toggle keymap
@@ -21,7 +18,6 @@ comment.setup(
       ---Block-comment toggle keymap
       block = 'gbc',
     },
-
     ---LHS of operator-pending mappings in NORMAL + VISUAL mode
     opleader = {
       ---Line-comment keymap
@@ -29,7 +25,6 @@ comment.setup(
       ---Block-comment keymap
       block = 'gb',
     },
-
     ---LHS of extra mappings
     extra = {
       ---Add comment on the line above
@@ -39,7 +34,6 @@ comment.setup(
       ---Add comment at the end of line
       eol = 'gcA',
     },
-
     ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
     mappings = {
       ---Operator-pending mapping
@@ -52,10 +46,8 @@ comment.setup(
       ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
       extended = false,
     },
-
     ---Pre-hook, called before commenting the line
     pre_hook = nil,
-
     ---Post-hook, called after commenting is done
     post_hook = nil,
   }

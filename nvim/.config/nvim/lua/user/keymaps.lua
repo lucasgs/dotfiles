@@ -43,6 +43,10 @@ keymap("n", "<A-Right>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Splits
+keymap("n", "<leader>v", "<cmd>vsplit<CR><C-w>w", opts)
+keymap("n", "<leader>s", "<cmd>split<CR><C-w>w", opts)
+
 -- Find files using Telescope command-line sugar.
 -- keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", opts)
@@ -55,7 +59,7 @@ keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_stra
 
 -- no highlighting
 -- keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
-keymap("n", "<C-l>", "<cmd>nohl<CR>", opts)
+-- keymap("n", "<C-l>", "<cmd>nohl<CR>", opts)
 -- keymap("n", "<leader>h", "<cmd>nohl<CR>", opts)
 keymap("n", "<esc>", ":noh<cr>", opts)
 
