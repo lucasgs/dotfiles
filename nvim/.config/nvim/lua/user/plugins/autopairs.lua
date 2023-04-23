@@ -4,4 +4,5 @@ if not status_ok then
 end
 
 autopairs.setup({
+  disable_filetype = { "TelescopePrompt", "vim" },
 })

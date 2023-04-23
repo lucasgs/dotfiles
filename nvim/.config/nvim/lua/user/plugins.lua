@@ -130,12 +130,19 @@ return packer.startup(function(use)
   -- telescope extensions
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
+  use 'nvim-telescope/telescope-file-browser.nvim'
+
   -- manage term inside nvim
   use "akinsho/toggleterm.nvim"
 
   -- complete pairs
-  -- use "windwp/nvim-autopairs"
+  use 'windwp/nvim-ts-autotag'
+  use 'windwp/nvim-autopairs'
 
+  -- colorize hex and name colors
+  use 'norcalli/nvim-colorizer.lua'
+
+  -- to be very good at vimming
   use 'ThePrimeagen/vim-be-good'
 
   use({
