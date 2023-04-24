@@ -111,6 +111,10 @@ return packer.startup(function(use)
   use 'tjdevries/colorbuddy.vim'
   use 'tjdevries/gruvbuddy.nvim'
   use 'rebelot/kanagawa.nvim'
+  use {
+    'svrana/neosolarized.nvim',
+    requires = { 'tjdevries/colorbuddy.nvim' }
+  }
 
   -- status line
   use {

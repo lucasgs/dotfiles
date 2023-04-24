@@ -3,11 +3,15 @@ if not status_ok then
   return
 end
 
+local theme_name = vim.cmd "colorscheme"
+
 lualine.setup {
   options = {
     icons_enabled = false,
     -- theme = 'tokyonight',
-    theme = "onedark",
+    -- theme = "onedark",
+    -- theme = "catppuccin",
+    theme = theme_name,
     section_separators = '',
     component_separators = '',
     globalstatus = true,

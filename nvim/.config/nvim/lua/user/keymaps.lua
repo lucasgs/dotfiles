@@ -27,6 +27,9 @@ keymap('n', '<Leader>so', '<cmd>so %<CR>', opts)
 -- make current file executable
 keymap('n', '<Leader>x', '<cmd>!chmod +x %<CR>', opts)
 
+-- select all text
+keymap('n', '<Leader>a', 'gg<S-v>G', opts)
+
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -44,8 +47,8 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Splits
-keymap("n", "<leader>v", "<cmd>vsplit<CR><C-w>w", opts)
-keymap("n", "<leader>s", "<cmd>split<CR><C-w>w", opts)
+keymap("n", "<leader>sv", "<cmd>vsplit<CR><C-w>w", opts)
+keymap("n", "<leader>ss", "<cmd>split<CR><C-w>w", opts)
 
 -- Find files using Telescope command-line sugar.
 -- keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
