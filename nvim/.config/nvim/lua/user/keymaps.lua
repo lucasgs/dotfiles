@@ -4,21 +4,29 @@ local term_opts = { silent = true }
 local keymap = vim.keymap.set
 
 --Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- General
+
+-- Quit
 -- keymap("n", "<Leader>q", "<cmd>q<CR>", opts)
 -- keymap("n", "<Leader>q", "<cmd>bd %<CR>", opts)
 keymap("n", "<Leader>qq", "<cmd>qa<CR>", opts)
 keymap("n", "<Leader>w", "<cmd>w<CR>", opts)
+
+-- Explorer
 -- keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
 keymap('n', '<Leader>e', '<cmd>Ex<CR>', opts)
+-- keymap('n', '<Leader>e', '<cmd>Telescope file_browser<CR>', opts)
+
+-- Integrated terminal
 --keymap("n", "<F4>", "<cmd>terminal<CR>", opts)
 -- keymap("n", "<F4>", "<cmd>sp term://zsh<CR>", opts)
 -- keymap('n', '<Leader>t', '<cmd>sp term://zsh<CR>', opts)
 -- keymap('n', '<Leader>t', '<cmd>ToggleTerm<CR>', opts)
+
+-- Lazy git
 keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts)
 
 -- source current buffer
@@ -29,6 +37,12 @@ keymap('n', '<Leader>x', '<cmd>!chmod +x %<CR>', opts)
 
 -- select all text
 keymap('n', '<Leader>a', 'gg<S-v>G', opts)
+
+-- yank all text
+keymap('n', '<Leader>ya', 'gg<S-v>Gy', opts)
+
+-- duplicate line
+keymap('n', '<C-y>', 'yyp', opts)
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -60,6 +74,8 @@ keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
   opts)
 
+keymap("n", "<leader>fw", "<cmd>lua require'telescope.builtin'.grep_string()<CR>", opts)
+
 -- no highlighting
 -- keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
 -- keymap("n", "<C-l>", "<cmd>nohl<CR>", opts)
@@ -86,6 +102,8 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+
+-- Paste and overwrite
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
@@ -101,3 +119,8 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Rest client
+keymap("n", "<leader>rr", "<Plug>RestNvim", opts)
+keymap("n", "<leader>rp", "<Plug>RestNvimPreview", opts)
+keymap("n", "<leader>rl", "<Plug>RestNvimLast", opts)

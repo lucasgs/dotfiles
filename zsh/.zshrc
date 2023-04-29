@@ -1,13 +1,13 @@
 export EDITOR='nvim'
 
 # oh-my-zsh config
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
-plugins=(git)
+# plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # pure theme
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
@@ -46,7 +46,7 @@ eval "$(pyenv init -)"
 # nnn
 export NNN_PLUG='d:trash;c:fzcd;j:autojump;u:getplugs'
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(rbenv init - zsh)"
 

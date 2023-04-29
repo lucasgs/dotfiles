@@ -123,8 +123,8 @@ return packer.startup(function(use)
   }
 
   -- buffer line
-  -- use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
-  -- use { "moll/vim-bbye" }
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+  use { "moll/vim-bbye" }
 
   -- telescope / fuzzy finder
   use { 'nvim-telescope/telescope.nvim',
@@ -169,6 +169,12 @@ return packer.startup(function(use)
   -- markdown notes
   use {
     'JellyApple102/flote.nvim'
+  }
+
+  -- rest client
+  use {
+    "rest-nvim/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
   }
 
   -- use { "alexghergh/nvim-tmux-navigation" }

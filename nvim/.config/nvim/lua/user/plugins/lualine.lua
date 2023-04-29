@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local theme_name = vim.cmd "colorscheme"
+-- local theme_name = vim.cmd "colorscheme"
 
 lualine.setup {
   options = {
@@ -11,7 +11,8 @@ lualine.setup {
     -- theme = 'tokyonight',
     -- theme = "onedark",
     -- theme = "catppuccin",
-    theme = theme_name,
+    -- theme = theme_name,
+    them = 'auto',
     section_separators = '',
     component_separators = '',
     globalstatus = true,
