@@ -51,18 +51,22 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
-keymap("n", "<A-Up>", ":resize +2<CR>", opts)
-keymap("n", "<A-Down>", ":resize -2<CR>", opts)
-keymap("n", "<A-Left>", ":vertical resize +2<CR>", opts)
-keymap("n", "<A-Right>", ":vertical resize -2<CR>", opts)
+keymap("n", "<A-Up>", "<cmd>resize +3<CR>", opts)
+keymap("n", "<A-Down>", "<cmd>resize -3<CR>", opts)
+keymap("n", "<A-Left>", "<cmd>vertical resize +3<CR>", opts)
+keymap("n", "<A-Right>", "<cmd>vertical resize -3<CR>", opts)
+
+-- Change 2 split windows from vert to horiz or horiz to vert
+keymap("n", "<leader>th", "<C-w>t<C-w>H", opts)
+keymap("n", "<leader>tk", "<C-w>t<C-w>K", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
+keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
 -- Splits
-keymap("n", "<leader>sv", "<cmd>vsplit<CR><C-w>w", opts)
-keymap("n", "<leader>ss", "<cmd>split<CR><C-w>w", opts)
+keymap("n", "<leader>sv", "<cmd>vnew<CR>", opts)
+keymap("n", "<leader>ss", "<cmd>split<CR>", opts)
 
 -- Find files using Telescope command-line sugar.
 -- keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
@@ -80,7 +84,7 @@ keymap("n", "<leader>fw", "<cmd>lua require'telescope.builtin'.grep_string()<CR>
 -- keymap("n", "<F10>", "<cmd>nohl<CR>", opts)
 -- keymap("n", "<C-l>", "<cmd>nohl<CR>", opts)
 -- keymap("n", "<leader>h", "<cmd>nohl<CR>", opts)
-keymap("n", "<esc>", ":noh<cr>", opts)
+keymap("n", "<esc>", "<cmd>noh<cr>", opts)
 
 -- quick fix list
 keymap("n", "<leader>co", "<cmd>copen<CR>", opts)
@@ -100,18 +104,18 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "<A-j>", "<cmd>m .+1<CR>==", opts)
+keymap("v", "<A-k>", "<cmd>m .-2<CR>==", opts)
 
 -- Paste and overwrite
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "J", "<cmd>move '>+1<CR>gv-gv", opts)
+keymap("x", "K", "<cmd>move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation

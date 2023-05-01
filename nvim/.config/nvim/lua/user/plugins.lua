@@ -177,6 +177,13 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }
 
+  use {
+    'goolord/alpha-nvim',
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+    end
+  }
+
   -- use { "alexghergh/nvim-tmux-navigation" }
 
   if packer_bootstrap then

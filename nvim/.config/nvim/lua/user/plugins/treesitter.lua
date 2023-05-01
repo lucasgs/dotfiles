@@ -4,16 +4,15 @@ if not status_ok then
 end
 
 configs.setup({
-  ensure_installed = "all", -- one of "all" or a list of languages
+  ensure_installed = "all",                            -- one of "all" or a list of languages
   sync_install = false,
   ignore_install = { "phpdoc", "tree-sitter-phpdoc" }, -- List of parsers to ignore installing
   highlight = {
-    enable = true, -- false will disable the whole extension
-    disable = { "css" }, -- list of language that will be disabled
+    enable = true,                                     -- false will disable the whole extension
+    disable = { "css" },                               -- list of language that will be disabled
   },
   autopairs = {
     enable = true,
   },
-  -- indent = { enable = false, disable = { "python", "css" } },
   indent = { enable = true, },
 })
