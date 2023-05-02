@@ -2,7 +2,6 @@
 alias ls='gls --color=auto --group-directories-first'   # add colors
 alias l='ls -GlFh'     #size,show type,human readable
 alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
-alias lt='ls -GltFh'   #long list,sorted by date,show type,human readable
 alias ll='ls -Gla'      #long list
 
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file

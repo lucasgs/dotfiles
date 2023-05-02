@@ -8,34 +8,6 @@ if not luasnip_status_ok then
   return
 end
 
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = ""
-}
-
 luasnip.config.setup {}
 
 -- local s = luasnip.snippet
@@ -45,6 +17,9 @@ luasnip.config.setup {}
 -- })
 
 require("luasnip.loaders.from_vscode").lazy_load()
+
+local icons = require("user.icons")
+local kind_icons = icons.kind
 
 cmp.setup {
   -- Load snippet support

@@ -10,3 +10,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Always start term in insert mode
+--vim.cmd [[autocmd BufWinEnter,WinEnter term://* startinsert]]

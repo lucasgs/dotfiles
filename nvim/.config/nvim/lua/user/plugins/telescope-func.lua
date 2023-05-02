@@ -13,4 +13,17 @@ function M.buffers()
   builtin.buffers(themes.get_dropdown(opts))
 end
 
+function M.edit_nvim()
+  builtin.find_files {
+    shorten_path = false,
+    cwd = "~/.config/nvim/",
+    prompt = "~ nvim dotfiles ~",
+    hidden = true,
+    layout_strategy = "horizontal",
+    layout_config = {
+      preview_width = 0.55,
+    },
+  }
+end
+
 return M
