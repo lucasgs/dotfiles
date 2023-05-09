@@ -184,6 +184,18 @@ return packer.startup(function(use)
     end
   }
 
+  -- typing practice
+  use { 'BooleanCube/keylab.nvim' }
+
+  -- surroundings
+  use({
+    "kylechui/nvim-surround",
+    tag = "*"
+  })
+
+  -- personal wiki
+  use { 'vimwiki/vimwiki' }
+
   -- use { "alexghergh/nvim-tmux-navigation" }
 
   if packer_bootstrap then

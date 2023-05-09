@@ -172,6 +172,11 @@ _G.packer_plugins = {
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
+  ["keylab.nvim"] = {
+    loaded = true,
+    path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/keylab.nvim",
+    url = "https://github.com/BooleanCube/keylab.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -222,6 +227,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -298,6 +308,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/vim-be-good",
     url = "https://github.com/ThePrimeagen/vim-be-good"
+  },
+  vimwiki = {
+    loaded = true,
+    path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/vimwiki",
+    url = "https://github.com/vimwiki/vimwiki"
   }
 }
 

@@ -1,8 +1,14 @@
 # directory listing
-alias ls='gls --color=auto --group-directories-first'   # add colors
-alias l='ls -GlFh'     #size,show type,human readable
-alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
-alias ll='ls -Gla'      #long list
+# alias ls='gls --color=auto --group-directories-first'   # add colors
+# alias l='ls -GlFh'     #size,show type,human readable
+# alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
+# alias ll='ls -Gla'      #long list
+
+# Changing "ls" to "exa"
+alias ls='exa -a --color=always --group-directories-first' # my preferred listing
+alias la='exa -la --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
 
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file
 
@@ -57,7 +63,7 @@ alias fapk="find . -iname '*.apk'"
 # alias fapk="find ./p2p-app/build/outputs -name '*.apk'"
 
 # general
-alias dupgrade='brew upgrade'
+alias upgrade='brew upgrade --greedy && omz update && sdk update && tldr --update'
 alias nv='nvim'
 alias n='nvim'
 alias nvc='nv ~/.config/nvim'
