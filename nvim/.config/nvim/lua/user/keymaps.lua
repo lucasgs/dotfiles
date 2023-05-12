@@ -3,10 +3,6 @@ local term_opts = { silent = true }
 
 local keymap = vim.keymap.set
 
---Remap space as leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- General
 
 -- Quit
@@ -144,3 +140,6 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("n", "<leader>rr", "<Plug>RestNvim", opts)
 keymap("n", "<leader>rp", "<Plug>RestNvimPreview", opts)
 keymap("n", "<leader>rl", "<Plug>RestNvimLast", opts)
+
+-- undotree
+keymap("n", "<F5>", "<cmd>:UndotreeToggle<cr>", opts)

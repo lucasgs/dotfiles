@@ -83,8 +83,12 @@ return packer.startup(function(use)
 
   -- markdown preview
   use { "ellisonleao/glow.nvim" }
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  })
 
   -- text commenter
   use {
@@ -199,6 +203,9 @@ return packer.startup(function(use)
   use { 'vimwiki/vimwiki' }
 
   -- use { "alexghergh/nvim-tmux-navigation" }
+
+  -- undo history
+  use 'mbbill/undotree'
 
   if packer_bootstrap then
     require("packer").sync()
