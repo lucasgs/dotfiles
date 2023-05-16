@@ -12,7 +12,7 @@ lualine.setup {
     -- theme = "onedark",
     -- theme = "catppuccin",
     -- theme = theme_name,
-    them = 'auto',
+    theme = 'auto',
     section_separators = '',
     component_separators = '',
     globalstatus = true,

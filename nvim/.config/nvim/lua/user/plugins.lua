@@ -205,7 +205,12 @@ return packer.startup(function(use)
   -- use { "alexghergh/nvim-tmux-navigation" }
 
   -- undo history
-  use 'mbbill/undotree'
+  use { 'mbbill/undotree' }
+
+  -- debugging
+  use { 'mfussenegger/nvim-dap' }
+  use { 'rcarriga/nvim-dap-ui' }
+  use { 'theHamsta/nvim-dap-virtual-text' }
 
   if packer_bootstrap then
     require("packer").sync()

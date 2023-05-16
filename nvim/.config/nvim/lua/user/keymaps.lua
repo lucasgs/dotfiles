@@ -142,4 +142,4 @@ keymap("n", "<leader>rp", "<Plug>RestNvimPreview", opts)
 keymap("n", "<leader>rl", "<Plug>RestNvimLast", opts)
 
 -- undotree
-keymap("n", "<F5>", "<cmd>:UndotreeToggle<cr>", opts)
+keymap("n", "<leader>u", "<cmd>:UndotreeToggle<cr>", opts)
