@@ -3,6 +3,33 @@ if not status_ok then
   return
 end
 
+local keymap = vim.keymap.set
+
+keymap('n', '<F5>', function() require('dap').continue() end)
+keymap('n', '<F8>', function() require('dap').step_over() end)
+keymap('n', '<F9>', function() require('dap').step_into() end)
+keymap('n', '<F10>', function() require('dap').step_out() end)
+keymap('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+keymap('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+keymap('n', '<Leader>lp',
+  function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+keymap('n', '<Leader>dr', function() require('dap').repl.open() end)
+keymap('n', '<Leader>dl', function() require('dap').run_last() end)
+keymap({ 'n', 'v' }, '<Leader>dh', function()
+  require('dap.ui.widgets').hover()
+end)
+keymap({ 'n', 'v' }, '<Leader>dp', function()
+  require('dap.ui.widgets').preview()
+end)
+keymap('n', '<Leader>df', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.frames)
+end)
+keymap('n', '<Leader>ds', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+end)
+
 local dapui_status_ok, dapui = pcall(require, 'dapui')
 if not dapui_status_ok then
   return
@@ -14,6 +41,7 @@ if not vtext_ok then
 end
 
 dapui.setup()
+
 vtext.setup {
   enabled = true,                     -- enable this plugin (the default)
   enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
@@ -73,28 +101,3 @@ dap.configurations.kotlin = {
     -- mainClass = "${file}",
   }
 }
-
-vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
-vim.keymap.set('n', '<F8>', function() require('dap').step_over() end)
-vim.keymap.set('n', '<F9>', function() require('dap').step_into() end)
-vim.keymap.set('n', '<F10>', function() require('dap').step_out() end)
-vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
-vim.keymap.set('n', '<Leader>lp',
-  function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
-vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
-vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
-  require('dap.ui.widgets').hover()
-end)
-vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
-  require('dap.ui.widgets').preview()
-end)
-vim.keymap.set('n', '<Leader>df', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.frames)
-end)
-vim.keymap.set('n', '<Leader>ds', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.scopes)
-end)

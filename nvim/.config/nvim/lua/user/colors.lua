@@ -3,4 +3,5 @@ if not ok then
   return
 end
 
+-- themes.catppuccin()
 themes.kanagawa()

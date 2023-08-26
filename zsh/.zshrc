@@ -3,9 +3,10 @@ export EDITOR='nvim'
 # oh-my-zsh config
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
-plugins=(git)
+# plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -15,6 +16,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 source ~/.aliases
+source ~/.functions
 source ~/.vars
 source ~/nvims
 
@@ -28,7 +30,9 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export FLUTTER_HOME="$HOME/sdk/flutter"
 export LOCAL="$HOME/.local"
 export RUBY_PATH="/opt/homebrew/opt/ruby"
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin:$RUBY_PATH/bin"
+export MAESTRO_HOME="$HOME/.maestro"
+export PURR_HOME="/Users/lucas/src/purr/scripts"
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin:$RUBY_PATH/bin:$MAESTRO_HOME/bin:$PURR_HOME"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
