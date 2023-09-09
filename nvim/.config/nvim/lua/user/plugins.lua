@@ -57,6 +57,12 @@ return packer.startup(function(use)
     },
   }
 
+  -- visual progress
+  use {
+    'j-hui/fidget.nvim',
+    tag = 'legacy',
+  }
+
   -- autocompletion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -194,10 +200,12 @@ return packer.startup(function(use)
   use { 'BooleanCube/keylab.nvim' }
 
   -- surroundings
-  use({
-    "kylechui/nvim-surround",
-    tag = "*"
-  })
+  -- use({
+  --   "kylechui/nvim-surround",
+  --   tag = "*"
+  -- })
+
+  use 'echasnovski/mini.nvim'
 
   -- personal wiki
   use { 'vimwiki/vimwiki' }
@@ -211,6 +219,12 @@ return packer.startup(function(use)
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
+
+  -- diff
+  use "sindrets/diffview.nvim"
+
+  -- icons
+  use 'nvim-tree/nvim-web-devicons'
 
   if packer_bootstrap then
     require("packer").sync()

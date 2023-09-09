@@ -142,4 +142,8 @@ keymap("n", "<leader>rp", "<Plug>RestNvimPreview", opts)
 keymap("n", "<leader>rl", "<Plug>RestNvimLast", opts)
 
 -- undotree
-keymap("n", "<leader>u", "<cmd>:UndotreeToggle<cr>", opts)
+keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+
+-- Diffview
+keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", opts)
+keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", opts)
