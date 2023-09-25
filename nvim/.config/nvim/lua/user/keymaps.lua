@@ -106,6 +106,9 @@ keymap("n", "<leader>cc", "<cmd>cclose<CR>", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
+keymap("n", "gh", "^", opts)
+keymap("n", "gl", "$", opts)
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
