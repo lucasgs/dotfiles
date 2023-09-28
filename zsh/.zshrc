@@ -7,13 +7,14 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""
 
 # plugins=(git)
+plugins=(gnu-utils)
 
 source $ZSH/oh-my-zsh.sh
 
 # pure theme
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
-prompt pure
+# prompt pure
 
 source ~/.aliases
 source ~/.functions
@@ -58,3 +59,5 @@ eval "$(jump shell zsh)"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+eval "$(starship init zsh)"

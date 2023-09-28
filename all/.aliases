@@ -5,7 +5,8 @@
 # alias ll='ls -Gla'      #long list
 
 # Changing "ls" to "eza"
-alias ls='eza -a --color=always --group-directories-first' # my preferred listing
+# alias ls='eza -a --color=always --group-directories-first' # my preferred listing
+alias ls="ls --hyperlink=auto --color=auto"
 alias la='eza -la --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
@@ -44,6 +45,8 @@ alias gl='git log --oneline'
 alias glg='(){ git log --oneline -G"$1" }'  
 # alias gls='(){ git log --oneline -S"$1" }'  
 alias gd='git diff'
+alias gsi='git submodule init'
+alias gsu='git submodule update'
 
 # android
 alias talkon="adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService"
