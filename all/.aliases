@@ -5,11 +5,8 @@
 # alias ll='ls -Gla'      #long list
 
 # Changing "ls" to "eza"
-# alias ls='eza -a --color=always --group-directories-first' # my preferred listing
-alias ls="ls --hyperlink=auto --color=auto"
-alias la='eza -la --color=always --group-directories-first'  # all files and dirs
-alias ll='eza -l --color=always --group-directories-first'  # long format
-alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias ls="ls -a --hyperlink=auto --color=auto --group-directories-first"
+alias ll="ls -la --hyperlink=auto --color=auto --group-directories-first"
 
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file
 
@@ -87,5 +84,7 @@ alias notes="nvim ~/notes"
 alias nnn="nnn -e"
 
 alias ai="(){ cd ~/src/gpt4all/chat;./gpt4all-lora-quantized-OSX-m1 }";
+
+alias icat="kitty +kitten icat"
 
 alias bf="wr && say '[[volm 0.5]] weather completed'"
