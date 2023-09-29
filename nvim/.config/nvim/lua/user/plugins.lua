@@ -205,10 +205,10 @@ return packer.startup(function(use)
   use { 'BooleanCube/keylab.nvim' }
 
   -- surroundings
-  -- use({
-  --   "kylechui/nvim-surround",
-  --   tag = "*"
-  -- })
+  use({
+    "kylechui/nvim-surround",
+    tag = "*"
+  })
 
   use 'echasnovski/mini.nvim'
 
