@@ -150,3 +150,11 @@ keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 -- Diffview
 keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", opts)
 keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", opts)
+
+-- Harpoon
+vim.keymap.set('n', 'ha', require('harpoon.mark').add_file)
+vim.keymap.set('n', 'hc', require('harpoon.mark').clear_all)
+vim.keymap.set('n', 'hn', require('harpoon.ui').nav_next)
+vim.keymap.set('n', 'hp', require('harpoon.ui').nav_prev)
+vim.keymap.set('n', 'hm', require('harpoon.ui').toggle_quick_menu)
+-- vim.keymap.set('n', 'hm', ':Telescope harpoon marks<CR>')

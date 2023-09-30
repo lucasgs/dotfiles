@@ -231,6 +231,8 @@ return packer.startup(function(use)
   -- icons
   use 'nvim-tree/nvim-web-devicons'
 
+  use 'ThePrimeagen/harpoon'
+
   if packer_bootstrap then
     require("packer").sync()
   end
