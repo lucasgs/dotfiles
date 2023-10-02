@@ -233,6 +233,8 @@ return packer.startup(function(use)
 
   use 'ThePrimeagen/harpoon'
 
+  use 'David-Kunz/gen.nvim'
+
   if packer_bootstrap then
     require("packer").sync()
   end
