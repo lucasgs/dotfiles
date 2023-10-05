@@ -72,7 +72,7 @@ end
 -- map buffer local keybindings when the language server attaches.
 -- Add your language server below:
 local servers = { 'bashls', 'pyright', 'clangd', 'html', 'cssls', 'tsserver', 'lua_ls', 'rust_analyzer',
-  'kotlin_language_server', 'groovyls' }
+  'kotlin_language_server', 'groovyls', 'gopls' }
 
 -- Call setup
 for _, server in ipairs(servers) do

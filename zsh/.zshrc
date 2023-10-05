@@ -33,7 +33,7 @@ export LOCAL="$HOME/.local"
 export RUBY_PATH="/opt/homebrew/opt/ruby"
 export MAESTRO_HOME="$HOME/.maestro"
 export PURR_HOME="/Users/lucas/src/purr/scripts"
-export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin:$RUBY_PATH/bin:$MAESTRO_HOME/bin:$PURR_HOME"
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin:$RUBY_PATH/bin:$MAESTRO_HOME/bin:$PURR_HOME:$(go env GOPATH)/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
