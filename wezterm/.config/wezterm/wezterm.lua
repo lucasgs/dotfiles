@@ -21,17 +21,37 @@ config.window_background_opacity = 1.00
 config.initial_cols = 150
 config.initial_rows = 40
 
-config.leader = { key = 'e', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.leader = { key = 'w', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   {
     key = '|',
-    mods = 'LEADER|SHIFT',
+    mods = 'LEADER',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
     key = '-',
     mods = 'LEADER',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 'h',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection 'Left',
+  },
+  {
+    key = 'l',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection 'Right',
+  },
+  {
+    key = 'j',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection 'Down',
+  },
+  {
+    key = 'k',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection 'Up',
   },
 }
 
