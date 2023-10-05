@@ -1,0 +1,38 @@
+local wezterm = require 'wezterm'
+
+local config = {}
+
+config.font = wezterm.font('Hack Nerd Font Mono')
+config.font_size = 13.0
+
+-- color_scheme = 'Kanagawa (Gogh)',
+config.color_scheme = 'tokyonight-storm'
+
+config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
+
+config.window_decorations = "RESIZE"
+-- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+
+-- window_background_opacity = 0.95,
+config.window_background_opacity = 1.00
+
+config.initial_cols = 150
+config.initial_rows = 40
+
+config.leader = { key = 'e', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.keys = {
+  {
+    key = '|',
+    mods = 'LEADER|SHIFT',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = '-',
+    mods = 'LEADER',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+}
+
+return config
