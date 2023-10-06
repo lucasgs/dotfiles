@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# emojis=$(curl -sSL 'https://git.io/JXXO7')
+
+# selected_emoji=$(echo $emojis | fzf)
+selected_emoji=$(curl -sSL 'https://git.io/JXXO7' | fzf)
+
+echo $selected_emoji
