@@ -6,13 +6,14 @@ config.font = wezterm.font('Hack Nerd Font Mono')
 config.font_size = 13.0
 
 -- color_scheme = 'Kanagawa (Gogh)',
-config.color_scheme = 'tokyonight-storm'
+-- config.color_scheme = 'tokyonight-storm'
+config.color_scheme = 'kanagawabones'
 
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
-config.window_decorations = "RESIZE"
+-- config.window_decorations = "RESIZE"
 -- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 -- window_background_opacity = 0.95,

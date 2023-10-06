@@ -8,12 +8,12 @@ local keymap = vim.keymap.set
 -- Quit
 -- keymap("n", "<Leader>q", "<cmd>q<CR>", opts)
 -- keymap("n", "<Leader>q", "<cmd>bd %<CR>", opts)
-keymap("n", "<Leader>qq", "<cmd>qa<CR>", opts)
-keymap("n", "<Leader>w", "<cmd>w<CR>", opts)
+keymap("n", "<Leader>qq", "<cmd>qa<CR>", { desc = 'Quit all' })
+keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = 'Write buffer' })
 
 -- Explorer
 -- keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
-keymap('n', '<Leader>e', '<cmd>Ex<CR>', opts)
+keymap('n', '<Leader>e', '<cmd>Ex<CR>', { desc = 'Open Explorer' })
 -- keymap('n', '<Leader>e', '<cmd>Telescope file_browser<CR>', opts)
 
 -- Integrated terminal
@@ -23,22 +23,22 @@ keymap('n', '<Leader>e', '<cmd>Ex<CR>', opts)
 -- keymap('n', '<Leader>t', '<cmd>ToggleTerm<CR>', opts)
 
 -- Lazy git
-keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts)
+keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', { desc = 'Toggle LazyGit' })
 
 -- source current buffer
-keymap('n', '<Leader>so', '<cmd>so %<CR>', opts)
+keymap('n', '<Leader>so', '<cmd>so %<CR>', { desc = 'Source current buffer' })
 
 -- make current file executable
-keymap('n', '<Leader>x', '<cmd>!chmod +x %<CR>', opts)
+keymap('n', '<Leader>x', '<cmd>!chmod +x %<CR>', { desc = 'Make current file executable' })
 
 -- select all text
-keymap('n', '<Leader>a', 'gg<S-v>G', opts)
+keymap('n', '<Leader>a', 'gg<S-v>G', { desc = 'Select all text' })
 
 -- yank all text
-keymap('n', '<Leader>ya', 'gg<S-v>Gy', opts)
+keymap('n', '<Leader>ya', 'gg<S-v>Gy', { desc = 'Yank all text' })
 
 -- duplicate line
-keymap('n', '<C-y>', 'yyp', opts)
+keymap('n', '<C-y>', 'yyp', { desc = 'Duplicate line' })
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -61,17 +61,17 @@ keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
 keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
 -- Splits
-keymap("n", "<leader>sv", "<cmd>vnew<CR>", opts)
-keymap("n", "<leader>ss", "<cmd>split<CR>", opts)
+keymap("n", "<leader>sv", "<cmd>vnew<CR>", { desc = 'Split vertically' })
+keymap("n", "<leader>ss", "<cmd>split<CR>", { desc = 'Split horizontally' })
 
 -- Find files using Telescope command-line sugar.
-keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", opts)
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", opts)
-keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", { desc = 'Find files' })
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = 'Grep files' })
+keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", { desc = 'Find buffer' })
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = 'Find tags' })
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
-  opts)
-keymap("n", "<leader>fw", "<cmd>lua require'telescope.builtin'.grep_string()<CR>", opts)
+  { desc = 'Fuzzy current buffer' })
+keymap("n", "<leader>fw", "<cmd>lua require'telescope.builtin'.grep_string()<CR>", { desc = 'Find current word' })
 keymap("n", "<leader>nv", "<cmd>lua require('user.plugins.telescope-func').edit_nvim()<CR>", opts)
 
 -- See `:help telescope.builtin`
@@ -99,15 +99,15 @@ keymap("n", "<leader>nv", "<cmd>lua require('user.plugins.telescope-func').edit_
 keymap("n", "<esc>", "<cmd>noh<cr>", opts)
 
 -- quick fix list
-keymap("n", "<leader>co", "<cmd>copen<CR>", opts)
-keymap("n", "<leader>cc", "<cmd>cclose<CR>", opts)
+keymap("n", "<leader>co", "<cmd>copen<CR>", { desc = 'Open quick fix list' })
+keymap("n", "<leader>cc", "<cmd>cclose<CR>", { desc = 'Close quick fix list' })
 
 -- move page and center
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
-keymap("n", "gh", "^", opts)
-keymap("n", "gl", "$", opts)
+keymap("n", "gh", "^", { desc = 'Goto start of the line' })
+keymap("n", "gl", "$", { desc = 'Goto end of the line' })
 
 -- Insert --
 -- Press jk fast to enter
@@ -140,21 +140,21 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Rest client
-keymap("n", "<leader>rr", "<Plug>RestNvim", opts)
-keymap("n", "<leader>rp", "<Plug>RestNvimPreview", opts)
-keymap("n", "<leader>rl", "<Plug>RestNvimLast", opts)
+keymap("n", "<leader>rr", "<Plug>RestNvim", { desc = 'Open Rest Client' })
+keymap("n", "<leader>rp", "<Plug>RestNvimPreview", { desc = 'Preview Rest Client' })
+keymap("n", "<leader>rl", "<Plug>RestNvimLast", { desc = 'Last Rest Client' })
 
 -- undotree
-keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = 'Toggle Undotree' })
 
 -- Diffview
-keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", opts)
-keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", opts)
+keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", { desc = 'Open Diffview' })
+keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = 'Close Diffview' })
 
 -- Harpoon
-vim.keymap.set('n', 'ha', require('harpoon.mark').add_file)
-vim.keymap.set('n', 'hc', require('harpoon.mark').clear_all)
-vim.keymap.set('n', 'hn', require('harpoon.ui').nav_next)
-vim.keymap.set('n', 'hp', require('harpoon.ui').nav_prev)
-vim.keymap.set('n', 'hm', require('harpoon.ui').toggle_quick_menu)
+keymap('n', 'ha', require('harpoon.mark').add_file, { desc = 'Harpoon add' })
+keymap('n', 'hc', require('harpoon.mark').clear_all, { desc = 'Harpoon clear all' })
+keymap('n', 'hn', require('harpoon.ui').nav_next, { desc = 'Harpoon next' })
+keymap('n', 'hp', require('harpoon.ui').nav_prev, { desc = 'Harpoon prev' })
+keymap('n', 'hm', require('harpoon.ui').toggle_quick_menu, { desc = 'Harpoon quick menu' })
 -- vim.keymap.set('n', 'hm', ':Telescope harpoon marks<CR>')

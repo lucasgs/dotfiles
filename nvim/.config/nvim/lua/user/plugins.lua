@@ -235,6 +235,8 @@ return packer.startup(function(use)
 
   use 'David-Kunz/gen.nvim'
 
+  use "folke/which-key.nvim"
+
   if packer_bootstrap then
     require("packer").sync()
   end
