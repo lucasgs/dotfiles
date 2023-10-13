@@ -1,15 +1,5 @@
 local M = {}
 
-function M.basic()
-  -- local colorscheme = "onedark"
-  local colorscheme = "hybrid"
-  local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-  if not status_ok then
-    vim.notify("colorscheme " .. colorscheme .. " not found!")
-    return
-  end
-end
-
 function M.gruvbuddy()
   -- Gruvbuddy
   local status_ok, colorbuddy = pcall(require, "colorbuddy")

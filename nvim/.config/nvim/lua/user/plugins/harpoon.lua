@@ -22,3 +22,11 @@ global_settings = {
   tabline_prefix = "   ",
   tabline_suffix = "   ",
 }
+
+local keymap = vim.keymap.set
+keymap('n', 'ha', require('harpoon.mark').add_file, { desc = 'Harpoon add' })
+keymap('n', 'hc', require('harpoon.mark').clear_all, { desc = 'Harpoon clear all' })
+keymap('n', 'hn', require('harpoon.ui').nav_next, { desc = 'Harpoon next' })
+keymap('n', 'hp', require('harpoon.ui').nav_prev, { desc = 'Harpoon prev' })
+keymap('n', 'hm', require('harpoon.ui').toggle_quick_menu, { desc = 'Harpoon quick menu' })
+-- vim.keymap.set('n', 'hm', ':Telescope harpoon marks<CR>')
