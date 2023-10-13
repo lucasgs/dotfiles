@@ -8,7 +8,7 @@ toggleterm.setup({
     if term.direction == "horizontal" then
       return 15
     elseif term.direction == "vertical" then
-      return vim.o.columns * 0.3
+      return vim.o.columns * 0.4
     end
   end,
   open_mapping = [[<C-\>]],
@@ -48,7 +48,7 @@ toggleterm.setup({
 local Terminal = require("toggleterm.terminal").Terminal
 
 local function execCmd(name)
-  local cmd = Terminal:new({ cmd = name, hidden = true })
+  local cmd = Terminal:new({ cmd = name, hidden = true, direction = 'float' })
   cmd:toggle()
 end
 

@@ -125,11 +125,6 @@ local plugins = {
   -- }
 
   {
-    "luukvbaal/nnn.nvim",
-    config = function() require("nnn").setup() end
-  },
-
-  {
     'JellyApple102/flote.nvim'
   },
 
