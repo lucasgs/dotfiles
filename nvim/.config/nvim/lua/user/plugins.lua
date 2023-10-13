@@ -165,6 +165,12 @@ local plugins = {
   'ThePrimeagen/harpoon',
 
   'David-Kunz/gen.nvim',
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {}
+  }
 }
 
 require("lazy").setup(plugins, opts)
