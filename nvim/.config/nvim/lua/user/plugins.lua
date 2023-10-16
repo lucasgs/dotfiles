@@ -25,12 +25,11 @@ local plugins = {
   'nvim-lua/plenary.nvim',
 
   'neovim/nvim-lspconfig',
-  dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
 
-    'j-hui/fidget.nvim',
-  },
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+
+  'j-hui/fidget.nvim',
 
   {
     'j-hui/fidget.nvim',
