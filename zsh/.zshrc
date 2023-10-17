@@ -6,15 +6,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 ZSH_THEME=""
 
-# plugins=(git)
 plugins=(gnu-utils)
 
-source $ZSH/oh-my-zsh.sh
-
-# pure theme
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
-autoload -U promptinit; promptinit
-# prompt pure
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+source $ZSH/oh-my-zsh.sh
 
 source ~/.aliases
 source ~/.functions
@@ -51,7 +49,6 @@ eval "$(pyenv init -)"
 # nnn
 export NNN_PLUG='d:trash;c:fzcd;j:autojump;u:getplugs'
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 eval "$(rbenv init - zsh)"
 
@@ -59,5 +56,12 @@ eval "$(jump shell zsh)"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# bun completions
+[ -s "/Users/lucas/.bun/_bun" ] && source "/Users/lucas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(starship init zsh)"
