@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local config = {}
 
 config.font = wezterm.font('Hack Nerd Font Mono')
-config.font_size = 13.0
+config.font_size = 14.0
 
 -- color_scheme = 'Kanagawa (Gogh)',
 -- config.color_scheme = 'tokyonight-storm'
