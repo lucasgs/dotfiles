@@ -1,4 +1,4 @@
-import = ["/Users/lucas/.config/alacritty/themes/themes/tokyo-night.toml"]
+import = ["/Users/lucas/.config/alacritty/tokyo-night.toml"]
 
 [env]
 TERM = "xterm-256color"
