@@ -63,6 +63,9 @@ keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 -- Splits
 keymap("n", "<leader>sv", "<cmd>vnew<CR>", { desc = 'Split vertically' })
 keymap("n", "<leader>ss", "<cmd>split<CR>", { desc = 'Split horizontally' })
+keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = 'Open floating terminal' })
+keymap("n", "<leader>tj", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = 'Open below terminal' })
+keymap("n", "<leader>tl", "<cmd>ToggleTerm direction=vertical<cr>", { desc = 'Open right terminal' })
 
 -- Find files using Telescope command-line sugar.
 keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", { desc = 'Find files' })
