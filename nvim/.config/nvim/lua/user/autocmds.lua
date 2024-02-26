@@ -13,3 +13,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Always start term in insert mode
 --vim.cmd [[autocmd BufWinEnter,WinEnter term://* startinsert]]
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
