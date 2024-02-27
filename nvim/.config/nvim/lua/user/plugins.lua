@@ -180,6 +180,10 @@ local plugins = {
 
   {
     'mfussenegger/nvim-lint'
+  },
+
+  {
+    'mhartington/formatter.nvim'
   }
 }
 
