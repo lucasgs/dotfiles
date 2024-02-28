@@ -29,7 +29,7 @@ keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', { desc = 'Toggle Laz
 keymap('n', '<Leader>so', '<cmd>so %<CR>', { desc = 'Source current buffer' })
 
 -- make current file executable
-keymap('n', '<Leader>x', '<cmd>!chmod +x %<CR>', { desc = 'Make current file executable' })
+keymap('n', '<Leader>xe', '<cmd>!chmod +x %<CR>', { desc = 'Make current file executable' })
 
 -- select all text
 keymap('n', '<Leader>a', 'gg<S-v>G', { desc = 'Select all text' })
@@ -153,3 +153,12 @@ keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = 'Toggle Undotree' }
 -- Diffview
 keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", { desc = 'Open Diffview' })
 keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = 'Close Diffview' })
+
+
+-- Trouble
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)

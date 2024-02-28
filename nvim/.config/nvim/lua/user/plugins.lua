@@ -184,6 +184,10 @@ local plugins = {
 
   {
     'mhartington/formatter.nvim'
+  },
+
+  {
+    "folke/trouble.nvim",
   }
 }
 
