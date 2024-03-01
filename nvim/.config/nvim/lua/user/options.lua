@@ -12,6 +12,7 @@ local options = {
   incsearch = true,
   expandtab = true,
   -- laststatus = 3,
+  listchars = { eol = "↵", tab = ">>>", trail = "." },
   mouse = "a",
   number = true,
   pumheight = 10,
