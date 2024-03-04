@@ -92,7 +92,7 @@ dap.adapters.kotlin = {
 -- mkdir .virtualenvs
 -- cd .virtualenvs
 -- python -m venv debugpy
--- debugpy/bin/python -m pip install debugpy-
+-- debugpy/bin/python -m pip install debugpy
 
 dap.adapters.python = {
   type = 'executable',

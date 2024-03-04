@@ -139,12 +139,7 @@ local plugins = {
     end,
   },
 
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-  },
-
-  "echasnovski/mini.nvim",
+  { "echasnovski/mini.nvim" },
 
   { "vimwiki/vimwiki" },
 
@@ -188,7 +183,8 @@ local plugins = {
 
   {
     "folke/trouble.nvim",
-  }
+  },
+
 }
 
 require("lazy").setup(plugins, opts)
