@@ -1,20 +1,22 @@
--- Format on save buffer
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  desc = 'Format current buffer before writing',
+  group = vim.api.nvim_create_augroup('OwnFormatWriting', { clear = true }),
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
 
--- Highlight yanked selection
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  desc = "Highlight yanked selection",
+  group = vim.api.nvim_create_augroup('OwnYankHighlight', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
-  pattern = '*',
 })
 
--- Always start term in insert mode
---vim.cmd [[autocmd BufWinEnter,WinEnter term://* startinsert]]
-
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  desc = "Run linter after writing",
+  group = vim.api.nvim_create_augroup('OwnLintWrite', { clear = true }),
   callback = function()
     require("lint").try_lint()
   end,
