@@ -114,11 +114,31 @@ dap.configurations.kotlin = {
   }
 }
 
+local get_python_path = function()
+  local cwd = vim.loop.cwd()
+  if vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+    return cwd .. '/.venv/bin/python'
+  else
+    return '/usr/bin/python3'
+  end
+end
+
 dap.configurations.python = {
   {
     type = 'python',
     request = 'launch',
     name = "Launch file",
     program = "${file}",
+    pythonPath = function()
+      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+      local vdir = os.getenv('VIRTUAL_ENV')
+      if vdir then
+        return vdir .. '/bin/python'
+      else
+        return '/usr/bin/python3'
+      end
+    end
   },
 }
