@@ -88,18 +88,6 @@ dap.adapters.kotlin = {
   args = { "--interpreter=vscode" }
 }
 
--- install debugpy into a dedicated virtualenv
--- mkdir .virtualenvs
--- cd .virtualenvs
--- python -m venv debugpy
--- debugpy/bin/python -m pip install debugpy
-
-dap.adapters.python = {
-  type = 'executable',
-  command = os.getenv('HOME') .. '/.venv/debugpy/bin/python',
-  args = { '-m', 'debugpy.adapter' },
-}
-
 dap.configurations.kotlin = {
   {
     type = "kotlin",
@@ -114,14 +102,17 @@ dap.configurations.kotlin = {
   }
 }
 
-local get_python_path = function()
-  local cwd = vim.loop.cwd()
-  if vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-    return cwd .. '/.venv/bin/python'
-  else
-    return '/usr/bin/python3'
-  end
-end
+-- install debugpy into a dedicated virtualenv
+-- mkdir .virtualenvs
+-- cd .virtualenvs
+-- python -m venv debugpy
+-- debugpy/bin/python -m pip install debugpy
+
+dap.adapters.python = {
+  type = 'executable',
+  command = os.getenv('HOME') .. '/.venv/debugpy/bin/python',
+  args = { '-m', 'debugpy.adapter' },
+}
 
 dap.configurations.python = {
   {
@@ -129,19 +120,21 @@ dap.configurations.python = {
     request = 'launch',
     name = "Launch file",
     program = "${file}",
+    cwd = '${workspaceFolder}',
+    -- stopOnEntry = true,
+    args = {},
     pythonPath = function()
-      return get_python_path()
-    end
-    -- pythonPath = function()
-    --   -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-    --   -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-    --   -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-    --   local vdir = os.getenv('VIRTUAL_ENV')
-    --   if vdir then
-    --     return vdir .. '/bin/python'
-    --   else
-    --     return '/usr/bin/python3'
-    --   end
-    -- end
+      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+      local cwd = vim.fn.getcwd()
+      if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+        return cwd .. '/venv/bin/python'
+      elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+        return cwd .. '/.venv/bin/python'
+      else
+        return '/usr/bin/python3'
+      end
+    end,
   },
 }
