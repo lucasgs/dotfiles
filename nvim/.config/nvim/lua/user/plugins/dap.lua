@@ -96,7 +96,7 @@ dap.adapters.kotlin = {
 
 dap.adapters.python = {
   type = 'executable',
-  command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python',
+  command = os.getenv('HOME') .. '/.venv/debugpy/bin/python',
   args = { '-m', 'debugpy.adapter' },
 }
 
@@ -130,15 +130,18 @@ dap.configurations.python = {
     name = "Launch file",
     program = "${file}",
     pythonPath = function()
-      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-      local vdir = os.getenv('VIRTUAL_ENV')
-      if vdir then
-        return vdir .. '/bin/python'
-      else
-        return '/usr/bin/python3'
-      end
+      return get_python_path()
     end
+    -- pythonPath = function()
+    --   -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+    --   -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+    --   -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+    --   local vdir = os.getenv('VIRTUAL_ENV')
+    --   if vdir then
+    --     return vdir .. '/bin/python'
+    --   else
+    --     return '/usr/bin/python3'
+    --   end
+    -- end
   },
 }
