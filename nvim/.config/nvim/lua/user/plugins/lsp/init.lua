@@ -75,6 +75,7 @@ local servers = {
   'bashls',
   -- 'pyright',
   'pylsp',
+  -- 'ruff_lsp',
   'clangd',
   'html',
   'cssls',
