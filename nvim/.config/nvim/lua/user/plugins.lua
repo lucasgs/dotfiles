@@ -185,6 +185,11 @@ local plugins = {
     "folke/trouble.nvim",
   },
 
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
+
 }
 
 require("lazy").setup(plugins, opts)
