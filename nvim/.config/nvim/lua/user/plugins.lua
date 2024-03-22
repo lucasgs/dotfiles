@@ -128,11 +128,6 @@ local plugins = {
   },
 
   {
-    "rest-nvim/rest.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-
-  {
     "goolord/alpha-nvim",
     config = function()
       require("alpha").setup(require("alpha.themes.dashboard").config)
