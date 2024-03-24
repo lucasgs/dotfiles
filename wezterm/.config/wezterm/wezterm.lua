@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 
 local config = {}
 
@@ -53,6 +54,42 @@ config.keys = {
     key = 'k',
     mods = 'LEADER',
     action = wezterm.action.ActivatePaneDirection 'Up',
+  },
+  {
+    key = 'r',
+    mods = 'LEADER',
+    action = wezterm.action.ShowLauncher
+  },
+
+  {
+    key = 'p',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateCommandPalette
+  },
+  {
+    key = 'd',
+    mods = 'LEADER',
+    action = act.SwitchToWorkspace {
+      name = 'default',
+    },
+  },
+  {
+    key = 'n',
+    mods = 'CTRL',
+    action = act.SwitchWorkspaceRelative(1)
+  },
+
+  {
+    key = 'p',
+    mods = 'CTRL',
+    action = act.SwitchWorkspaceRelative(-1)
+  },
+
+}
+
+config.launch_menu = {
+  {
+    -- args = { 'top' },
   },
 }
 
