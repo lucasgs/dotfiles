@@ -23,6 +23,10 @@ config.window_background_opacity = 1.00
 config.initial_cols = 150
 config.initial_rows = 40
 
+wezterm.on('update-right-status', function(window, pane)
+  window:set_right_status(window:active_workspace())
+end)
+
 config.leader = { key = 'w', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   {
@@ -84,7 +88,30 @@ config.keys = {
     mods = 'CTRL',
     action = act.SwitchWorkspaceRelative(-1)
   },
-
+  {
+    key = 'w',
+    mods = 'LEADER',
+    action = act.PromptInputLine {
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { AnsiColor = 'Fuchsia' } },
+        { Text = 'Enter name for new workspace' },
+      },
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:perform_action(
+            act.SwitchToWorkspace {
+              name = line,
+            },
+            pane
+          )
+        end
+      end),
+    },
+  }
 }
 
 config.launch_menu = {
