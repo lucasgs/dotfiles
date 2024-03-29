@@ -4,6 +4,8 @@
 # alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
 # alias ll='ls -Gla'      #long list
 
+alias c="clear"
+
 # Changing "ls" to "eza"
 alias ls="ls -a --hyperlink=auto --color=auto --group-directories-first"
 alias ll="ls -la --hyperlink=auto --color=auto --group-directories-first"
