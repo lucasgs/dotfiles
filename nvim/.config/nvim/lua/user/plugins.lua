@@ -53,12 +53,7 @@ local plugins = {
 
   { "ellisonleao/glow.nvim" },
 
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
+  { "numToStr/Comment.nvim" },
 
   {
     "nvim-treesitter/nvim-treesitter",

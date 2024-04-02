@@ -25,9 +25,6 @@ keymap('n', '<Leader>e', '<cmd>Ex<CR>', { desc = 'Open Explorer' })
 -- Lazy git
 keymap('n', '<Leader>lz', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', { desc = 'Toggle LazyGit' })
 
--- source current buffer
-keymap('n', '<Leader>so', '<cmd>so %<CR>', { desc = 'Source current buffer' })
-
 -- make current file executable
 keymap('n', '<Leader>xe', '<cmd>!chmod +x %<CR>', { desc = 'Make current file executable' })
 
@@ -56,9 +53,14 @@ keymap("n", "<A-Right>", "<cmd>vertical resize -3<CR>", opts)
 keymap("n", "<leader>th", "<C-w>t<C-w>H", opts)
 keymap("n", "<leader>tk", "<C-w>t<C-w>K", opts)
 
--- Navigate buffers
+-- Buffers
 keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
 keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
+
+keymap("n", "<leader>n", "<cmd>bnext<cr>", { desc = 'Next buffer' })
+keymap("n", "<leader>p", "<cmd>bp<cr>", { desc = 'Prev buffer' })
+keymap("n", "<leader>x", "<cmd>bd<cr>", { desc = 'Delete buffer' })
+keymap('n', '<Leader>so', '<cmd>so %<CR>', { desc = 'Source current buffer' })
 
 -- Splits
 keymap("n", "<leader>sv", "<cmd>vnew<CR>", { desc = 'Split vertically' })
