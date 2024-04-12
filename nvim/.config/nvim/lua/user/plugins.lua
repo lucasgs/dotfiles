@@ -180,6 +180,8 @@ local plugins = {
     opts = {},
   },
 
+  { "folke/neodev.nvim", opts = {} },
+
   {
     "folke/noice.nvim",
     event = "VeryLazy",
