@@ -180,8 +180,9 @@ local plugins = {
     opts = {},
   },
 
-  { "folke/neodev.nvim", opts = {} },
+  { "folke/neodev.nvim",  opts = {} },
 
+  { "David-Kunz/gen.nvim" },
 }
 
 require("lazy").setup(plugins, opts)
