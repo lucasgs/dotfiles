@@ -65,7 +65,7 @@ alias fapk="find . -iname '*.apk'"
 # alias fapk="find ./p2p-app/build/outputs -name '*.apk'"
 
 # general
-alias upgrade='brew upgrade && omz update && sdk update && tldr --update'
+alias upgrade='brew upgrade --greedy && omz update && sdk update && tldr --update'
 alias nv='nvim'
 alias n='nvim'
 alias nvc='cd ~/.config/nvim && nvim'
