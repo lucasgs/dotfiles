@@ -5,10 +5,19 @@ end
 
 configs.setup({
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "bash", "html", "javascript" },
+    sync_install = false,
     auto_install = true,
+    ignore_install = {},
     autopairs = { enable = true },
     indent = { enable = true },
     highlight = { enable = true },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            node_incremental = "v",
+            node_decremental = "V",
+        },
+    },
     textobjects = {
         select = {
             enable = true,
@@ -26,13 +35,6 @@ configs.setup({
                 ['@class.outer'] = '<c-v>', -- blockwise
             },
             include_surrounding_whitespace = true,
-        },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                node_incremental = "v",
-                node_decremental = "V",
-            },
         },
     },
 })
