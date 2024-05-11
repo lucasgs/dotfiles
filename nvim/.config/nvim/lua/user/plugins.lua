@@ -27,7 +27,18 @@ local plugins = {
     "neovim/nvim-lspconfig",
 
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    -- {
+    --     "williamboman/mason-lspconfig.nvim",
+    --     dependencies = { "mason.nvim" },
+    --     config = function()
+    --         require("mason-lspconfig").setup()
+    --         require("mason-lspconfig").setup_handlers({
+    --             function(server_name)
+    --                 require("lspconfig")[server_name].setup({})
+    --             end,
+    --         })
+    --     end,
+    -- },
 
     "j-hui/fidget.nvim",
 
@@ -148,18 +159,6 @@ local plugins = {
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
-    },
-
-    {
-        "https://github.com/apple/pkl-neovim",
-        lazy = true,
-        event = "BufReadPre *.pkl",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        build = function()
-            vim.cmd("TSInstall! pkl")
-        end,
     },
 
     {
