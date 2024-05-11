@@ -11,15 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd([[
---   augroup packer_user_config
---   autocmd!
---   autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]])
---
-
 local plugins = {
 
     "nvim-lua/plenary.nvim",
@@ -42,12 +33,6 @@ local plugins = {
 
     "j-hui/fidget.nvim",
 
-    {
-        "j-hui/fidget.nvim",
-        tag = "legacy",
-        event = "LspAttach",
-    },
-
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
@@ -56,11 +41,11 @@ local plugins = {
 
     {
         "L3MON4D3/LuaSnip",
-        version = "v1.2.*",
+        version = "v2.*",
         build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
     },
     "saadparwaiz1/cmp_luasnip",
-    "rafamadriz/friendly-snippets",
 
     { "ellisonleao/glow.nvim" },
 
@@ -96,7 +81,7 @@ local plugins = {
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
     },
 
-    { "akinsho/bufferline.nvim", version = "v3.*", dependencies = "nvim-tree/nvim-web-devicons" },
+    { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
     { "moll/vim-bbye" },
 
     {
@@ -114,20 +99,6 @@ local plugins = {
     "windwp/nvim-autopairs",
 
     "norcalli/nvim-colorizer.lua",
-
-    "ThePrimeagen/vim-be-good",
-
-    -- {
-    --   "jackMort/ChatGPT.nvim",
-    --   config = function()
-    --     require("chatgpt").setup()
-    --   end,
-    --   dependencies = {
-    --     "MunifTanjim/nui.nvim",
-    --     "nvim-lua/plenary.nvim",
-    --     "nvim-telescope/telescope.nvim"
-    --   }
-    -- }
 
     {
         "JellyApple102/flote.nvim",
