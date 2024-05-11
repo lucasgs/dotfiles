@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -22,172 +22,171 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
 
-  "nvim-lua/plenary.nvim",
+    "nvim-lua/plenary.nvim",
 
-  "neovim/nvim-lspconfig",
+    "neovim/nvim-lspconfig",
 
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
 
-  "j-hui/fidget.nvim",
-
-  {
     "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-  },
 
-  "hrsh7th/nvim-cmp",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-nvim-lua",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v1.2.*",
-    build = "make install_jsregexp",
-  },
-  "saadparwaiz1/cmp_luasnip",
-  "rafamadriz/friendly-snippets",
-
-  { "ellisonleao/glow.nvim" },
-
-  { "numToStr/Comment.nvim" },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  "nvim-treesitter/playground",
-  "nvim-treesitter/nvim-treesitter-context",
-
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    --build = ":CatppuccinCompile",
-  },
-  "folke/tokyonight.nvim",
-  "tjdevries/colorbuddy.vim",
-  "tjdevries/gruvbuddy.nvim",
-  "rebelot/kanagawa.nvim",
-  {
-    "svrana/neosolarized.nvim",
-    dependencies = { "tjdevries/colorbuddy.nvim" },
-  },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-  },
-
-  { "akinsho/bufferline.nvim", version = "v3.*", dependencies = "nvim-tree/nvim-web-devicons" },
-  { "moll/vim-bbye" },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-  },
-
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-
-  "nvim-telescope/telescope-file-browser.nvim",
-
-  "akinsho/toggleterm.nvim",
-
-  "windwp/nvim-ts-autotag",
-  "windwp/nvim-autopairs",
-
-  "norcalli/nvim-colorizer.lua",
-
-  "ThePrimeagen/vim-be-good",
-
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --   config = function()
-  --     require("chatgpt").setup()
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim"
-  --   }
-  -- }
-
-  {
-    "JellyApple102/flote.nvim",
-  },
-
-  {
-    "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.dashboard").config)
-    end,
-  },
-
-  { "echasnovski/mini.nvim" },
-
-  { "vimwiki/vimwiki" },
-
-  { "mbbill/undotree" },
-
-  { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui" },
-  { "theHamsta/nvim-dap-virtual-text" },
-
-  "sindrets/diffview.nvim",
-
-  "ThePrimeagen/harpoon",
-
-  "David-Kunz/gen.nvim",
-
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  {
-    "https://github.com/apple/pkl-neovim",
-    lazy = true,
-    event = "BufReadPre *.pkl",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+    {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
     },
-    build = function()
-      vim.cmd("TSInstall! pkl")
-    end,
-  },
 
-  {
-    'mfussenegger/nvim-lint'
-  },
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
 
-  {
-    'mhartington/formatter.nvim'
-  },
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v1.2.*",
+        build = "make install_jsregexp",
+    },
+    "saadparwaiz1/cmp_luasnip",
+    "rafamadriz/friendly-snippets",
 
-  {
-    "folke/trouble.nvim",
-  },
+    { "ellisonleao/glow.nvim" },
 
-  {
-    'stevearc/conform.nvim',
-    opts = {},
-  },
+    { "numToStr/Comment.nvim" },
 
-  {
-    "folke/neodev.nvim",
-    opts = {}
-  },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+    },
+    "nvim-treesitter/playground",
+    "nvim-treesitter/nvim-treesitter-context",
 
-  { "David-Kunz/gen.nvim" },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        --build = ":CatppuccinCompile",
+    },
+    "folke/tokyonight.nvim",
+    "tjdevries/colorbuddy.vim",
+    "tjdevries/gruvbuddy.nvim",
+    "rebelot/kanagawa.nvim",
+    {
+        "svrana/neosolarized.nvim",
+        dependencies = { "tjdevries/colorbuddy.nvim" },
+    },
 
-  { "andrewferrier/debugprint.nvim" },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+    },
+
+    { "akinsho/bufferline.nvim", version = "v3.*", dependencies = "nvim-tree/nvim-web-devicons" },
+    { "moll/vim-bbye" },
+
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+    },
+
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+    "nvim-telescope/telescope-file-browser.nvim",
+
+    "akinsho/toggleterm.nvim",
+
+    "windwp/nvim-ts-autotag",
+    "windwp/nvim-autopairs",
+
+    "norcalli/nvim-colorizer.lua",
+
+    "ThePrimeagen/vim-be-good",
+
+    -- {
+    --   "jackMort/ChatGPT.nvim",
+    --   config = function()
+    --     require("chatgpt").setup()
+    --   end,
+    --   dependencies = {
+    --     "MunifTanjim/nui.nvim",
+    --     "nvim-lua/plenary.nvim",
+    --     "nvim-telescope/telescope.nvim"
+    --   }
+    -- }
+
+    {
+        "JellyApple102/flote.nvim",
+    },
+
+    {
+        "goolord/alpha-nvim",
+        config = function()
+            require("alpha").setup(require("alpha.themes.dashboard").config)
+        end,
+    },
+
+    { "echasnovski/mini.nvim" },
+
+    { "vimwiki/vimwiki" },
+
+    { "mbbill/undotree" },
+
+    { "mfussenegger/nvim-dap" },
+    { "rcarriga/nvim-dap-ui" },
+    { "theHamsta/nvim-dap-virtual-text" },
+
+    "sindrets/diffview.nvim",
+
+    "ThePrimeagen/harpoon",
+
+    "David-Kunz/gen.nvim",
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+    },
+
+    {
+        "https://github.com/apple/pkl-neovim",
+        lazy = true,
+        event = "BufReadPre *.pkl",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        build = function()
+            vim.cmd("TSInstall! pkl")
+        end,
+    },
+
+    {
+        'mfussenegger/nvim-lint'
+    },
+
+    {
+        'mhartington/formatter.nvim'
+    },
+
+    {
+        "folke/trouble.nvim",
+    },
+
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    },
+
+    {
+        "folke/neodev.nvim",
+        opts = {}
+    },
+
+    { "David-Kunz/gen.nvim" },
+
+    { "andrewferrier/debugprint.nvim" },
 }
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins)
