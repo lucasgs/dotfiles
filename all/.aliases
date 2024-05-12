@@ -85,11 +85,11 @@ alias notes='cd ~/notes; nv'
 
 alias nnn="nnn -e"
 
-alias ai="(){ cd ~/src/gpt4all/chat;./gpt4all-lora-quantized-OSX-m1 }";
-
 alias icat="kitty +kitten icat"
 
 alias bf="wr && say '[[volm 0.5]] weather completed'"
+
+alias fj='cd $(ls -d ~/workspace/* | fzf)'
 
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
