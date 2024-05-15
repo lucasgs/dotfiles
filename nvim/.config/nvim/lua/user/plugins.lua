@@ -157,6 +157,12 @@ local plugins = {
     { "David-Kunz/gen.nvim" },
 
     { "andrewferrier/debugprint.nvim" },
+
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    }
 }
 
 require("lazy").setup(plugins)

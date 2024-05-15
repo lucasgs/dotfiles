@@ -13,7 +13,7 @@ keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = 'Write buffer' })
 
 -- Explorer
 -- keymap('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', opts)
-keymap('n', '<Leader>e', '<cmd>Ex<CR>', { desc = 'Open Explorer' })
+-- keymap('n', '<Leader>e', '<cmd>Ex<CR>', { desc = 'Open Explorer' })
 -- keymap('n', '<Leader>e', '<cmd>Telescope file_browser<CR>', opts)
 
 -- Integrated terminal
@@ -75,7 +75,7 @@ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = 'Grep files' 
 keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", { desc = 'Find buffer' })
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = 'Find tags' })
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
-  { desc = 'Fuzzy current buffer' })
+    { desc = 'Fuzzy current buffer' })
 keymap("n", "<leader>fw", "<cmd>lua require'telescope.builtin'.grep_string()<CR>", { desc = 'Find current word' })
 keymap("n", "<leader>nv", "<cmd>lua require('user.plugins.telescope-func').edit_nvim()<CR>", opts)
 
@@ -160,9 +160,13 @@ keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = 'Close Diffview' })
 -- Trouble
 keymap("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle trouble" })
 keymap("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
-  { desc = "Trouble workspace diagnostics" })
+    { desc = "Trouble workspace diagnostics" })
 keymap("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
-  { desc = "Trouble document diagnostics" })
+    { desc = "Trouble document diagnostics" })
 keymap("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Trouble quickfix" })
 keymap("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble loclist" })
 keymap("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble lsp references" })
+
+
+-- Oil
+keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
