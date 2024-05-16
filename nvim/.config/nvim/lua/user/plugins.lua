@@ -49,8 +49,6 @@ local plugins = {
 
     { "ellisonleao/glow.nvim" },
 
-    { "numToStr/Comment.nvim" },
-
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -81,7 +79,12 @@ local plugins = {
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
     },
 
-    { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
+    {
+        "akinsho/bufferline.nvim",
+        branch = "main",
+        dependencies = 'nvim-tree/nvim-web-devicons'
+    },
+
     { "moll/vim-bbye" },
 
     {
