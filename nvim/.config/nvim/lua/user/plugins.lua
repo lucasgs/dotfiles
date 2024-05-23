@@ -116,8 +116,6 @@ local plugins = {
 
     { "echasnovski/mini.nvim" },
 
-    { "vimwiki/vimwiki" },
-
     { "mbbill/undotree" },
 
     { "mfussenegger/nvim-dap" },
