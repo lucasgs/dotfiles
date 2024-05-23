@@ -49,6 +49,7 @@ eval "$(pyenv init -)"
 # nnn
 export NNN_PLUG='d:trash;c:fzcd;j:autojump;u:getplugs'
 
+source <(fzf --zsh)
 
 eval "$(rbenv init - zsh)"
 
