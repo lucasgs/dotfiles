@@ -12,7 +12,7 @@ end
 -- vim.cmd([[
 --   autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus = false })
 -- ]])
---
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
@@ -84,7 +84,8 @@ local servers = {
     'rust_analyzer',
     'kotlin_language_server',
     'groovyls',
-    'gopls'
+    'gopls',
+    'markdownlint'
 }
 
 
@@ -94,6 +95,7 @@ for _, server in ipairs(servers) do
         on_attach = on_attach,
         root_dir = root_dir,
         capabilities = capabilities,
+        inlay_hints = { enabled = true },
     }
 
     local has_custom_opts, server_opts = pcall(require, "user.plugins.lsp.settings." .. server)

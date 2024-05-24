@@ -1,9 +1,9 @@
 local status_ok, lint = pcall(require, 'lint')
 if not status_ok then
-  return
+    return
 end
 
 lint.linters_by_ft = {
-  markdown = { 'vale', },
-  python = { 'pylint' },
+    markdown = { 'markdownlint', },
+    python = { 'pylint' },
 }
