@@ -81,7 +81,7 @@ local plugins = {
 
     {
         "akinsho/bufferline.nvim",
-        branch = "main",
+        branch = "*",
         dependencies = 'nvim-tree/nvim-web-devicons'
     },
 
