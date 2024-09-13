@@ -79,7 +79,7 @@ local servers = {
     'clangd',
     'html',
     'cssls',
-    'tsserver',
+    'ts_ls',
     'lua_ls',
     'rust_analyzer',
     'kotlin_language_server',
