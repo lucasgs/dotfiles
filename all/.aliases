@@ -91,6 +91,8 @@ alias bf="wr && say '[[volm 0.5]] weather completed'"
 
 alias fj='cd $(ls -d ~/workspace/* | fzf)'
 
+alias re='emulator -avd $(emulator -list-avds | grep -v INFO | fzf)'
+
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
 }
