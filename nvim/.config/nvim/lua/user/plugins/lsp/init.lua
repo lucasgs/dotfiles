@@ -84,7 +84,8 @@ local servers = {
     'rust_analyzer',
     'kotlin_language_server',
     'groovyls',
-    'gopls'
+    'gopls',
+    'sourcekit'
 }
 
 
