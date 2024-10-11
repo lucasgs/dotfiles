@@ -145,9 +145,10 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Rest client
-keymap("n", "<leader>rr", "<Plug>RestNvim", { desc = 'Open Rest Client' })
-keymap("n", "<leader>rp", "<Plug>RestNvimPreview", { desc = 'Preview Rest Client' })
-keymap("n", "<leader>rl", "<Plug>RestNvimLast", { desc = 'Last Rest Client' })
+keymap("n", "<leader>ro", "<cmd>Rest open<CR>", { desc = 'Rest open' })
+keymap("n", "<leader>rr", "<cmd>Rest run<CR>", { desc = 'Rest run' })
+keymap("n", "<leader>rw", "<cmd>Rest env show<CR>", { desc = 'Rest environment show' })
+keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = 'Rest environment select' })
 
 -- undotree
 keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = 'Toggle Undotree' })

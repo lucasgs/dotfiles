@@ -7,6 +7,7 @@ configs.setup({
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "bash", "html", "javascript" },
     sync_install = false,
     auto_install = true,
+    modules = {},
     ignore_install = {},
     autopairs = { enable = true },
     indent = { enable = true },
