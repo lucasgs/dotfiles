@@ -171,3 +171,14 @@ keymap("n", "gR", function() require("trouble").toggle("lsp_references") end, { 
 
 -- Oil
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Harpoon
+keymap('n', '<leader>hm', function() require('harpoon.ui').toggle_quick_menu() end, { desc = 'Harpoon quick menu' })
+-- vim.keymap.set('n', 'hm', ':Telescope harpoon marks<CR>')
+keymap('n', '<leader>ha', function() require('harpoon.mark').add_file() end, { desc = 'Harpoon add' })
+keymap('n', '<leader>hn', function() require('harpoon.ui').nav_next() end, { desc = 'Harpoon next' })
+keymap('n', '<leader>hp', function() require('harpoon.ui').nav_prev() end, { desc = 'Harpoon prev' })
+keymap('n', '<leader>hc', function() require('harpoon.mark').clear_all() end, { desc = 'Harpoon clear all' })
+keymap('n', '<leader>h1', function() require('harpoon.ui').nav_file(1) end, { desc = 'Harpoon nav file 1' })
+keymap('n', '<leader>h2', function() require('harpoon.ui').nav_file(2) end, { desc = 'Harpoon nav file 2' })
+keymap('n', '<leader>h3', function() require('harpoon.ui').nav_file(2) end, { desc = 'Harpoon nav file 3' })
