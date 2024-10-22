@@ -72,6 +72,7 @@ keymap("n", "<leader>tl", "<cmd>ToggleTerm direction=vertical<cr>", { desc = 'Op
 -- Find files using Telescope command-line sugar.
 keymap("n", "<leader>ff", "<cmd>lua require('user.plugins.telescope-func').find_files()<cr>", { desc = 'Find files' })
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = 'Grep files' })
+keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", { desc = 'Find references' })
 keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffers()<cr>", { desc = 'Find buffer' })
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = 'Find tags' })
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
