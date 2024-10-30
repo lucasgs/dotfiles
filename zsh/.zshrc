@@ -10,6 +10,9 @@ plugins=(gnu-utils)
 
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
+autoload -Uz compinit
+compinit
+
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $ZSH/oh-my-zsh.sh
