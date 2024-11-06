@@ -203,6 +203,14 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+[workspace-to-monitor-force-assignment]
+C = 1
+E = 1
+M = 1 
+T = 1
+W = 1
+Y = 2
+
 # Callbacks
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
@@ -223,3 +231,11 @@ run = 'move-node-to-workspace E' # mnemonics E - Editor
 [[on-window-detected]]
 if.app-id = 'com.google.android.studio'
 run = 'move-node-to-workspace E' # mnemonics E - Editor 
+
+[[on-window-detected]]
+if.app-id = 'com.apple.dt.Xcode'
+run = 'move-node-to-workspace E' # mnemonics E - Editor 
+
+[[on-window-detected]]
+if.app-id = 'com.DanPristupov.Fork'
+run = 'move-node-to-workspace M' # mnemonics M - Main 
