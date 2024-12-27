@@ -20,6 +20,9 @@ config.window_background_opacity    = 1.00
 config.initial_cols                 = 150
 config.initial_rows                 = 40
 
+config.max_fps                      = 120
+config.prefer_egl                   = true
+
 wezterm.on('update-right-status', function(window, pane)
     window:set_right_status(window:active_workspace())
 end)
