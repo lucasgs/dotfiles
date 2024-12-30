@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SESSION="notes"
+
+SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
+if [ "$SESSIONEXISTS" = "" ]
+then
+    tmux new-session -d -s $SESSION
+    tmux send-keys 'notes' C-m
+fi
+tmux attach-session -t $SESSION

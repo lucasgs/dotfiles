@@ -1,6 +1,9 @@
 # Fonts
 font-family = "Hack Nerd Font Mono"
 font-size = 14
+font-feature = calt
+font-feature = dlig
+font-feature = ss05
 
 # Mouse
 mouse-hide-while-typing = true

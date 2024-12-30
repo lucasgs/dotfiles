@@ -24,6 +24,7 @@ source ~/nvims
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^n "tmux-notes\n"
 
 # make back-i-search work in vi mode-keys to 
 bindkey "^R" history-incremental-search-backward
