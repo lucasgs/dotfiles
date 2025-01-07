@@ -182,4 +182,7 @@ keymap('n', '<leader>hp', function() require('harpoon.ui').nav_prev() end, { des
 keymap('n', '<leader>hc', function() require('harpoon.mark').clear_all() end, { desc = 'Harpoon clear all' })
 keymap('n', '<leader>h1', function() require('harpoon.ui').nav_file(1) end, { desc = 'Harpoon nav file 1' })
 keymap('n', '<leader>h2', function() require('harpoon.ui').nav_file(2) end, { desc = 'Harpoon nav file 2' })
-keymap('n', '<leader>h3', function() require('harpoon.ui').nav_file(2) end, { desc = 'Harpoon nav file 3' })
+keymap('n', '<leader>h3', function() require('harpoon.ui').nav_file(3) end, { desc = 'Harpoon nav file 3' })
+keymap('n', '<leader>h4', function() require('harpoon.ui').nav_file(4) end, { desc = 'Harpoon nav file 4' })
+keymap('n', '<leader>h5', function() require('harpoon.ui').nav_file(5) end, { desc = 'Harpoon nav file 5' })
+keymap('n', '<leader>h6', function() require('harpoon.ui').nav_file(6) end, { desc = 'Harpoon nav file 6' })
