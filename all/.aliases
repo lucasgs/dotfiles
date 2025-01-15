@@ -27,7 +27,8 @@ alias help='man'
 # alias mv='mv -i'
 
 # tmux
-alias ta='tmux attach -t'
+alias ta='tmux attach'
+alias tas='tmux attach -t'
 alias tad='tmux attach -d -t'
 alias ts='tmux new-session -s'
 alias tl='tmux list-sessions'
