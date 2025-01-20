@@ -47,8 +47,6 @@ local plugins = {
     },
     "saadparwaiz1/cmp_luasnip",
 
-    { "ellisonleao/glow.nvim" },
-
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -166,7 +164,13 @@ local plugins = {
     },
     {
         "rest-nvim/rest.nvim",
-    }
+    },
+    {
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast"
+    },
+
 }
 
 require("lazy").setup(plugins)

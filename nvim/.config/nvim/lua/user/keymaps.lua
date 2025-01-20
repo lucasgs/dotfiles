@@ -187,3 +187,7 @@ keymap('n', '<leader>h3', function() require('harpoon.ui').nav_file(3) end, { de
 keymap('n', '<leader>h4', function() require('harpoon.ui').nav_file(4) end, { desc = 'Harpoon nav file 4' })
 keymap('n', '<leader>h5', function() require('harpoon.ui').nav_file(5) end, { desc = 'Harpoon nav file 5' })
 keymap('n', '<leader>h6', function() require('harpoon.ui').nav_file(6) end, { desc = 'Harpoon nav file 6' })
+
+-- Peek markdown preview
+keymap('n', '<leader>mo', "<cmd>PeekOpen<CR>", { desc = 'Open markdown preview' })
+keymap('n', '<leader>mc', "<cmd>PeekClose<CR>", { desc = 'Closw markdown preview' })
