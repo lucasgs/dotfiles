@@ -77,6 +77,7 @@ keymap("n", "<leader>fb", "<cmd>lua require('user.plugins.telescope-func').buffe
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = 'Find tags' })
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>",
     { desc = 'Fuzzy current buffer' })
+keymap("n", "<leader>fw", "<cmd>lua require'telescope.builtin'.grep_string()<CR>", { desc = 'Find current word' })
 keymap("n", "<leader>fn", "<cmd>lua require('user.plugins.telescope-func').find_notes()<CR>", { desc = 'Find note' })
 keymap("n", "<leader>nv", "<cmd>lua require('user.plugins.telescope-func').edit_nvim()<CR>",
     { desc = 'Edit configuration' })
