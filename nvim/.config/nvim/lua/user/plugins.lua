@@ -97,7 +97,6 @@ local plugins = {
     "akinsho/toggleterm.nvim",
 
     "windwp/nvim-ts-autotag",
-    "windwp/nvim-autopairs",
 
     "norcalli/nvim-colorizer.lua",
 
