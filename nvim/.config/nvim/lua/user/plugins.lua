@@ -169,7 +169,12 @@ local plugins = {
         event = { "VeryLazy" },
         build = "deno task --quiet build:fast"
     },
-
+    {
+        'rcarriga/nvim-notify'
+    },
+    {
+        'dmmulroy/tsc.nvim'
+    }
 }
 
 require("lazy").setup(plugins)
