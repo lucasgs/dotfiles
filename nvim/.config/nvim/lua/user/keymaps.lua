@@ -63,9 +63,7 @@ keymap("n", "<leader>x", "<cmd>bd<cr>", { desc = 'Delete buffer' })
 keymap('n', '<Leader>so', '<cmd>so %<CR>', { desc = 'Source current buffer' })
 
 -- Splits
-keymap("n", "<leader>sv", "<cmd>vnew<CR>", { desc = 'Split vertically' })
-keymap("n", "<leader>ss", "<cmd>split<CR>", { desc = 'Split horizontally' })
-keymap("n", "<leader>|", "<cmd>vnew<CR>", { desc = 'Split vertically' })
+keymap("n", "<leader>|", "<cmd>vsplit<CR>", { desc = 'Split vertically' })
 keymap("n", "<leader>-", "<cmd>split<CR>", { desc = 'Split horizontally' })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = 'Open floating terminal' })
 keymap("n", "<leader>tj", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = 'Open below terminal' })
