@@ -4,14 +4,12 @@ let mapleader=" "
 """ Plugins  --------------------------------
 set surround
 set commentary
-"set multiple-cursors
-"set argtextobj
-"set easymotion
-"set textobj-entire
-"set ReplaceWithRegister
+set highlightedyank
+set mini-ai
+set functiontextobj
 
 """ Plugin settings -------------------------
-"let g:argtextobj_pairs="[:],(:),<:>"
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
 
 """ Common settings -------------------------
 set showmode
