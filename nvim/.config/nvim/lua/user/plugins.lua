@@ -78,6 +78,8 @@ local plugins = {
         priority = 1000,
     },
 
+    { "rose-pine/neovim", name = "rose-pine" },
+
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
