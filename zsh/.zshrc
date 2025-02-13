@@ -17,10 +17,20 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.aliases
-source ~/.functions
-source ~/.vars
-source ~/nvims
+
+source_file() {
+    local file="$1"
+
+    if [ -e "$file" ]; then
+        source $file
+    fi
+}
+
+source_file ~/.aliases
+source_file ~/.functions
+source_file ~/.vars
+source_file ~/nvims
+source_file ~/.local
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
