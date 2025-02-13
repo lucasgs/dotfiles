@@ -71,6 +71,12 @@ local plugins = {
         "svrana/neosolarized.nvim",
         dependencies = { "tjdevries/colorbuddy.nvim" },
     },
+    {
+        "neanias/everforest-nvim",
+        version = false,
+        lazy = false,
+        priority = 1000,
+    },
 
     {
         "nvim-lualine/lualine.nvim",
