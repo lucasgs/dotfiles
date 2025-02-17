@@ -128,18 +128,15 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", "<cmd>m .+1<CR>==", opts)
-keymap("v", "<A-k>", "<cmd>m .-2<CR>==", opts)
+-- keymap("v", "<A-j>", "<cmd>m >+1<CR>==", opts)
+-- keymap("v", "<A-k>", "<cmd>m <-1<CR>==", opts)
+keymap("n", "<A-j>", "<cmd>m .+1<CR>==")     -- move line up(n)
+keymap("n", "<A-k>", "<cmd>m .-2<CR>==")     -- move line down(n)
+keymap("v", "<A-j>", "<cmd>m '>+1<CR>gv=gv") -- move line up(v)
+keymap("v", "<A-k>", "<cmd>m '<-2<CR>gv=gv") -- move line down(v)-
 
 -- Paste and overwrite
 keymap("v", "p", '"_dP', opts)
-
--- Visual Block --
--- Move text up and down
-keymap("x", "J", "<cmd>move '>+1<CR>gv-gv", opts)
-keymap("x", "K", "<cmd>move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation

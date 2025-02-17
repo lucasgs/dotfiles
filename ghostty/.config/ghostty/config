@@ -28,6 +28,8 @@ clipboard-read = allow
 clipboard-write = allow
 copy-on-select = false
 
+macos-option-as-alt = left
+
 # keybindings
 # keybind = clear_screen
 # keybind = ctrl+h=goto_split:left
