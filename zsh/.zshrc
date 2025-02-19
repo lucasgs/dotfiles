@@ -27,10 +27,10 @@ source_file() {
 }
 
 source_file ~/.aliases
+source_file ~/.aliases_local
 source_file ~/.functions
 source_file ~/.vars
 source_file ~/nvims
-source_file ~/.local
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
