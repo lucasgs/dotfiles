@@ -160,14 +160,13 @@ keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = 'Close Diffview' })
 
 
 -- Trouble
-keymap("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle trouble" })
-keymap("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
-    { desc = "Trouble workspace diagnostics" })
-keymap("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
-    { desc = "Trouble document diagnostics" })
-keymap("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Trouble quickfix" })
-keymap("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble loclist" })
-keymap("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble lsp references" })
+keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Toggle trouble" })
+keymap("n", "<leader>xb", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+    { desc = "Trouble buffer diagnostics" })
+keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>",
+    { desc = "Trouble symbols" })
+keymap("n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>", { desc = "Trouble quickfix" })
+keymap("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>", { desc = "Trouble loclist" })
 
 
 -- Oil
