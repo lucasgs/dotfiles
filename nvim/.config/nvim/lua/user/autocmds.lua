@@ -29,3 +29,40 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		require("lint").try_lint()
 	end,
 })
+
+vim.keymap.set("n", "<leader>tw", function()
+	local replacements = {}
+	replacements["true"] = "false"
+	replacements["false"] = "true"
+	replacements["True"] = "False"
+	replacements["False"] = "True"
+	replacements["0"] = "1"
+	replacements["1"] = "0"
+
+	local function tableHasKey(table, key)
+		return table[key] ~= nil
+	end
+
+	local function get_word_to_replace(original_word)
+		local new_word = original_word
+		if tableHasKey(replacements, new_word) then
+			new_word = replacements[original_word]
+		end
+		return new_word
+	end
+
+	local function get_word_under_cursor()
+		local cword = vim.fn.expand("<cword>")
+		return cword
+	end
+
+	local function replace_word(word)
+		vim.cmd("normal! ciw" .. word)
+	end
+
+	local cword = get_word_under_cursor()
+	if cword ~= "" then
+		local newword = get_word_to_replace(cword)
+		replace_word(newword)
+	end
+end, { noremap = false })
