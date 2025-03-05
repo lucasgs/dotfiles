@@ -30,7 +30,23 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-vim.keymap.set("n", "<leader>tw", function()
+-- Command to toggle inline diagnostics
+vim.api.nvim_create_user_command("DiagnosticsToggleVirtualText", function()
+	local current_value = vim.diagnostic.config().virtual_text
+	if current_value then
+		vim.diagnostic.config({ virtual_text = false })
+	else
+		vim.diagnostic.config({ virtual_text = true })
+	end
+end, {})
+
+-- Command to toggle diagnostics
+vim.api.nvim_create_user_command("DiagnosticsToggle", function()
+	local is_enabled = vim.diagnostic.is_enabled()
+	vim.diagnostic.enable(not is_enabled)
+end, {})
+
+vim.api.nvim_create_user_command("BufferToggleWord", function()
 	local replacements = {}
 	replacements["true"] = "false"
 	replacements["false"] = "true"
@@ -65,4 +81,4 @@ vim.keymap.set("n", "<leader>tw", function()
 		local newword = get_word_to_replace(cword)
 		replace_word(newword)
 	end
-end, { noremap = false })
+end, {})

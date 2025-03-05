@@ -173,6 +173,10 @@ keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc 
 keymap("n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>", { desc = "Trouble quickfix" })
 keymap("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>", { desc = "Trouble loclist" })
 
+keymap("n", "<leader>tw", "<cmd>BufferToggleWord<CR>", { desc = "Toggle current word" })
+keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
+keymap("n", "<leader>dv", "<cmd>DiagnosticsToggleVirtualText<CR>", { desc = "Toggle Diagnostics Virtual Text" })
+
 -- Oil
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
