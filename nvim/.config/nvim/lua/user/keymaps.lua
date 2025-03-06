@@ -218,4 +218,4 @@ end, { desc = "Harpoon nav file 6" })
 
 -- Peek markdown preview
 keymap("n", "<leader>mo", "<cmd>PeekOpen<CR>", { desc = "Open markdown preview" })
-keymap("n", "<leader>mc", "<cmd>PeekClose<CR>", { desc = "Closw markdown preview" })
+keymap("n", "<leader>mc", "<cmd>PeekClose<CR>", { desc = "Close markdown preview" })
