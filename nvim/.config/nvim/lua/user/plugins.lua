@@ -205,6 +205,10 @@ local plugins = {
 			-- add any opts here
 			-- for example
 			provider = "ollama",
+			cursor_applying_provider = "ollama",
+			behaviour = {
+				enable_cursor_planning_mode = true, -- enable cursor planning mode!
+			},
 			vendors = {
 				deepseek = {
 					__inherited_from = "openai",
