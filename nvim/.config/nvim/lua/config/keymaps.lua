@@ -32,6 +32,8 @@ keymap("n", "<A-Left>", "<cmd>vertical resize +3<CR>", { desc = "Resize more ver
 keymap("n", "<A-Right>", "<cmd>vertical resize -3<CR>", { desc = "Resize less vert" })
 
 -- Buffers
+keymap("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+keymap("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Prev buffer" })
 keymap("n", "<leader>n", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap("n", "<leader>p", "<cmd>bp<cr>", { desc = "Prev buffer" })
 keymap("n", "<leader>x", "<cmd>bd<cr>", { desc = "Delete buffer" })
@@ -80,12 +82,3 @@ keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest environment
 
 -- undotree
 keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
-
--- Diffview
-keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", { desc = "Open Diffview" })
-keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
-
--- Peek markdown preview
-keymap("n", "<leader>mo", "<cmd>PeekOpen<CR>", { desc = "Open markdown preview" })
-keymap("n", "<leader>mc", "<cmd>PeekClose<CR>", { desc = "Close markdown preview" })
-
