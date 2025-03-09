@@ -1,5 +1,15 @@
 local keymap = vim.keymap.set
 
+-- Quit
+keymap("n", "<Leader>qq", "<cmd>qa<CR>", { desc = "Quit all" })
+keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = "Write buffer" })
+
+-- Lazy git
+keymap("n", "<Leader>lz", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle LazyGit" })
+
+-- make current file executable
+keymap("n", "<Leader>xe", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })
+
 -- select all text
 keymap("n", "<Leader>a", "gg<S-v>G", { desc = "Select all text" })
 
@@ -10,25 +20,18 @@ keymap("n", "<Leader>ya", "gg<S-v>Gy", { desc = "Yank all text" })
 keymap("n", "<C-y>", "yyp", { desc = "Duplicate line" })
 
 -- Window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-h>", "<C-w>h", { desc = "Focus left buffer" })
+keymap("n", "<C-j>", "<C-w>j", { desc = "Focus buffer below" })
+keymap("n", "<C-k>", "<C-w>k", { desc = "Focus buffer above" })
+keymap("n", "<C-l>", "<C-w>l", { desc = "Focus right buffer"})
 
 -- Resize with arrows
-keymap("n", "<A-Up>", "<cmd>resize +3<CR>", opts)
-keymap("n", "<A-Down>", "<cmd>resize -3<CR>", opts)
-keymap("n", "<A-Left>", "<cmd>vertical resize +3<CR>", opts)
-keymap("n", "<A-Right>", "<cmd>vertical resize -3<CR>", opts)
-
--- Change 2 split windows from vert to horiz or horiz to vert
-keymap("n", "<leader>th", "<C-w>t<C-w>H", opts)
-keymap("n", "<leader>tk", "<C-w>t<C-w>K", opts)
+keymap("n", "<A-Up>", "<cmd>resize +3<CR>", { desc = "Resize more horiz" })
+keymap("n", "<A-Down>", "<cmd>resize -3<CR>", { desc = "Resize less horiz" })
+keymap("n", "<A-Left>", "<cmd>vertical resize +3<CR>", { desc = "Resize more vert" })
+keymap("n", "<A-Right>", "<cmd>vertical resize -3<CR>", { desc = "Resize less vert" })
 
 -- Buffers
-keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
-keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
-
 keymap("n", "<leader>n", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap("n", "<leader>p", "<cmd>bp<cr>", { desc = "Prev buffer" })
 keymap("n", "<leader>x", "<cmd>bd<cr>", { desc = "Delete buffer" })
@@ -40,12 +43,49 @@ keymap("n", "<leader>-", "<cmd>split<CR>", { desc = "Split horizontally" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Open floating terminal" })
 keymap("n", "<leader>tj", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Open below terminal" })
 keymap("n", "<leader>tl", "<cmd>ToggleTerm direction=vertical<cr>", { desc = "Open right terminal" })
+keymap("n", "<leader>th", "<C-w>t<C-w>H", { desc = "Change split vert to horiz" })
+keymap("n", "<leader>tk", "<C-w>t<C-w>K", { desc = "Change split horiz to vert" })
 
--- Buffers
-keymap("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find files" })
-keymap("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers" })
-keymap("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Grep word" })
-keymap("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep" })
+keymap("n", "<esc>", "<cmd>noh<cr>", { desc = "No highlight"})
 
--- File navigation
-keymap("n", "-", "<cmd>Oil<CR>", { desc = "Toggle Oil" })
+-- quick fix list
+keymap("n", "<leader>co", "<cmd>copen<CR>", { desc = "Open quick fix list" })
+keymap("n", "<leader>cc", "<cmd>cclose<CR>", { desc = "Close quick fix list" })
+
+-- move page and center
+keymap("n", "<C-d>", "<C-d>zz", { desc = "Move down and center" })
+keymap("n", "<C-u>", "<C-u>zz", { desc = "Move up and center" })
+
+keymap("n", "gh", "^", { desc = "Goto start of the line" })
+keymap("n", "gl", "$", { desc = "Goto end of the line" })
+
+keymap("i", "jk", "<ESC>", { desc = "Faster <ESC>" })
+
+keymap("v", "<", "<gv", { desc = "Indent more" })
+keymap("v", ">", ">gv", {desc = "Indent less" } )
+
+-- Move text up and down
+keymap("n", "<A-j>", "<cmd>m .+1<CR>==") -- move line up(n)
+keymap("n", "<A-k>", "<cmd>m .-2<CR>==") -- move line down(n)
+keymap("v", "<A-j>", "<cmd>m '>+1<CR>gv=gv") -- move line up(v)
+keymap("v", "<A-k>", "<cmd>m '<-2<CR>gv=gv") -- move line down(v)-
+
+keymap("v", "p", '"_dP', { desc = "Paste and overwrite" })
+
+-- Rest client
+keymap("n", "<leader>ro", "<cmd>Rest open<CR>", { desc = "Rest open" })
+keymap("n", "<leader>rr", "<cmd>Rest run<CR>", { desc = "Rest run" })
+keymap("n", "<leader>rw", "<cmd>Rest env show<CR>", { desc = "Rest environment show" })
+keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest environment select" })
+
+-- undotree
+keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
+
+-- Diffview
+keymap("n", "<leader>do", "<cmd>DiffviewOpen<cr>", { desc = "Open Diffview" })
+keymap("n", "<leader>dc", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
+
+-- Peek markdown preview
+keymap("n", "<leader>mo", "<cmd>PeekOpen<CR>", { desc = "Open markdown preview" })
+keymap("n", "<leader>mc", "<cmd>PeekClose<CR>", { desc = "Close markdown preview" })
+
