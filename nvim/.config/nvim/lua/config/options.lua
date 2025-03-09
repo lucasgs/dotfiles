@@ -45,6 +45,8 @@ local globals = {
     mapleader = " ",
     maplocalleader = "\\",
 
+    editorconfig = true,
+
     netrw_banner = 0,       -- don't show the banner on top
     -- netrw_liststyle = 3,    -- show list as a tree
     netrw_browse_split = 0, -- reuse the same window
