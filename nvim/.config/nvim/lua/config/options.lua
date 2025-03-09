@@ -2,6 +2,7 @@ local options = {
     backup = false,
     background = "dark",
     clipboard = "unnamedplus",
+    cmdheight = 0,
     completeopt = { "menuone", "noselect" },
     cursorline = true,
     fileencoding = 'utf-8',

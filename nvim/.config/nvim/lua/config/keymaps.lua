@@ -41,9 +41,11 @@ keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Open 
 keymap("n", "<leader>tj", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Open below terminal" })
 keymap("n", "<leader>tl", "<cmd>ToggleTerm direction=vertical<cr>", { desc = "Open right terminal" })
 
+-- Buffers
 keymap("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find files" })
 keymap("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers" })
 keymap("n", "<leader>fw", "<cmd>FzfLua grep_cword<cr>", { desc = "Grep word" })
 keymap("n", "<leader>fg", "<cmd>FzfLua grep<cr>", { desc = "Grep" })
 
+-- File navigation
 keymap("n", "-", "<cmd>Oil<CR>", { desc = "Toggle Oil" })
