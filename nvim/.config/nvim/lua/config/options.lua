@@ -30,8 +30,8 @@ local options = {
     swapfile = false,
     termguicolors = true,
     tabstop = 4,
-    timeout = true,
-    timeoutlen = 300,
+    -- timeout = true,
+    -- timeoutlen = 300,
     virtualedit = "block",
     wildmenu = true,
     wrap = true,
@@ -42,7 +42,7 @@ local options = {
 local globals = {
     --Remap space as leader key
     mapleader = " ",
-    maplocalleader = " ",
+    maplocalleader = "\\",
 
     netrw_banner = 0,       -- don't show the banner on top
     -- netrw_liststyle = 3,    -- show list as a tree
