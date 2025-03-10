@@ -82,3 +82,5 @@ keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest environment
 
 -- undotree
 keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
+
+keymap("n", "<leader>tw", "<cmd>BufferToggleWord<cr>", { desc = "Toggle current word" })

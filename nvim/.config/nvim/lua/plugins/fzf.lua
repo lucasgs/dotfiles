@@ -1,6 +1,6 @@
 return {
     "ibhagwan/fzf-lua",
-    dependencies = { "echasnovski/mini.icons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
     keys = {
         {"<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
