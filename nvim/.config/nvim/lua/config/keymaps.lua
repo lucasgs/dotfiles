@@ -87,4 +87,9 @@ keymap("n", "<leader>tw", "<cmd>BufferToggleWord<cr>", { desc = "Toggle current 
 
 -- diagnostics
 keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
+keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
 keymap("n", "<leader>dv", "<cmd>DiagnosticsToggleVirtualText<CR>", { desc = "Toggle Diagnostics Virtual Text" })
+
+-- General
+keymap("n", "<leader>lz", require("config.globals").open_lazygit, { desc = "Open LazyGit" })
+keymap("n", "<leader>hp", require("config.globals").open_htop, { desc = "Open htop" })
