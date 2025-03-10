@@ -205,6 +205,10 @@ local plugins = {
 			-- add any opts here
 			-- for example
 			provider = "ollama",
+			ollama = {
+				endpoint = "http://127.0.0.1:11434",
+				model = "deepseek-r1:latest",
+			},
 			cursor_applying_provider = "ollama",
 			behaviour = {
 				enable_cursor_planning_mode = true, -- enable cursor planning mode!
@@ -216,22 +220,7 @@ local plugins = {
 					endpoint = "https://api.deepseek.com",
 					model = "deepseek-chat",
 				},
-				ollama = {
-					__inherited_from = "openai",
-					api_key_name = "",
-					endpoint = "http://127.0.0.1:11434/v1",
-					-- model = "deepseek-r1:1.5b",
-					model = "deepseek-r1:latest",
-					disable_tools = true,
-				},
-			}, -- openai = {
-			-- 	endpoint = "https://api.openai.com/v1",
-			-- 	model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-			-- 	timeout = 30000, -- timeout in milliseconds
-			-- 	temperature = 0, -- adjust if needed
-			-- 	max_tokens = 4096,
-			-- 	-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
-			-- },
+			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
