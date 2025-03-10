@@ -19,5 +19,7 @@ return {
 		-- require("mini.pairs").setup()
 
 		require("mini.starter").setup()
+
+		require("mini.bufremove").setup()
 	end,
 }
