@@ -1,7 +1,6 @@
 return {
     "goolord/alpha-nvim",
     config = function()
-        -- require("alpha").setup(require("alpha.themes.dashboard").config)
         local status_ok, alpha = pcall(require, "alpha")
         if not status_ok then
             return
@@ -22,12 +21,9 @@ return {
 
         dashboard.section.buttons.val = {
             dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-            -- dashboard.button("f", string.format("%s  %s", icons.ui.Lightbulb, "Find file"), ":Telescope find_files <CR>"),
-            dashboard.button("f", string.format("%s  %s", icons.ui.FindFile, "Find file"), ":Telescope find_files <CR>"),
-            -- dashboard.button("t", string.format("%s  %s", icons.ui.Search, "Find text"), ":Telescope live_grep <CR>"),
-            dashboard.button("t", string.format("%s  %s", icons.ui.FindText, "Find text"), ":Telescope live_grep <CR>"),
-            -- dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-            dashboard.button("r", string.format("%s  %s", icons.ui.Files, "Recently used files"), ":Telescope oldfiles <CR>"),
+            dashboard.button("f", string.format("%s  %s", icons.ui.FindFile, "Find file"), "<cmd>FzfLua files<CR>"),
+            dashboard.button("t", string.format("%s  %s", icons.ui.FindText, "Find text"), "<cmd>FzfLua live_grep<CR>"),
+            dashboard.button("r", string.format("%s  %s", icons.ui.Files, "Recently used files"), "<cmd>FzfLua oldfiles <CR>"),
             dashboard.button("q", string.format("%s  %s", icons.ui.BoldClose, "Quit Neovim"), ":qa<CR>"),
         }
 

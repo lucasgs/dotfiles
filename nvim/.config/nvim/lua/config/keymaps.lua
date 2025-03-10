@@ -23,7 +23,7 @@ keymap("n", "<C-y>", "yyp", { desc = "Duplicate line" })
 keymap("n", "<C-h>", "<C-w>h", { desc = "Focus left buffer" })
 keymap("n", "<C-j>", "<C-w>j", { desc = "Focus buffer below" })
 keymap("n", "<C-k>", "<C-w>k", { desc = "Focus buffer above" })
-keymap("n", "<C-l>", "<C-w>l", { desc = "Focus right buffer"})
+keymap("n", "<C-l>", "<C-w>l", { desc = "Focus right buffer" })
 
 -- Resize with arrows
 keymap("n", "<A-Up>", "<cmd>resize +3<CR>", { desc = "Resize more horiz" })
@@ -48,7 +48,7 @@ keymap("n", "<leader>tl", "<cmd>ToggleTerm direction=vertical<cr>", { desc = "Op
 keymap("n", "<leader>th", "<C-w>t<C-w>H", { desc = "Change split vert to horiz" })
 keymap("n", "<leader>tk", "<C-w>t<C-w>K", { desc = "Change split horiz to vert" })
 
-keymap("n", "<esc>", "<cmd>noh<cr>", { desc = "No highlight"})
+keymap("n", "<esc>", "<cmd>noh<cr>", { desc = "No highlight" })
 
 -- quick fix list
 keymap("n", "<leader>co", "<cmd>copen<CR>", { desc = "Open quick fix list" })
@@ -64,7 +64,7 @@ keymap("n", "gl", "$", { desc = "Goto end of the line" })
 keymap("i", "jk", "<ESC>", { desc = "Faster <ESC>" })
 
 keymap("v", "<", "<gv", { desc = "Indent more" })
-keymap("v", ">", ">gv", {desc = "Indent less" } )
+keymap("v", ">", ">gv", { desc = "Indent less" })
 
 -- Move text up and down
 keymap("n", "<A-j>", "<cmd>m .+1<CR>==") -- move line up(n)
@@ -75,12 +75,16 @@ keymap("v", "<A-k>", "<cmd>m '<-2<CR>gv=gv") -- move line down(v)-
 keymap("v", "p", '"_dP', { desc = "Paste and overwrite" })
 
 -- Rest client
-keymap("n", "<leader>ro", "<cmd>Rest open<CR>", { desc = "Rest open" })
-keymap("n", "<leader>rr", "<cmd>Rest run<CR>", { desc = "Rest run" })
-keymap("n", "<leader>rw", "<cmd>Rest env show<CR>", { desc = "Rest environment show" })
-keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest environment select" })
+-- keymap("n", "<leader>ro", "<cmd>Rest open<CR>", { desc = "Rest open" })
+-- keymap("n", "<leader>rr", "<cmd>Rest run<CR>", { desc = "Rest run" })
+-- keymap("n", "<leader>rw", "<cmd>Rest env show<CR>", { desc = "Rest environment show" })
+-- keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest environment select" })
 
 -- undotree
 keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
 
 keymap("n", "<leader>tw", "<cmd>BufferToggleWord<cr>", { desc = "Toggle current word" })
+
+-- diagnostics
+keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
+keymap("n", "<leader>dv", "<cmd>DiagnosticsToggleVirtualText<CR>", { desc = "Toggle Diagnostics Virtual Text" })

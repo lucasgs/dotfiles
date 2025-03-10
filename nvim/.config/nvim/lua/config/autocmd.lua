@@ -1,11 +1,3 @@
--- vim.api.nvim_create_autocmd("BufWritePre", {
--- 	desc = "Format current buffer before writing",
--- 	pattern = "*",
--- 	callback = function(args)
--- 		require("conform").format({ bufnr = args.buf })
--- 	end,
--- })
-
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	desc = "Highlight yanked selection",
 	group = vim.api.nvim_create_augroup("OwnYankHighlight", { clear = true }),
@@ -74,4 +66,3 @@ vim.api.nvim_create_user_command("BufferToggleWord", function()
 		replace_word(newword)
 	end
 end, {})
-
