@@ -83,7 +83,7 @@ keymap("v", "p", '"_dP', { desc = "Paste and overwrite" })
 -- undotree
 keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
 
-keymap("n", "<leader>tw", "<cmd>BufferToggleWord<cr>", { desc = "Toggle current word" })
+-- keymap("n", "<leader>tw", "<cmd>BufferToggleWord<cr>", { desc = "Toggle current word" })
 
 -- diagnostics
 keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
