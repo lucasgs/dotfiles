@@ -89,6 +89,7 @@ keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" }
 keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
 keymap("n", "<leader>dt", "<cmd>DiagnosticsToggle<CR>", { desc = "Toggle Diagnostics" })
 keymap("n", "<leader>dv", "<cmd>DiagnosticsToggleVirtualText<CR>", { desc = "Toggle Diagnostics Virtual Text" })
+keymap("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show Diagnostics float window" })
 
 -- General
 keymap("n", "<leader>lz", require("config.globals").open_lazygit, { desc = "Open LazyGit" })

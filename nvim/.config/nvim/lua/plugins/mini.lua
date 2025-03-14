@@ -21,5 +21,7 @@ return {
 		require("mini.starter").setup()
 
 		require("mini.bufremove").setup()
+
+		require("mini.pick").setup()
 	end,
 }
