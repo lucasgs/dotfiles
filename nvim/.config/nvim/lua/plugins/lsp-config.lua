@@ -98,6 +98,7 @@ return {
 			kotlin_language_server = {},
 			groovyls = {},
 			gopls = {},
+			jsonls = {},
 			-- sourcekit = {
 			--     capabilities = {
 			--         workspace = {
