@@ -38,6 +38,7 @@ keymap("n", "<leader>n", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap("n", "<leader>p", "<cmd>bp<cr>", { desc = "Prev buffer" })
 keymap("n", "<leader>x", "<cmd>bd<cr>", { desc = "Delete buffer" })
 keymap("n", "<Leader>so", "<cmd>source %<CR>", { desc = "Source current buffer" })
+keymap("n", "<Leader>fu", vim.lsp.buf.format, { desc = "Format current buffer" })
 
 -- Splits
 keymap("n", "<leader>|", "<cmd>vsplit<CR>", { desc = "Split vertically" })
