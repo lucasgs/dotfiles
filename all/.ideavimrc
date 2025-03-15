@@ -27,46 +27,31 @@ set idearefactormode=keep
 
 """ Mappings --------------------------------
 
+" easy window navigation
+map <c-l> <c-w>l
+map <c-j> <c-w>j
+map <c-h> <c-w>h
+map <c-k> <c-w>k
+map <s-h> gT
+map <s-l> gt
+
 " code navigation
 map <leader>ff <Action>(GotoFile)
 map <leader>fg <Action>(FindInPath)
 map <leader>sp <Action>(SelectInProjectView)
 map <leader>e <Action>(Switcher)
-map <leader>fb <Action>(Switcher)
+map <leader>- <Action>(SplitHorizontally)
+map <leader>v <Action>(SplitVertically)
 
 " actions
-noremap <leader>q <ESC>:action Refactorings.QuickListPopupAction<CR>
-nnoremap <leader>rn :action RenameElement<cr>
-
-" easy window navigation
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-h> <c-w>h
-nnoremap <c-k> <c-w>k
-nnoremap <s-h> gT
-nnoremap <s-l> gt
-"nnoremap <c-s-tab> gT
-"nnoremap <c-tab> gt
-"map <leader>ss <action>(SplitDown)
-"map <leader>sv <action>(SplitRight)
+map <leader>a <Action>(Refactorings.QuickListPopupAction)
+map <leader>q <Action>(ShowIntentionActions)
+map <leader>rn <Action>(RenameElement)
 
 " run action
-map <leader>rc <action>(RunClass)
-map <leader>rr <action>(Run)
-map <leader>dg <action>(DebugClass)
-map <leader>dd <action>(Debug)
+map <leader>rr <Action>(Run)
+map <leader>rc <Action>(RunClass)
+map <leader>dd <Action>(Debug)
+map <leader>dg <Action>(DebugClass)
 
 "---------------------
-
-"map <leader>f <Plug>(easymotion-s)
-"map <leader>e <Plug>(easymotion-f)
-"map <leader>d <Action>(Debug)
-"map <leader>r <Action>(RenameElement)
-"map <leader>c <Action>(Stop)
-"map <leader>z <Action>(ToggleDistractionFreeMode)
-"map <leader>s <Action>(SelectInProjectView)
-"map <leader>a <Action>(Annotate)
-"map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
-"map <S-Space> <Action>(GotoNextError)
-"map <leader>b <Action>(ToggleLineBreakpoint)
-"map <leader>o <Action>(FileStructurePopup)
