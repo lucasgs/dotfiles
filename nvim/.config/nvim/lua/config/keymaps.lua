@@ -10,6 +10,8 @@ keymap("n", "<Leader>lz", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle Laz
 -- make current file executable
 keymap("n", "<Leader>xe", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })
 
+keymap("n", "<Leader>rr", "<cmd>silent make<CR>", { desc = "Run make" })
+
 -- select all text
 keymap("n", "<Leader>a", "gg<S-v>G", { desc = "Select all text" })
 

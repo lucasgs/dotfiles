@@ -66,3 +66,30 @@ vim.api.nvim_create_user_command("BufferToggleWord", function()
 		replace_word(newword)
 	end
 end, {})
+
+-- Configure make automatically based on language
+
+local buildsystems = vim.api.nvim_create_augroup("buildsystems", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = buildsystems,
+	pattern = { "c", "cpp", "python", "java", "kotlin" },
+	callback = function(args)
+		local filetype = args.match
+
+		local settings = {
+			c = { makeprg = "make", errorformat = "%f:%l:%c: %m" },
+			cpp = { makeprg = "make", errorformat = "%f:%l:%c: %m" },
+			python = { makeprg = "python %", errorformat = "%f:%l: %m" },
+			java = { makeprg = "javac % && java -cp %:p:h %:t:r", errorformat = "%f:%l: %m" },
+			kotlin = {
+				makeprg = "gradle assemble",
+				errorformat = "%E> Task :%m FAILED," .. "%Ee: file://%f:%l:%c %m," .. "%Z," .. "%-G%.%#",
+			},
+		}
+
+		if settings[filetype] then
+			vim.opt_local.makeprg = settings[filetype].makeprg
+			vim.opt_local.errorformat = settings[filetype].errorformat or "%f:%l: %m" -- Default error format
+		end
+	end,
+})
