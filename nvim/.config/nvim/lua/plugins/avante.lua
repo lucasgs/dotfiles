@@ -6,7 +6,8 @@ return {
 		provider = "ollama",
 		ollama = {
 			endpoint = "http://127.0.0.1:11434",
-			model = "deepseek-r1:latest",
+			-- model = "deepseek-r1:latest",
+			model = "qwen2.5-coder:7b-instruct",
 		},
 		cursor_applying_provider = "ollama",
 		behaviour = {
