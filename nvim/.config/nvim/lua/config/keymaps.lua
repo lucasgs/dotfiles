@@ -4,16 +4,13 @@ local keymap = vim.keymap.set
 keymap("n", "<Leader>qq", "<cmd>qa<CR>", { desc = "Quit all" })
 keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = "Write buffer" })
 
--- Lazy git
-keymap("n", "<Leader>lz", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle LazyGit" })
-
 -- make current file executable
 keymap("n", "<Leader>xe", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })
 
 keymap("n", "<Leader>rr", "<cmd>silent make<CR>", { desc = "Run make" })
 
 -- select all text
-keymap("n", "<Leader>a", "gg<S-v>G", { desc = "Select all text" })
+keymap("n", "<Leader>sa", "gg<S-v>G", { desc = "Select all text" })
 
 -- yank all text
 keymap("n", "<Leader>ya", "gg<S-v>Gy", { desc = "Yank all text" })
