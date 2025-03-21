@@ -43,6 +43,9 @@ map <leader>e <Action>(Switcher)
 map <leader>- <Action>(SplitHorizontally)
 map <leader>v <Action>(SplitVertically)
 
+map < <gv
+map > >gv
+
 " actions
 map <leader>a <Action>(Refactorings.QuickListPopupAction)
 map <leader>q <Action>(ShowIntentionActions)
