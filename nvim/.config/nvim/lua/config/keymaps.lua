@@ -94,3 +94,11 @@ keymap("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show Diagnostics 
 -- General
 keymap("n", "<leader>lz", require("config.globals").open_lazygit, { desc = "Open LazyGit" })
 keymap("n", "<leader>hp", require("config.globals").open_htop, { desc = "Open htop" })
+
+-- Terminal --
+local term_opts = { silent = true, noremap = true }
+keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
+keymap("t", "<C-h>", "<C-\\><C-n><C-w>h", term_opts)
+keymap("t", "<C-j>", "<C-\\><C-n><C-w>j", term_opts)
+keymap("t", "<C-k>", "<C-\\><C-n><C-w>k", term_opts)
+keymap("t", "<C-l>", "<C-\\><C-n><C-w>l", term_opts)

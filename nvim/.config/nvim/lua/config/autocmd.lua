@@ -68,7 +68,6 @@ vim.api.nvim_create_user_command("BufferToggleWord", function()
 end, {})
 
 -- Configure make automatically based on language
-
 local buildsystems = vim.api.nvim_create_augroup("buildsystems", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = buildsystems,
@@ -91,5 +90,14 @@ vim.api.nvim_create_autocmd("FileType", {
 			vim.opt_local.makeprg = settings[filetype].makeprg
 			vim.opt_local.errorformat = settings[filetype].errorformat or "%f:%l: %m" -- Default error format
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+	desc = "Highlight yanked selection",
+	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
 	end,
 })
