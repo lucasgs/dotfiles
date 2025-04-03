@@ -33,6 +33,7 @@ local options = {
 	tabstop = 4,
 	virtualedit = "block",
 	wildmenu = true,
+	winborder = "rounded",
 	wrap = true,
 	updatetime = 50,
 	-- colorcolumn = "80",
