@@ -3,7 +3,8 @@ return {
 	event = "VeryLazy",
 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
 	opts = {
-		provider = "ollama",
+		-- provider = "ollama",
+		provider = "gemini",
 		ollama = {
 			endpoint = "http://127.0.0.1:11434",
 			-- model = "deepseek-r1:latest",
