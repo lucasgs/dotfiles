@@ -40,42 +40,42 @@ return {
 			desc = "Harpoon clear all",
 		},
 		{
-			"<leader>h1",
+			"<leader>1",
 			function()
 				require("harpoon"):list():select(1)
 			end,
 			desc = "Harpoon nav file 1",
 		},
 		{
-			"<leader>h2",
+			"<leader>2",
 			function()
 				require("harpoon"):list():select(2)
 			end,
 			desc = "Harpoon nav file 2",
 		},
 		{
-			"<leader>h3",
+			"<leader>3",
 			function()
 				require("harpoon"):list():select(3)
 			end,
 			desc = "Harpoon nav file 3",
 		},
 		{
-			"<leader>h4",
+			"<leader>4",
 			function()
 				require("harpoon"):list():select(4)
 			end,
 			desc = "Harpoon nav file 4",
 		},
 		{
-			"<leader>h5",
+			"<leader>5",
 			function()
 				require("harpoon"):list():select(5)
 			end,
 			desc = "Harpoon nav file 5",
 		},
 		{
-			"<leader>h6",
+			"<leader>6",
 			function()
 				require("harpoon"):list():select(6)
 			end,
