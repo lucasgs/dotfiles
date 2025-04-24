@@ -2,7 +2,9 @@ local keymap = vim.keymap.set
 
 -- Quit
 keymap("n", "<Leader>qq", "<cmd>qa<CR>", { desc = "Quit all" })
-keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = "Write buffer" })
+--keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = "Write buffer" })
+
+keymap("n", "<Leader>w", "*", { desc = "Search current word" })
 
 -- make current file executable
 keymap("n", "<Leader>xe", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable" })
