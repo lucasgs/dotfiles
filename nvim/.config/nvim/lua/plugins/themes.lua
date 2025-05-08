@@ -43,4 +43,9 @@ return {
 	},
 	{ "rose-pine/neovim", name = "rose-pine" },
 	{ "vague2k/vague.nvim" },
+	{
+		"webhooked/kanso.nvim",
+		lazy = false,
+		priority = 1000,
+	},
 }
