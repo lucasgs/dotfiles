@@ -48,4 +48,10 @@ return {
 		lazy = false,
 		priority = 1000,
 	},
+	{
+		"wtfox/jellybeans.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 }
