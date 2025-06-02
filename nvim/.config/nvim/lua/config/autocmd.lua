@@ -109,8 +109,8 @@ vim.api.nvim_create_user_command("Google", function(o)
 	vim.ui.open(url)
 end, { nargs = 1, desc = "just google it" })
 
-vim.api.nvim_create_autocmd("CursorHold", {
-	callback = function()
-		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
-	end,
-})
+-- vim.api.nvim_create_autocmd("CursorHold", {
+-- 	callback = function()
+-- 		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
+-- 	end,
+-- })
