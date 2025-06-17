@@ -17,6 +17,9 @@ keymap("n", "<Leader>sa", "gg<S-v>G", { desc = "Select all text" })
 -- yank all text
 keymap("n", "<Leader>ya", "gg<S-v>Gy", { desc = "Yank all text" })
 
+-- yank until end of line
+keymap("n", "Y", "y$", { desc = "Yank until EOL" })
+
 -- duplicate line
 keymap("n", "<C-y>", "yyp", { desc = "Duplicate line" })
 
