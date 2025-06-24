@@ -26,3 +26,14 @@ bcp() {
     do; brew uninstall $prog; done;
   fi
 }
+
+# Convert all video files
+conv() {
+    mkdir converted
+    for file in *.webm *.mp4; do
+      # Check if a file with the given pattern was found
+      if [ -e "$file" ]; then
+        ffmpeg -i "$file" "converted/${file%.*}.mp4"
+      fi
+    done
+}
