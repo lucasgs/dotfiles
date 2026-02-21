@@ -1,9 +1,34 @@
 #!/bin/bash
 
 # 1. Setup and Validation
-if [ -z "$1" ]; then
+# -----------------------------------------------------------------------------
+# DESCRIPTION:
+# This script manages Git worktrees and Tmux sessions in a unified workflow.
+# It ensures worktrees are stored in a sibling directory to keep the main
+# repository clean.
+#
+# WORKFLOW:
+# 1. Identifies the main repository root.
+# 2. Maps worktrees to: ../{repo_name}-trees/{branch_name}
+# 3. Checks if branch/worktree exists before creation.
+# 4. Spawns or switches to a Tmux session named '{repo}-{branch}'.
+# -----------------------------------------------------------------------------
+
+show_help() {
     echo "Usage: gtw <branch-name>"
-    exit 1
+    echo ""
+    echo "Options:"
+    echo "  -h, --help    Show this help message"
+    echo ""
+    echo "Environment:"
+    echo "  Creates worktrees in: ../$(basename $(git worktree list | head -n 1 | awk '{print $1}'))-trees/"
+    echo "  Creates Tmux session: [repo]-[branch]"
+}
+
+# Check for help flags or missing arguments
+if [[ "$1" == "-h" || "$1" == "--help" || -z "$1" ]]; then
+    show_help
+    exit 0
 fi
 
 BRANCH_NAME=$1
