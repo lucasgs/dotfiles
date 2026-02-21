@@ -47,6 +47,10 @@ alias glg='(){ git log --oneline -G"$1" }'
 alias gd='git diff'
 alias gsi='git submodule init'
 alias gsu='git submodule update'
+alias gwl='git worktree list'
+alias gwa='git worktree add'
+alias gwr='git worktree remove'
+alias gwp='git worktree prune'
 
 # android
 alias talkon="adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService"

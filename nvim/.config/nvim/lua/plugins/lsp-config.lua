@@ -25,7 +25,7 @@ return {
 				map("<leader>ca", vim.lsp.buf.code_action, "Code action", { "n", "x" })
 				map("<leader>gr", vim.lsp.buf.references, "Goto references")
 				-- map('<leader>fu', vim.lsp.buf.format({ async = true }), 'Format buffer')
-				map("<leader>sh", vim.lsp.buf.signature_help, "Signature help")
+				-- map("<leader>sh", vim.lsp.buf.signature_help, "Signature help")
 				map("<leader>dj", vim.diagnostic.goto_next, "Diagnostic next")
 				map("<leader>dk", vim.diagnostic.goto_prev, "Diagnostic prev")
 				map("<leader>dl", vim.diagnostic.setloclist, "Diagnostic set local list")
@@ -95,10 +95,11 @@ return {
 			cssls = {},
 			ts_ls = {},
 			rust_analyzer = {},
-			kotlin_language_server = {},
+			-- kotlin_language_server = {},
 			groovyls = {},
 			gopls = {},
 			jsonls = {},
+			-- harper_ls = {},
 			-- sourcekit = {
 			--     capabilities = {
 			--         workspace = {
@@ -107,6 +108,12 @@ return {
 			--             },
 			--         },
 			--     },
+			-- },
+			-- kotlin_ls = {
+			-- 	cmd = { "kotlin-ls", "--stdio" },
+			-- 	single_file_support = true,
+			-- 	filetypes = { "kotlin" },
+			-- 	root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
 			-- },
 		}
 
@@ -119,13 +126,22 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {}, -- explicitly set to an empty table (Populated via mason-tool-installer)
 			automatic_installation = false,
+			automatic_enable = true,
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
+					-- vim.lsp.config[server_name] = server
 				end,
 			},
 		})
+
+		vim.lsp.config["kotlinls"] = {
+			cmd = { "kotlin-ls", "--stdio" },
+			single_file_support = true,
+			filetypes = { "kotlin" },
+			root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+		}
 	end,
 }

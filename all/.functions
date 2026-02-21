@@ -37,3 +37,8 @@ conv() {
       fi
     done
 }
+
+# Get random question
+random_question() {
+    shuf -n 1 ~/questions.txt
+}

@@ -8,10 +8,10 @@ ZSH_THEME=""
 
 plugins=(gnu-utils)
 
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+# fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -81,3 +81,14 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(starship init zsh)"
+
+# Composables CLI
+export PATH="$HOME/.composables/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/lucas/.antigravity/antigravity/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/lucas/.lmstudio/bin"
+# End of LM Studio CLI section
+
