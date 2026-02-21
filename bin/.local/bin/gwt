@@ -4,37 +4,34 @@
 # -----------------------------------------------------------------------------
 # DESCRIPTION:
 # This script manages Git worktrees and Tmux sessions in a unified workflow.
-# It ensures worktrees are stored in a sibling directory to keep the main
-# repository clean.
+# It ensures worktrees are stored in a sibling directory: ../{repo}-trees/
 #
-# WORKFLOW:
-# 1. Identifies the main repository root.
-# 2. Maps worktrees to: ../{repo_name}-trees/{branch_name}
-# 3. Checks if branch/worktree exists before creation.
-# 4. Spawns or switches to a Tmux session named '{repo}-{branch}'.
+# USAGE MODES:
+# 1. Argument Provided: Creates or switches to the specified branch/worktree.
+# 2. No Argument: Opens an fzf menu to select from existing worktrees.
+#
+# LOGIC:
+# - Identifies the main repository root to avoid "inception" nesting.
+# - Maps worktrees to: ../{repo_name}-trees/{branch_name}
+# - Creates or switches to a Tmux session named '{repo}_{branch}'.
 # -----------------------------------------------------------------------------
 
 show_help() {
-    echo "Usage: gtw <branch-name>"
+    echo "Usage:"
+    echo "  gtw <branch-name>  Create or switch to a specific branch worktree"
+    echo "  gtw                Search and select an existing worktree via fzf"
     echo ""
     echo "Options:"
-    echo "  -h, --help    Show this help message"
-    echo ""
-    echo "Environment:"
-    echo "  Creates worktrees in: ../$(basename $(git worktree list | head -n 1 | awk '{print $1}'))-trees/"
-    echo "  Creates Tmux session: [repo]-[branch]"
+    echo "  -h, --help         Show this help message"
 }
 
-# Check for help flags or missing arguments
-if [[ "$1" == "-h" || "$1" == "--help" || -z "$1" ]]; then
+# Handle help flags
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     show_help
     exit 0
 fi
 
-BRANCH_NAME=$1
-
-# Find the MAIN repository path (the first line of git worktree list)
-# This ensures we always calculate the base dir relative to the main repo
+# Find the MAIN repository path (always the first line of git worktree list)
 MAIN_REPO_PATH=$(git worktree list | head -n 1 | awk '{print $1}')
 
 if [ -z "$MAIN_REPO_PATH" ]; then
@@ -42,38 +39,52 @@ if [ -z "$MAIN_REPO_PATH" ]; then
     exit 1
 fi
 
-# The name of the original repository (e.g., "my-project")
 MAIN_REPO_NAME=$(basename "$MAIN_REPO_PATH")
 
-# Hardcoded directory structure: root_dir/{repo_name}-worktrees/
-# If MAIN_REPO_PATH is /Users/lucas/work/my-project
-# WORKTREE_BASE_DIR becomes /Users/lucas/work/my-project-worktrees
-WORKTREE_BASE_DIR="$(dirname "$MAIN_REPO_PATH")/${MAIN_REPO_NAME}-trees"
-TARGET_PATH="${WORKTREE_BASE_DIR}/${BRANCH_NAME}"
-
-# Ensure the parent directory for all worktrees exists
-mkdir -p "$WORKTREE_BASE_DIR"
-
-# 2. Logic to Check Existence
-# Check if the branch exists locally or on a remote
-BRANCH_EXISTS=$(git rev-parse --verify "$BRANCH_NAME" 2>/dev/null)
-
-# Check if worktree is already registered
-# We use -F for fixed string matching to avoid path regex issues
-WORKTREE_EXISTS=$(git worktree list | grep -F "$TARGET_PATH")
-
-if [ -n "$WORKTREE_EXISTS" ]; then
-    echo "✅ Worktree already exists at $TARGET_PATH."
-elif [ -n "$BRANCH_EXISTS" ]; then
-    echo "🌿 Branch '$BRANCH_NAME' exists. Creating worktree at $TARGET_PATH..."
-    git worktree add "$TARGET_PATH" "$BRANCH_NAME"
+# 2. Selection Logic (Interactive vs. Argument)
+# -----------------------------------------------------------------------------
+if [ -z "$1" ]; then
+    # Interactive mode: Select from existing worktrees using fzf
+    SELECTED_LINE=$(git worktree list | fzf --header="Select Worktree for $MAIN_REPO_NAME:" --height=15% --reverse)
+    
+    if [ -z "$SELECTED_LINE" ]; then
+        echo "No selection made. Exiting."
+        exit 0
+    fi
+    
+    TARGET_PATH=$(echo "$SELECTED_LINE" | awk '{print $1}')
+    # Extract branch name from inside the brackets [...]
+    BRANCH_NAME=$(echo "$SELECTED_LINE" | grep -o '\[.*\]' | tr -d '[]')
+    
+    if [ -z "$BRANCH_NAME" ]; then
+        BRANCH_NAME=$(basename "$TARGET_PATH")
+    fi
 else
-    echo "✨ Creating new branch '$BRANCH_NAME' at $TARGET_PATH..."
-    git worktree add -b "$BRANCH_NAME" "$TARGET_PATH"
+    # Argument mode: Use the provided branch name
+    BRANCH_NAME=$1
+    # Updated directory suffix to -trees/
+    WORKTREE_BASE_DIR="$(dirname "$MAIN_REPO_PATH")/${MAIN_REPO_NAME}-trees"
+    TARGET_PATH="${WORKTREE_BASE_DIR}/${BRANCH_NAME}"
+
+    mkdir -p "$WORKTREE_BASE_DIR"
+
+    BRANCH_EXISTS=$(git rev-parse --verify "$BRANCH_NAME" 2>/dev/null)
+    WORKTREE_EXISTS=$(git worktree list | grep -F "$TARGET_PATH")
+
+    if [ -n "$WORKTREE_EXISTS" ]; then
+        echo "✅ Worktree already exists at $TARGET_PATH."
+    elif [ -n "$BRANCH_EXISTS" ]; then
+        echo "🌿 Branch '$BRANCH_NAME' exists. Creating worktree at $TARGET_PATH..."
+        git worktree add "$TARGET_PATH" "$BRANCH_NAME"
+    else
+        echo "✨ Creating new branch '$BRANCH_NAME' at $TARGET_PATH..."
+        git worktree add -b "$BRANCH_NAME" "$TARGET_PATH"
+    fi
 fi
 
 # 3. Tmux Session Management
-# Session name is repo_name:branch_name (sanitized)
+# -----------------------------------------------------------------------------
+# Sanitize session name: replace dots and slashes with underscores
 SESSION_NAME="${MAIN_REPO_NAME}_${BRANCH_NAME//[\.\/]/_}"
 
 if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
@@ -82,6 +93,7 @@ if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
 fi
 
 # 4. Attach or Switch logic
+# -----------------------------------------------------------------------------
 if [ -z "$TMUX" ]; then
     tmux attach-session -t "$SESSION_NAME"
 else
