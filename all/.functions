@@ -42,3 +42,22 @@ conv() {
 random_question() {
     shuf -n 1 ~/questions.txt
 }
+
+
+# Convert M3U8 streams to MP4
+m3u2mp4() {
+    if [ -z "$1" ]; then
+        echo "Usage: m3u2mp4 <input_url_or_file> [output_name.mp4]"
+        return 1
+    fi
+
+    local input="$1"
+    local output="${2:-output.mp4}"
+
+    ffmpeg -protocol_whitelist file,http,https,tcp,tls \
+           -allowed_extensions ALL \
+           -i "$input" \
+           -bsf:a aac_adtstoasc \
+           -c copy \
+           "$output"
+}
