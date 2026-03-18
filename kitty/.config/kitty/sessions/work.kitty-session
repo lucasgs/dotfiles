@@ -1,0 +1,23 @@
+layout tall
+# layout stack
+# layout splits
+
+cd ~/work/
+
+new_tab android 
+cd ~/work/adapt-android
+layout splits
+launch zsh
+focus
+focus_os_window
+
+# Create a side window to run a shell to build or test project
+launch --title "AI"
+
+new_tab web 
+cd ~/work/adapt
+launch zsh
+
+new_tab ios
+cd ~/work/adapt-ios/
+launch zsh
