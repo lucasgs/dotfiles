@@ -4,6 +4,9 @@ local keymap = vim.keymap.set
 keymap("n", "<Leader>qq", "<cmd>qa<CR>", { desc = "Quit all" })
 --keymap("n", "<Leader>w", "<cmd>w<CR>", { desc = "Write buffer" })
 
+-- Restart
+keymap("n", "<Leader>re", "<cmd>restart<CR>", { desc = "Restart Neovim" })
+
 keymap("n", "<Leader>w", "*", { desc = "Search current word" })
 
 -- make current file executable
@@ -86,7 +89,10 @@ keymap("v", "p", '"_dP', { desc = "Paste and overwrite" })
 -- keymap("n", "<leader>rs", "<cmd>Rest env select<CR>", { desc = "Rest environment select" })
 
 -- undotree
-keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle Undotree" })
+keymap("n", "<leader>u", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, { desc = "Toggle Undotree" })
 
 -- keymap("n", "<leader>tw", "<cmd>BufferToggleWord<cr>", { desc = "Toggle current word" })
 
