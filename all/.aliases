@@ -66,8 +66,8 @@ alias home="adb shell input keyevent KEYCODE_HOME"
 alias dl="adb shell am start -a android.intent.action.VIEW -d "
 alias ap="pbpaste | xargs adb shell input text"
 alias fapk="find . -iname '*.apk'"
-# alias fapk="print -l **/*.apk"
-# alias fapk="find ./p2p-app/build/outputs -name '*.apk'"
+alias faab="find . -iname '*.aab'"
+alias fext='(){ find . -iname "*.$1" }'  
 
 # general
 alias upgrade='brew upgrade --greedy && omz update && sdk update && tldr --update'
@@ -100,6 +100,10 @@ alias re='emulator -avd $(emulator -list-avds | grep -v INFO | fzf)'
 
 alias f='yazi'
 
+alias android='android --no-metrics'
+
+alias fl='fastlane'
+
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
 }
@@ -109,3 +113,6 @@ cv() {
 }
 
 
+gv() {
+    ffmpeg -protocol_whitelist file,http,https,tcp,tls -allowed_extensions ALL -i "$1" -bsf:a aac_adtstoasc -c copy out.mp4
+}
