@@ -102,7 +102,8 @@ alias f='yazi'
 
 alias android='android --no-metrics'
 
-alias fl='fastlane'
+alias fl='bundle exec fastlane'
+alias fla='bundle exec fastlane android'
 
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
