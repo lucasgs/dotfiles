@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Check if a filename was provided
+if [ $# -eq 0 ]; then
+    echo "❌ Error: No filename provided."
+    echo "ℹ️  Usage: mdtopdf <filename.md>"
+    exit 1
+fi
+
+# Get the input filename
+input_file="$1"
+
+# Check if the input file exists
+if [ ! -f "$input_file" ]; then
+    echo "❌ Error: File '$input_file' not found."
+    exit 1
+fi
+
+# Check if the input file has a .md extension
+if [[ "$input_file" != *.md ]]; then
+    echo "❌ Error: Input file must have a .md extension."
+    exit 1
+fi
+
+# Generate the output filename by replacing .md with .pdf
+output_file="${input_file%.md}.pdf"
+
+# Run pandoc with xelatex and custom margin settings
+pandoc "$input_file" -o "$output_file" \
+    --pdf-engine=xelatex \
+    -V geometry:"top=2cm, bottom=2cm, left=2cm, right=2cm" \
+    -V papersize=a4
+
+# Check if pandoc was successful
+if [ $? -eq 0 ]; then
+    echo "✅ Conversion successful. Output saved as '$output_file'"
+else
+    echo "❌ Error: Conversion failed."
+    exit 1
+fi

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Usage: ./check_package.sh com.example.app
+PACKAGE_NAME=$1
+
+if [ -z "$PACKAGE_NAME" ]; then
+    echo "Please provide a package name."
+    exit 1
+fi
+
+URL="https://play.google.com/store/apps/details?id=$PACKAGE_NAME"
+STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$URL")
+
+if [ "$STATUS" -eq 404 ]; then
+    echo "✅ $PACKAGE_NAME is likely AVAILABLE (404 Not Found)"
+elif [ "$STATUS" -eq 200 ]; then
+    echo "❌ $PACKAGE_NAME is already TAKEN (200 OK)"
+else
+    echo "⚠️ Received unexpected status code: $STATUS"
+fi

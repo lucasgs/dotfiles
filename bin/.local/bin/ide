@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Rename window as ide
+tmux rename-window 'ide'
+
+# Split the current window vertically
+tmux split-window -h -p 30
+
+# Focus the previous panel
+tmux select-pane -L
+
+# Open nvim
+tmux send-keys "nvim" Enter

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# cd into dir
+# git pull 
+# checkout branch
+
+make distclean
+# make deps
+# make CMAKE_BUILD_TYPE=RelWithDebInfo
+make CMAKE_BUILD_TYPE=Release
+sudo make install
