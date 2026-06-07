@@ -1,11 +1,17 @@
-export EDITOR='nvim'
+autoload -Uz compinit
+compinit
 
-# fpath+=("$(brew --prefix)/share/zsh/site-functions")
+# Enable an interactive menu when pressing Tab
+zstyle ':completion:*' menu select
 
-# autoload -Uz compinit
-# compinit
+# Make completion case-insensitive (e.g., 'cd dow' matches 'Downloads')
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+# Use colors in the completion menu
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source_file() {
     local file="$1"
@@ -27,6 +33,8 @@ bindkey -s ^n "tmux-notes\n"
 
 # make back-i-search work in vi mode-keys to 
 bindkey "^R" history-incremental-search-backward
+
+export EDITOR='nvim'
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export FLUTTER_HOME="$HOME/sdk/flutter"
