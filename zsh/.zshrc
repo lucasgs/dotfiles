@@ -1,22 +1,11 @@
 export EDITOR='nvim'
 
-# oh-my-zsh config
-export ZSH="$HOME/.oh-my-zsh"
-
-# ZSH_THEME="robbyrussell"
-ZSH_THEME=""
-
-plugins=(gnu-utils)
-
 # fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 # autoload -Uz compinit
 # compinit
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source $ZSH/oh-my-zsh.sh
-
 
 source_file() {
     local file="$1"
@@ -92,3 +81,4 @@ export PATH="/Users/lucas/.antigravity/antigravity/bin:$PATH"
 export PATH="$PATH:/Users/lucas/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export HOMEBREW_REQUIRE_TAP_TRUST=1
