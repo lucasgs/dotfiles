@@ -105,6 +105,10 @@ alias android='android --no-metrics'
 alias fl='bundle exec fastlane'
 alias fla='bundle exec fastlane android'
 
+alias cc='claude'
+alias cx='codex'
+alias op='opencode'
+
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
 }
