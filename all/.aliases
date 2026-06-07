@@ -106,6 +106,9 @@ alias cc='claude'
 alias cx='codex'
 alias op='opencode'
 
+#alias chrome-debug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
+alias pi-browser="/Users/lucas/.pi/agent/skills/pi-skills/browser-tools/browser-start.js --profile"
+
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
 }
