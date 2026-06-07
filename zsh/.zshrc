@@ -15,10 +15,10 @@ source_file() {
     fi
 }
 
+source_file ~/.secrets
 source_file ~/.aliases
 source_file ~/.aliases_local
 source_file ~/.functions
-source_file ~/.vars
 source_file ~/nvims
 
 # Where should I put you?
