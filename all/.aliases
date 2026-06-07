@@ -1,9 +1,9 @@
 # directory listing
 alias ls='eza --color=always --group-directories-first'
-alias l='eza -lbF --git'
-alias ll='eza -lah --git --group-directories-first'
-alias la='eza -a --group-directories-first'
-alias lt='eza --tree --level=2 --git'
+alias l='eza --color=always -lbF --git'
+alias ll='eza --color=always -lah --git --group-directories-first'
+alias la='eza --color=always -a --group-directories-first'
+alias lt='eza --color=always --tree --level=2 --git'
 
 alias c="clear"
 
