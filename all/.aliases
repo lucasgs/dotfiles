@@ -1,14 +1,11 @@
 # directory listing
-# alias ls='gls --color=auto --group-directories-first'   # add colors
-# alias l='ls -GlFh'     #size,show type,human readable
-# alias la='ls -GlAFh'   #long list,show almost all,show type,human readable
-# alias ll='ls -Gla'      #long list
+alias ls='eza --color=always --group-directories-first'
+alias l='eza -lbF --git'
+alias ll='eza -lah --git --group-directories-first'
+alias la='eza -a --group-directories-first'
+alias lt='eza --tree --level=2 --git'
 
 alias c="clear"
-
-# Changing "ls" to "eza"
-alias ls="ls -a --hyperlink=auto --color=auto --group-directories-first"
-alias ll="ls -la --hyperlink=auto --color=auto --group-directories-first"
 
 alias zshrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.zshrc' # Quick access to the .zshrc file
 
