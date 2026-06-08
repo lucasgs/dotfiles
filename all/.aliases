@@ -67,7 +67,7 @@ alias faab="find . -iname '*.aab'"
 alias fext='(){ find . -iname "*.$1" }'  
 
 # general
-alias upgrade='brew upgrade --greedy && omz update && sdk update && tldr --update'
+alias upgrade='brew upgrade --greedy && sdk update && tldr --update'
 alias nv='nvim'
 alias n='nvim'
 alias nvc='cd ~/.config/nvim && nvim'
