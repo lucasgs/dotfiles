@@ -27,10 +27,10 @@ keymap("n", "Y", "y$", { desc = "Yank until EOL" })
 keymap("n", "<C-y>", "yyp", { desc = "Duplicate line" })
 
 -- Window navigation
-keymap("n", "<C-h>", "<C-w>h", { desc = "Focus left buffer" })
-keymap("n", "<C-j>", "<C-w>j", { desc = "Focus buffer below" })
-keymap("n", "<C-k>", "<C-w>k", { desc = "Focus buffer above" })
-keymap("n", "<C-l>", "<C-w>l", { desc = "Focus right buffer" })
+-- keymap("n", "<C-h>", "<C-w>h", { desc = "Focus left buffer" })
+-- keymap("n", "<C-j>", "<C-w>j", { desc = "Focus buffer below" })
+-- keymap("n", "<C-k>", "<C-w>k", { desc = "Focus buffer above" })
+-- keymap("n", "<C-l>", "<C-w>l", { desc = "Focus right buffer" })
 
 -- Resize with arrows
 keymap("n", "<A-Up>", "<cmd>resize +3<CR>", { desc = "Resize more horiz" })
