@@ -8,13 +8,15 @@
 
 (setq visible-bell nil)
 
-(set-face-attribute 'default nil :family "Hack Nerd Font" :height 140)
+(set-face-attribute 'default nil :family "Hack Nerd Font" :height 150)
 
 (setq inhibit-startup-message t)
 
 (global-display-line-numbers-mode 1)
 
-(load-theme 'modus-vivendi)
+;(load-theme 'modus-operandi)
+;(load-theme 'modus-vivendi)
+(load-theme 'modus-vivendi-tinted)
 
 (setq mouse-drag-copy-region t)
 
