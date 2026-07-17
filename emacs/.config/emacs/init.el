@@ -51,3 +51,6 @@
   :ensure nil
   :config
   (delete-selection-mode 1))
+
+(use-package vterm
+    :ensure t)
