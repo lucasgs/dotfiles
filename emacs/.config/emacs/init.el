@@ -6,10 +6,12 @@
 (tooltip-mode -1)
 (menu-bar-mode -1)
 (global-display-line-numbers-mode 1)
+(setq initial-scratch-message nil)
 
 (setq visible-bell nil)
 (setq inhibit-startup-message t)
 (setq mouse-drag-copy-region t)
+(setq bookmark-save-flag 1)
 
 (set-face-attribute 'default nil :family "Hack Nerd Font" :height 150)
 
@@ -44,3 +46,8 @@
   :config
   (setq completion-styles '(orderless basic))
   (setq completion-category-defaults nil))
+
+(use-package delsel
+  :ensure nil
+  :config
+  (delete-selection-mode 1))
