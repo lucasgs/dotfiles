@@ -3,7 +3,7 @@
 ;;   "config.org"
 ;;   user-emacs-directory))
 
-; (add-to-list 'load-path '"~/.config/emacs/modules")
+					; (add-to-list 'load-path '"~/.config/emacs/modules")
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
@@ -32,9 +32,9 @@
 (setq bookmark-save-flag 1)
 
 ;; Map macOS keys properly
-; (setq mac-command-modifier 'meta)       ; Cmd acts as Meta (Alt)
-; (setq mac-option-modifier 'none)        ; Opt stays normal for typing symbols like Option+7
-; (setq ordinary-keyboard-patch t)
+					; (setq mac-command-modifier 'meta)       ; Cmd acts as Meta (Alt)
+					; (setq mac-option-modifier 'none)        ; Opt stays normal for typing symbols like Option+7
+					; (setq ordinary-keyboard-patch t)
 
 ;; Smooth scrolling overrides (stops Emacs from jumping half a page)
 (setq scroll-conservatively 101)
@@ -45,7 +45,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil :family "Hack Nerd Font" :height 140)
-;(set-face-attribute 'default nil :family "JetBrains Mono" :height 140)
+					;(set-face-attribute 'default nil :family "JetBrains Mono" :height 140)
 
 ;; Packages
 ;; Initialize package repositories
@@ -58,9 +58,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;(load-theme 'modus-operandi)
-;(load-theme 'modus-vivendi)
-;(load-theme 'modus-vivendi-tinted)
+					;(load-theme 'modus-operandi)
+					;(load-theme 'modus-vivendi)
+					;(load-theme 'modus-vivendi-tinted)
 
 (use-package kanagawa-themes
   :config
@@ -126,4 +126,37 @@
   (interactive)
   (find-file user-init-file))
 
-(global-set-key (kbd "C-c i") #'lg/open-init-file)
+					;(global-set-key (kbd "C-c i") #'lg/open-init-file)
+
+(use-package general
+  :config
+  (general-evil-setup)
+  
+  ;; set up 'SPC' as the global leader key
+  (general-create-definer dt/leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC" ;; set leader
+    :global-prefix "M-SPC") ;; access leader in insert mode
+
+  (dt/leader-keys
+    "." '(find-file :wk "Find file"))
+
+  (dt/leader-keys
+    "b" '(:ignore t :wk "Bookmarks/Buffers")
+    "b b" '(switch-to-buffer :wk "Switch to buffer")
+    "b i" '(ibuffer :wk "Ibuffer")
+    )
+
+  (dt/leader-keys
+    "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")    
+    "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
+    "e e" '(eval-expression :wk "Evaluate and elisp expression")
+    )
+
+  (dt/leader-keys
+    "f" '(:ignore t :wk "Files")
+    "f c" '((lambda () (interactive)
+	      (lg/open-init-file)) 
+	    :wk "Open emacs init.el"))
+  )
