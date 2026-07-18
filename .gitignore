@@ -8,6 +8,7 @@ tmux/.config/tmux/plugins/
 emacs/.config/emacs/auto-save-list/
 emacs/.config/emacs/elpa/
 emacs/.config/emacs/tree-sitter/
+emacs/.config/emacs/backups/
 emacs/.config/emacs/bookmarks
 emacs/.config/emacs/custom.el
 emacs/.config/emacs/history

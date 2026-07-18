@@ -8,6 +8,8 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
+(setq backup-directory-alist '((".*" . "~/.config/emacs/backups/")))
+
 (scroll-bar-mode -1)             ; Disable ugly scrollbars
 (tool-bar-mode -1)               ; Disable the graphical toolbar
 (tooltip-mode -1)                ; Disable tooltips
