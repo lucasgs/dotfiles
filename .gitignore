@@ -1,2 +1,14 @@
+# nvim
 nvim/.config/nvim/plugin/
+
+# tmux
 tmux/.config/tmux/plugins/
+
+# emacs
+emacs/.config/emacs/auto-save-list/
+emacs/.config/emacs/elpa/
+emacs/.config/emacs/tree-sitter/
+emacs/.config/emacs/bookmarks
+emacs/.config/emacs/custom.el
+emacs/.config/emacs/history
+emacs/.config/emacs/tramp
