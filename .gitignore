@@ -11,5 +11,6 @@ emacs/.config/emacs/tree-sitter/
 emacs/.config/emacs/backups/
 emacs/.config/emacs/bookmarks
 emacs/.config/emacs/custom.el
+emacs/.config/emacs/config.el
 emacs/.config/emacs/history
 emacs/.config/emacs/tramp
