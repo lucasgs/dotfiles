@@ -102,11 +102,21 @@
 (use-package vterm)
 
 ;; Company: A clean, modern inline auto-completion popup menu
-;;(use-package company
-  ;; :init (global-company-mode)
-  ;; :config
-  ;; (setq company-minimum-prefix-length 1
-  ;;       company-idle-delay 0.0)) ; Instant completions as you type
+(use-package company
+  :defer 2
+  :diminish
+  :custom
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay .1)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+  (global-company-mode t))
+
+(use-package company-box
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
 
 ;; Keybindings
 
