@@ -223,9 +223,9 @@ Open the init file from anywhere.
 
 #+begin_src emacs-lisp
 (defun lg/open-init-file ()
-  "Open the user Emacs configuration file init.el."
+  "Open the literal Emacs configuration file config.org."
   (interactive)
-  (find-file user-init-file))
+  (find-file (expand-file-name "config.org" user-emacs-directory)))
 
 ;; (global-set-key (kbd "C-c i") #'lg/open-init-file)
 #+end_src
@@ -261,5 +261,5 @@ Open the init file from anywhere.
     "f" '(:ignore t :wk "Files")
     "f c" '((lambda () (interactive)
               (lg/open-init-file))
-            :wk "Open emacs init.el")))
+            :wk "Open config.org")))
 #+end_src
