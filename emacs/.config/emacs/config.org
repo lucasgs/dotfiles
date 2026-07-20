@@ -232,6 +232,13 @@ A clean, modern inline auto-completion popup menu.
   :hook (company-mode . company-box-mode))
 #+end_src
 
+* Rainbow mode
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :diminish
+    :hook org-mode prog-mode)
+#+end_src
+
 * Keybindings
 
 Open the init file from anywhere.
