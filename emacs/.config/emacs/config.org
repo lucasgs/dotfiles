@@ -28,14 +28,14 @@ original files.
 
 * UI
 
-Strip away the chrome we don't need.
+Strip away the chrome we don't need. *Moved to early-init.el*
 
 #+begin_src emacs-lisp
-(scroll-bar-mode -1)             ; Disable ugly scrollbars
-(tool-bar-mode -1)               ; Disable the graphical toolbar
-(tooltip-mode -1)                ; Disable tooltips
-(set-fringe-mode 10)             ; Give some breathing room on the sides
-(menu-bar-mode -1)               ; Disable the menu bar
+  ;; (scroll-bar-mode -1)             ; Disable ugly scrollbars
+  ;; (tool-bar-mode -1)               ; Disable the graphical toolbar
+  ;; (tooltip-mode -1)                ; Disable tooltips
+  ;; (set-fringe-mode 10)             ; Give some breathing room on the sides
+  ;; (menu-bar-mode -1)               ; Disable the menu bar
 #+end_src
 
 Show line numbers and the current column in the modeline.
@@ -96,7 +96,7 @@ Make "yes or no" prompts just "y or n".
 ** Font
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :family "Hack Nerd Font" :height 140)
+(set-face-attribute 'default nil :family "Hack Nerd Font" :height 150)
 ;; (set-face-attribute 'default nil :family "JetBrains Mono" :height 140)
 #+end_src
 
@@ -132,12 +132,12 @@ are automatically installed if they aren't on your system.
     ;; (load-theme 'modus-vivendi)
     ;; (load-theme 'modus-vivendi-tinted)
 
-    ;;(use-package kanagawa-themes
-    ;;  :config
-    ;;  (load-theme 'kanagawa-wave t))
+    (use-package kanagawa-themes
+      :config
+      (load-theme 'kanagawa-wave t))
 
-  (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
-  (load-theme 'dtmacs t)
+  ;; (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
+  ;; (add-hook 'emacs-startup-hook (lambda () (load-theme 'dtmacs t)))
 #+end_src
 
 * Evil mode
@@ -248,33 +248,35 @@ Open the init file from anywhere.
 ** General
 
 #+begin_src emacs-lisp
-(use-package general
-  :config
-  (general-evil-setup)
+  (use-package general
+    :config
+    (general-evil-setup)
 
-  ;; set up 'SPC' as the global leader key
-  (general-create-definer dt/leader-keys
-    :states '(normal insert visual emacs)
-    :keymaps 'override
-    :prefix "SPC" ;; set leader
-    :global-prefix "M-SPC") ;; access leader in insert mode
+    ;; set up 'SPC' as the global leader key
+    (general-create-definer dt/leader-keys
+      :states '(normal insert visual emacs)
+      :keymaps 'override
+      :prefix "SPC" ;; set leader
+      :global-prefix "M-SPC") ;; access leader in insert mode
 
-  (dt/leader-keys
-    "." '(find-file :wk "Find file"))
+    (dt/leader-keys
+      "." '(find-file :wk "Find file"))
 
-  (dt/leader-keys
-    "b" '(:ignore t :wk "Bookmarks/Buffers")
-    "b b" '(switch-to-buffer :wk "Switch to buffer")
-    "b i" '(ibuffer :wk "Ibuffer"))
+    (dt/leader-keys
+      "b" '(:ignore t :wk "Bookmarks/Buffers")
+      "b b" '(switch-to-buffer :wk "Switch to buffer")
+      "b i" '(ibuffer :wk "Ibuffer")
+      "b r" '(revert-buffer :wk "Revert buffer")
+      "b k" '(kill-buffer :wk "Kill buffer"))
 
-  (dt/leader-keys
-    "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
-    "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
-    "e e" '(eval-expression :wk "Evaluate and elisp expression"))
+    (dt/leader-keys
+      "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
+      "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
+      "e e" '(eval-expression :wk "Evaluate and elisp expression"))
 
-  (dt/leader-keys
-    "f" '(:ignore t :wk "Files")
-    "f c" '((lambda () (interactive)
-              (lg/open-init-file))
-            :wk "Open config.org")))
+    (dt/leader-keys
+      "f" '(:ignore t :wk "Files")
+      "f c" '((lambda () (interactive)
+                (lg/open-init-file))
+              :wk "Open config.org")))
 #+end_src
