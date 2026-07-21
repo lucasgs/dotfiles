@@ -287,12 +287,15 @@ A clean, modern inline auto-completion popup menu.
   	 (js-mode . eglot-ensure)
   	 (js-ts-mode . eglot-ensure)
   	 (typescript-ts-mode . eglot-ensure)
+  	 (tsx-ts-mode . eglot-ensure)
   	 (kotlin-ts-mode . eglot-ensure)
   	 (yaml-mode . eglot-ensure)
   	 (yaml-ts-mode . eglot-ensure)
   	 ;; formatting
   	 (before-save . eglot-format-buffer))
     )
+
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 #+end_src
 
 * Keybindings
@@ -329,8 +332,15 @@ Open the init file from anywhere.
       "b" '(:ignore t :wk "Bookmarks/Buffers")
       "b b" '(switch-to-buffer :wk "Switch to buffer")
       "b i" '(ibuffer :wk "Ibuffer")
+      "b k" '(kill-buffer :wk "Kill buffer")
+      "b K" '(kill-some-buffers :wk "Kill multiple buffers")
+      "b n" '(next-buffer :wk "Next buffer")
+      "b p" '(previous-buffer :wk "Previous buffer")
       "b r" '(revert-buffer :wk "Revert buffer")
-      "b k" '(kill-buffer :wk "Kill buffer"))
+      "b R" '(rename-buffer :wk "Rename buffer")
+      "b s" '(basic-save-buffer :wk "Save buffer")
+      "b S" '(save-some-buffers :wk "Save multiple buffers")
+      )
 
     (lg/leader-keys
       "c" '(:ignore t :wk "Code (Eglot)")
@@ -348,5 +358,33 @@ Open the init file from anywhere.
       "f" '(:ignore t :wk "Files")
       "f c" '((lambda () (interactive)
                 (lg/open-init-file))
-              :wk "Open config.org")))
+              :wk "Open config.org"))
+
+    (lg/leader-keys
+      "h" '(:ignore t :wk "Help")
+      "h f" '(describe-function :w "Describe function"))
+
+  (lg/leader-keys
+      "w" '(:ignore t :wk "Windows/Words")
+      ;; Window splits
+      "w c" '(evil-window-delete :wk "Close window")
+      "w n" '(evil-window-new :wk "New window")
+      "w s" '(evil-window-split :wk "Horizontal split window")
+      "w v" '(evil-window-vsplit :wk "Vertical split window")
+      ;; Window motions
+      "w h" '(evil-window-left :wk "Window left")
+      "w j" '(evil-window-down :wk "Window down")
+      "w k" '(evil-window-up :wk "Window up")
+      "w l" '(evil-window-right :wk "Window right")
+      "w w" '(evil-window-next :wk "Goto next window")
+      ;; Move Windows
+      "w H" '(buf-move-left :wk "Buffer move left")
+      "w J" '(buf-move-down :wk "Buffer move down")
+      "w K" '(buf-move-up :wk "Buffer move up")
+      "w L" '(buf-move-right :wk "Buffer move right")
+      ;; Words
+      "w d" '(downcase-word :wk "Downcase word")
+      "w u" '(upcase-word :wk "Upcase word")
+      "w =" '(count-words :wk "Count words/lines for buffer"))
+  )
 #+end_src
