@@ -26,6 +26,15 @@ original files.
 (use-package diminish)
 #+end_src
 
+* Flycheck
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :defer t
+    :diminish
+    :init (global-flycheck-mode))
+#+end_src
+
+
 * UI
 
 Strip away the chrome we don't need. *Moved to early-init.el*
@@ -103,6 +112,20 @@ Make "yes or no" prompts just "y or n".
 * Org
 
 ** Org-Tempo
+
+| Typing the below + TAB | Expands to ...                          |
+|------------------------+-----------------------------------------|
+| <a                     | '#+BEGIN_EXPORT ascii' … '#+END_EXPORT  |
+| <c                     | '#+BEGIN_CENTER' … '#+END_CENTER'       |
+| <C                     | '#+BEGIN_COMMENT' … '#+END_COMMENT'     |
+| <e                     | '#+BEGIN_EXAMPLE' … '#+END_EXAMPLE'     |
+| <E                     | '#+BEGIN_EXPORT' … '#+END_EXPORT'       |
+| <h                     | '#+BEGIN_EXPORT html' … '#+END_EXPORT'  |
+| <l                     | '#+BEGIN_EXPORT latex' … '#+END_EXPORT' |
+| <q                     | '#+BEGIN_QUOTE' … '#+END_QUOTE'         |
+| <s                     | '#+BEGIN_SRC' … '#+END_SRC'             |
+| <v                     | '#+BEGIN_VERSE' … '#+END_VERSE'         |
+
 #+begin_src emacs-lisp
 (require 'org-tempo)
 #+end_src
@@ -123,6 +146,13 @@ are automatically installed if they aren't on your system.
 #+begin_src emacs-lisp
 (require 'use-package)
 (setq use-package-always-ensure t)
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :if (memq window-system '(mac ns))
+    :config
+    (exec-path-from-shell-initialize))
 #+end_src
 
 * Theme
@@ -239,6 +269,32 @@ A clean, modern inline auto-completion popup menu.
     :hook org-mode prog-mode)
 #+end_src
 
+
+* Completion
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :hook ((sh-mode . eglot-ensure)
+  	 (python-mode . eglot-ensure)
+  	 (python-ts-mode . eglot-ensure)
+  	 (rust-mode . eglot-ensure)
+  	 (markdown-mode . eglot-ensure)
+  	 (markdown-ts-mode . eglot-ensure)
+  	 (html-mode . eglot-ensure)
+  	 (css-mode . eglot-ensure)
+  	 (css-ts-mode . eglot-ensure)
+  	 (html-ts-mode . eglot-ensure)
+  	 (js-mode . eglot-ensure)
+  	 (js-ts-mode . eglot-ensure)
+  	 (typescript-ts-mode . eglot-ensure)
+  	 (kotlin-ts-mode . eglot-ensure)
+  	 (yaml-mode . eglot-ensure)
+  	 (yaml-ts-mode . eglot-ensure)
+  	 ;; formatting
+  	 (before-save . eglot-format-buffer))
+    )
+#+end_src
+
 * Keybindings
 
 Open the init file from anywhere.
@@ -260,28 +316,35 @@ Open the init file from anywhere.
     (general-evil-setup)
 
     ;; set up 'SPC' as the global leader key
-    (general-create-definer dt/leader-keys
+    (general-create-definer lg/leader-keys
       :states '(normal insert visual emacs)
       :keymaps 'override
       :prefix "SPC" ;; set leader
       :global-prefix "M-SPC") ;; access leader in insert mode
 
-    (dt/leader-keys
+    (lg/leader-keys
       "." '(find-file :wk "Find file"))
 
-    (dt/leader-keys
+    (lg/leader-keys
       "b" '(:ignore t :wk "Bookmarks/Buffers")
       "b b" '(switch-to-buffer :wk "Switch to buffer")
       "b i" '(ibuffer :wk "Ibuffer")
       "b r" '(revert-buffer :wk "Revert buffer")
       "b k" '(kill-buffer :wk "Kill buffer"))
 
-    (dt/leader-keys
+    (lg/leader-keys
+      "c" '(:ignore t :wk "Code (Eglot)")
+      "c r" '(eglot-rename :wk "Rename")
+      "c a" '(eglot-code-actions :wk "Code Actions")
+      "c f" '(eglot-format-buffer :wk "Format Buffer")
+      "c i" '(eglot-find-implementation :wk "Find implementation"))
+
+    (lg/leader-keys
       "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
       "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
       "e e" '(eval-expression :wk "Evaluate and elisp expression"))
 
-    (dt/leader-keys
+    (lg/leader-keys
       "f" '(:ignore t :wk "Files")
       "f c" '((lambda () (interactive)
                 (lg/open-init-file))
