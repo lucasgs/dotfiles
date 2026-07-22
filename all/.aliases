@@ -99,12 +99,19 @@ alias f='yazi'
 
 alias android='android --no-metrics'
 
+# Fastlane
 alias fl='bundle exec fastlane'
 alias fla='bundle exec fastlane android'
 
+# AI agents
 alias cc='claude'
 alias cx='codex'
 alias op='opencode'
+
+# Tailscale
+alias tss='tailscale status'
+alias tsu='tailscale up'
+alias tsd='tailscale down'
 
 #alias chrome-debug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 
