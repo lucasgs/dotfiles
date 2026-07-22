@@ -106,11 +106,24 @@ alias cc='claude'
 alias cx='codex'
 alias op='opencode'
 
-alias gemma='llama serve -hf unsloth/gemma-4-12b-it-GGUF --spec-type draft-mtp --spec-draft-n-max 4 --host 0.0.0.0'
-alias gpt='llama serve -hf unsloth/gpt-oss-20b-GGUF --host 0.0.0.0'
-alias qwen='llama serve -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF --host 0.0.0.0'
-
 #alias chrome-debug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
+
+llm() {
+    # Using associative array (zsh 5.0+)
+    typeset -A models
+    models=(
+        "unsloth/gemma-4-12b-it-GGUF" "--spec-type draft-mtp --spec-draft-n-max 4"
+        "unsloth/gpt-oss-20b-GGUF" ""
+        "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF" ""
+        "unsloth/Qwen3.6-35B-A3B-MTP-GGUF" "--spec-type draft-mtp"
+    )
+
+    model=$(print -l "${(k)models[@]}" | fzf --prompt="Select model: ")
+    flags=${=models[$model]}
+
+    echo "Running: llama serve -hf $model --host 0.0.0.0 --port 8080 ${=flags} $@"
+    llama serve -hf "$model" --host 0.0.0.0 --port 8080 ${=flags} "$@"
+}
 
 vv() { 
   source "$(find ~/.venv/ -maxdepth 1 -type d -print0 | fzf --read0)"/bin/activate
