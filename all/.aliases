@@ -91,7 +91,7 @@ alias icat="kitty +kitten icat"
 
 alias bf="wr && say '[[volm 0.5]] weather completed'"
 
-alias fj='cd $(ls -d ~/workspace/* | fzf)'
+alias fj='cd $(find ~/work ~/workspace -maxdepth 1 -mindepth 1 -type d | fzf)'
 
 alias re='emulator -avd $(emulator -list-avds | grep -v INFO | fzf)'
 
@@ -119,11 +119,12 @@ llm() {
     # Using associative array (zsh 5.0+)
     typeset -A models
     models=(
-        "unsloth/gemma-4-12b-it-GGUF" "--spec-type draft-mtp --spec-draft-n-max 4"
-        "unsloth/gpt-oss-20b-GGUF" ""
+        "unsloth/gemma-4-E4B-it-Q8_0" "--temp 1.0 --top-p 0.95 --top-k 64"
+        "unsloth/gemma-4-26B-A4B-it-GGUF:UD-Q4_K_XL" "--temp 1.0 --top-p 0.95 --top-k 64"
+        "unsloth/gpt-oss-20b-GGUF:F16" "--jinja -ngl 99 --ctx-size 16384 --temp 1.0 --top-p 1.0 --top-k 0"
         "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF" ""
-        "unsloth/Qwen3.6-35B-A3B-MTP-GGUF" "--spec-type draft-mtp"
-    )
+        "unsloth/Qwen3.6-27B-MTP-GGUF" "--temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.00 --spec-type draft-mtp --spec-draft-n-max 2"
+        )
 
     model=$(print -l "${(k)models[@]}" | fzf --prompt="Select model: ")
     flags=${=models[$model]}
