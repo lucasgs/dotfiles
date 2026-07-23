@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Check domain availability via RDAP.
+# 200 = registered (TAKEN), 404 = available.
+# Usage:
+#   ./check-domains.sh name1 name2 ...            # checks against .dev and .ai
+#   ./check-domains.sh -t com,io name1 name2       # check specific TLDs
+#   ./check-domains.sh -t dev name1                # single TLD
+#   PAUSE=0.5 ./check-domains.sh name1 name2        # faster/slower between requests
+
+set -u
+
+PAUSE="${PAUSE:-1}"   # seconds between requests
+TLDs="dev,ai"
+
+# Parse -t flag
+args=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -t) TLDs="$2"; shift 2 ;;
+    -t*) TLDs="${1#-t}"; shift ;;
+    *)  args+=("$1"); shift ;;
+  esac
+done
+
+if [ ${#args[@]} -eq 0 ]; then
+  echo "Usage: $0 [-t tld1,tld2] name1 name2 ..." >&2
+  exit 1
+fi
+
+IFS=',' read -r -a tld_list <<< "$TLDs"
+
+for tld in "${tld_list[@]}"; do
+  for n in "${args[@]}"; do
+    code=$(curl -sL -o /dev/null -w "%{http_code}" "https://rdap.org/domain/$n.$tld")
+    case "$code" in
+      200) status="TAKEN" ;;
+      404) status="AVAILABLE" ;;
+      *)   status="?$code" ;;
+    esac
+    printf "%-18s %s\n" "$n.$tld" "$status"
+    sleep "$PAUSE"
+  done
+  echo
+done
