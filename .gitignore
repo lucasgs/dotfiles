@@ -14,3 +14,8 @@ emacs/.config/emacs/custom.el
 emacs/.config/emacs/config.el
 emacs/.config/emacs/history
 emacs/.config/emacs/tramp
+
+# herdr
+herdr/.config/herdr/*.log
+herdr/.config/herdr/*.lock
+herdr/.config/herdr/*.json
