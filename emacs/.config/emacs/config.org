@@ -1,8 +1,39 @@
-#+title: Emacs Config
+#+TITLE: Emacs Config
+#+AUTHOR: Lucas Sanchez
+#+DESCRIPTION: My literal Emacs configuration.
+#+OPTIONS: toc:2
 
-My literal Emacs configuration. This file is loaded by =init.el=
-via =org-babel-load-file=. Edit this file and restart Emacs (or run
-=org-babel-tangle= + reload) to apply changes.
+* Table of contents :toc:
+- [[#bootstrap][Bootstrap]]
+- [[#dashboard][Dashboard]]
+- [[#diminish][Diminish]]
+- [[#flycheck][Flycheck]]
+- [[#ui][UI]]
+- [[#misc-settings][Misc settings]]
+  - [[#macos-keys][macOS keys]]
+  - [[#smooth-scrolling][Smooth scrolling]]
+  - [[#short-prompts][Short prompts]]
+  - [[#font][Font]]
+- [[#org][Org]]
+  - [[#toc-org][Toc-Org]]
+  - [[#org-tempo][Org-Tempo]]
+- [[#packages][Packages]]
+- [[#themes][Themes]]
+- [[#evil-mode][Evil mode]]
+- [[#completions][Completions]]
+  - [[#which-key][Which-Key]]
+  - [[#vertico][Vertico]]
+  - [[#marginalia][Marginalia]]
+  - [[#savehist][Savehist]]
+  - [[#orderless][Orderless]]
+  - [[#company][Company]]
+  - [[#eglot][Eglot]]
+- [[#rainbow-mode][Rainbow mode]]
+- [[#delsel][Delsel]]
+- [[#terminals][Terminals]]
+  - [[#vterm][Vterm]]
+- [[#keybindings][Keybindings]]
+  - [[#general][General]]
 
 * Bootstrap
 
@@ -11,7 +42,7 @@ don't clutter this config.
 
 #+begin_src emacs-lisp
 (setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file t)
+(load custom-file 'noerror 'nomessage)
 #+end_src
 
 Keep backups in a dedicated directory instead of scattered next to the
@@ -19,6 +50,18 @@ original files.
 
 #+begin_src emacs-lisp
 (setq backup-directory-alist '((".*" . "~/.config/emacs/backups/")))
+#+end_src
+
+* Dashboard
+#+begin_src emacs-lisp
+  (setq inhibit-startup-screen t)
+  (setq initial-scratch-message nil)
+
+  ;; (setq initial-scratch-message 
+  ;; 	";; Welcome to Emacs.
+
+  ;; ;; Recent Files:
+  ;; ")
 #+end_src
 
 * Diminish
@@ -67,7 +110,6 @@ Disable line numbers for modes where they don't make sense.
 
 #+begin_src emacs-lisp
 (setq inhibit-startup-message t) ; Lose the default welcome screen
-(setq initial-scratch-message nil)
 (setq visible-bell nil)
 (setq mouse-drag-copy-region t)
 (setq bookmark-save-flag 1)
@@ -105,11 +147,21 @@ Make "yes or no" prompts just "y or n".
 ** Font
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :family "Hack Nerd Font" :height 150)
-;; (set-face-attribute 'default nil :family "JetBrains Mono" :height 140)
+  ;;(set-face-attribute 'default nil :family "Hack Nerd Font" :height 150 :foreground 'unspecified)
+  ;;(set-face-attribute 'default nil :family "JetBrains Mono" :height 150)
+  (set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 160)
+  ;;(set-face-attribute 'default nil :family "Terminess Nerd Font" :height 140 :weight 'medium)
 #+end_src
 
 * Org
+
+** Toc-Org
+#+begin_src emacs-lisp
+  (use-package toc-org
+    :commands toc-org-enable
+    :init (add-hook 'org-mode-hook 'toc-org-mode))
+#+end_src
+
 
 ** Org-Tempo
 
@@ -150,21 +202,35 @@ are automatically installed if they aren't on your system.
 
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
-    :if (memq window-system '(mac ns))
-    :config
-    (exec-path-from-shell-initialize))
+   :if (memq window-system '(mac ns))
+   :config
+   (exec-path-from-shell-initialize))
 #+end_src
 
-* Theme
+* Themes
 
 #+begin_src emacs-lisp
-    ;; (load-theme 'modus-operandi)
-    ;; (load-theme 'modus-vivendi)
-    ;; (load-theme 'modus-vivendi-tinted)
+  ;; (load-theme 'modus-operandi)
+  ;; (load-theme 'modus-vivendi)
+  ;; (load-theme 'modus-vivendi-tinted)
 
-    (use-package kanagawa-themes
-      :config
-      (load-theme 'kanagawa-wave t))
+  ;; (use-package kanagawa-themes
+  ;;   :config
+  ;;   (load-theme 'kanagawa-wave t))
+
+  (use-package doom-themes
+    :custom
+    ;; Global settings (defaults)
+    (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+    (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    :config
+    ;;(load-theme 'doom-one t)
+    (load-theme 'doom-tomorrow-night t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
 
   ;; (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
   ;; (add-hook 'emacs-startup-hook (lambda () (load-theme 'dtmacs t)))
@@ -226,21 +292,7 @@ mid-shortcut.
   (setq completion-category-defaults nil))
 #+end_src
 
-** Delsel
-
-#+begin_src emacs-lisp
-(use-package delsel
-  :config
-  (delete-selection-mode 1))
-#+end_src
-
-** Vterm
-
-#+begin_src emacs-lisp
-(use-package vterm)
-#+end_src
-
-* Company
+** Company
 
 A clean, modern inline auto-completion popup menu.
 
@@ -262,15 +314,7 @@ A clean, modern inline auto-completion popup menu.
   :hook (company-mode . company-box-mode))
 #+end_src
 
-* Rainbow mode
-#+begin_src emacs-lisp
-  (use-package rainbow-mode
-    :diminish
-    :hook org-mode prog-mode)
-#+end_src
-
-
-* Completion
+** Eglot
 
 #+begin_src emacs-lisp
   (use-package eglot
@@ -287,7 +331,7 @@ A clean, modern inline auto-completion popup menu.
   	 (js-mode . eglot-ensure)
   	 (js-ts-mode . eglot-ensure)
   	 (typescript-ts-mode . eglot-ensure)
-  	 (tsx-ts-mode . eglot-ensure)
+  	 ;;(tsx-ts-mode . eglot-ensure)
   	 (kotlin-ts-mode . eglot-ensure)
   	 (yaml-mode . eglot-ensure)
   	 (yaml-ts-mode . eglot-ensure)
@@ -295,7 +339,30 @@ A clean, modern inline auto-completion popup menu.
   	 (before-save . eglot-format-buffer))
     )
 
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  ;;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+#+end_src
+
+* Rainbow mode
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :diminish
+    :hook org-mode prog-mode)
+#+end_src
+
+* Delsel
+
+#+begin_src emacs-lisp
+(use-package delsel
+  :config
+  (delete-selection-mode 1))
+#+end_src
+
+* Terminals
+
+** Vterm
+
+#+begin_src emacs-lisp
+(use-package vterm)
 #+end_src
 
 * Keybindings
@@ -350,9 +417,23 @@ Open the init file from anywhere.
       "c i" '(eglot-find-implementation :wk "Find implementation"))
 
     (lg/leader-keys
+	"d" '(:ignore t :wk "Dired")
+	"d d" '(dired :wk "Open dired")
+	"d j" '(dired-jump :wk "Dired jump to current"))
+
+    (lg/leader-keys
       "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
       "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
-      "e e" '(eval-expression :wk "Evaluate and elisp expression"))
+      "e d" '(eval-defun :wk "Evaluate defun containing or after point")
+      "e e" '(eval-expression :wk "Evaluate and elisp expression")
+      "e f" '(ediff-files :wk "Run ediff on a pair of files")
+      "e F" '(ediff-files3 :wk "Run ediff on three files")
+      "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+      "e n" '(eshell-new :wk "Create new eshell buffer")
+      "e r" '(eval-region :wk "Evaluate elisp in region")
+      "e R" '(eww-reload :which-key "Reload current page in EWW")
+      "e s" '(eshell :which-key "Eshell")
+      "e w" '(eww :which-key "EWW emacs web wowser"))
 
     (lg/leader-keys
       "f" '(:ignore t :wk "Files")
@@ -364,7 +445,7 @@ Open the init file from anywhere.
       "h" '(:ignore t :wk "Help")
       "h f" '(describe-function :w "Describe function"))
 
-  (lg/leader-keys
+    (lg/leader-keys
       "w" '(:ignore t :wk "Windows/Words")
       ;; Window splits
       "w c" '(evil-window-delete :wk "Close window")
@@ -386,5 +467,5 @@ Open the init file from anywhere.
       "w d" '(downcase-word :wk "Downcase word")
       "w u" '(upcase-word :wk "Upcase word")
       "w =" '(count-words :wk "Count words/lines for buffer"))
-  )
+    )
 #+end_src
