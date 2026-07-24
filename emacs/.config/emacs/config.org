@@ -5,10 +5,21 @@
 
 * Table of contents :toc:
 - [[#bootstrap][Bootstrap]]
+- [[#completions][Completions]]
+  - [[#which-key][Which-Key]]
+  - [[#vertico][Vertico]]
+  - [[#marginalia][Marginalia]]
+  - [[#savehist][Savehist]]
+  - [[#orderless][Orderless]]
+  - [[#company][Company]]
+  - [[#eglot][Eglot]]
 - [[#dashboard][Dashboard]]
+- [[#delsel][Delsel]]
 - [[#diminish][Diminish]]
+- [[#evil-mode][Evil mode]]
 - [[#flycheck][Flycheck]]
-- [[#ui][UI]]
+- [[#functions][Functions]]
+- [[#general-keybindings][General keybindings]]
 - [[#misc-settings][Misc settings]]
   - [[#macos-keys][macOS keys]]
   - [[#smooth-scrolling][Smooth scrolling]]
@@ -19,22 +30,11 @@
   - [[#toc-org][Toc-Org]]
   - [[#org-tempo][Org-Tempo]]
 - [[#packages][Packages]]
-- [[#themes][Themes]]
-- [[#evil-mode][Evil mode]]
-- [[#completions][Completions]]
-  - [[#which-key][Which-Key]]
-  - [[#vertico][Vertico]]
-  - [[#marginalia][Marginalia]]
-  - [[#savehist][Savehist]]
-  - [[#orderless][Orderless]]
-  - [[#company][Company]]
-  - [[#eglot][Eglot]]
 - [[#rainbow-mode][Rainbow mode]]
-- [[#delsel][Delsel]]
 - [[#terminals][Terminals]]
   - [[#vterm][Vterm]]
-- [[#utils][Utils]]
-- [[#general-keybindings][General keybindings]]
+- [[#themes][Themes]]
+- [[#ui][UI]]
 
 * Bootstrap
 
@@ -53,6 +53,104 @@ original files.
   (setq backup-directory-alist '((".*" . "~/.config/emacs/backups/")))
 #+end_src
 
+* Completions
+
+** Which-Key
+
+Pops up a panel showing available keybindings when you stall
+mid-shortcut.
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish
+    :config
+    (setq which-key-idle-delay 0.3))
+#+end_src
+
+** Vertico
+
+#+begin_src emacs-lisp
+  (use-package vertico
+    :config
+    (vertico-mode 1))
+#+end_src
+
+** Marginalia
+
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :config
+    (marginalia-mode 1))
+#+end_src
+
+** Savehist
+
+#+begin_src emacs-lisp
+  (use-package savehist
+    :config
+    (savehist-mode 1))
+#+end_src
+
+** Orderless
+
+#+begin_src emacs-lisp
+  (use-package orderless
+    :config
+    (setq completion-styles '(orderless basic))
+    (setq completion-category-defaults nil))
+#+end_src
+
+** Company
+
+A clean, modern inline auto-completion popup menu.
+
+#+begin_src emacs-lisp
+  (use-package company
+    :defer 2
+    :diminish
+    :custom
+    (company-begin-commands '(self-insert-command))
+    (company-idle-delay .1)
+    (company-minimum-prefix-length 2)
+    (company-show-numbers t)
+    (company-tooltip-align-annotations 't)
+    (global-company-mode t))
+
+  (use-package company-box
+    :after company
+    :diminish
+    :hook (company-mode . company-box-mode))
+#+end_src
+
+** Eglot
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :hook ((sh-mode . eglot-ensure)
+  	 (python-mode . eglot-ensure)
+  	 (python-ts-mode . eglot-ensure)
+  	 (rust-mode . eglot-ensure)
+  	 (markdown-mode . eglot-ensure)
+  	 (markdown-ts-mode . eglot-ensure)
+  	 (html-mode . eglot-ensure)
+  	 (css-mode . eglot-ensure)
+  	 (css-ts-mode . eglot-ensure)
+  	 (html-ts-mode . eglot-ensure)
+  	 (js-mode . eglot-ensure)
+  	 (js-ts-mode . eglot-ensure)
+  	 (typescript-ts-mode . eglot-ensure)
+  	 ;;(tsx-ts-mode . eglot-ensure)
+  	 (kotlin-ts-mode . eglot-ensure)
+  	 (yaml-mode . eglot-ensure)
+  	 (yaml-ts-mode . eglot-ensure)
+  	 ;; formatting
+  	 (before-save . eglot-format-buffer))
+    )
+
+  ;;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+#+end_src
+
 * Dashboard
 #+begin_src emacs-lisp
   (setq inhibit-startup-screen t)
@@ -65,9 +163,35 @@ original files.
   ;; ")
 #+end_src
 
+* Delsel
+
+#+begin_src emacs-lisp
+  (use-package delsel
+    :config
+    (delete-selection-mode 1))
+#+end_src
+
 * Diminish
 #+begin_src emacs-lisp
   (use-package diminish)
+#+end_src
+
+* Evil mode
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :config
+    (evil-mode 1))
+
+  ;; Using RETURN to follow links in Org/Evil 
+  ;; Unmap keys in 'evil-maps if not done, (setq org-return-follows-link t) will not work
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "SPC") nil)
+    (define-key evil-motion-state-map (kbd "RET") nil)
+    (define-key evil-motion-state-map (kbd "TAB") nil))
+
+  ;; Setting RETURN key in org-mode to follow links
+  (setq org-return-follows-link  t)
 #+end_src
 
 * Flycheck
@@ -79,36 +203,113 @@ original files.
 #+end_src
 
 
-* UI
+* Functions
 
-Strip away the chrome we don't need. *Moved to early-init.el*
+Open the init file from anywhere.
 
 #+begin_src emacs-lisp
-  ;; (scroll-bar-mode -1)             ; Disable ugly scrollbars
-  ;; (tool-bar-mode -1)               ; Disable the graphical toolbar
-  ;; (tooltip-mode -1)                ; Disable tooltips
-  ;; (set-fringe-mode 10)             ; Give some breathing room on the sides
-  ;; (menu-bar-mode -1)               ; Disable the menu bar
+  (defun lg/open-init-file ()
+    "Open the literal Emacs configuration file config.org."
+    (interactive)
+    (find-file (expand-file-name "config.org" user-emacs-directory)))
+
+  ;; (global-set-key (kbd "C-c i") #'lg/open-init-file)
 #+end_src
 
-Show line numbers and the current column in the modeline.
+* General keybindings
 
 #+begin_src emacs-lisp
-  (global-display-line-numbers-mode t) ; Show line numbers
-  (column-number-mode t)                ; Show column number in the modeline
-  ;;(setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
-  (setq use-file-dialog nil)   ;; No file dialog
-  (setq use-dialog-box nil)    ;; No dialog box
-  (setq pop-up-windows nil)    ;; No popup windows
-#+end_src
+  (use-package general
+    :config
+    (general-evil-setup)
 
-Disable line numbers for modes where they don't make sense.
+    ;; set up 'SPC' as the global leader key
+    (general-create-definer lg/leader-keys
+      :states '(normal insert visual emacs)
+      :keymaps 'override
+      :prefix "SPC" ;; set leader
+      :global-prefix "M-SPC") ;; access leader in insert mode
 
-#+begin_src emacs-lisp
-  (dolist (mode '(org-mode-hook
-                  term-mode-hook
-                  eshell-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+    (lg/leader-keys
+      "." '(find-file :wk "Find file"))
+
+    (lg/leader-keys
+      "b" '(:ignore t :wk "Bookmarks/Buffers")
+      "b b" '(switch-to-buffer :wk "Switch to buffer")
+      "b i" '(ibuffer :wk "Ibuffer")
+      "b k" '(kill-buffer :wk "Kill buffer")
+      "b K" '(kill-some-buffers :wk "Kill multiple buffers")
+      "b n" '(next-buffer :wk "Next buffer")
+      "b p" '(previous-buffer :wk "Previous buffer")
+      "b r" '(revert-buffer :wk "Revert buffer")
+      "b R" '(rename-buffer :wk "Rename buffer")
+      "b s" '(basic-save-buffer :wk "Save buffer")
+      "b S" '(save-some-buffers :wk "Save multiple buffers")
+      )
+
+    (lg/leader-keys
+      "c" '(:ignore t :wk "Code (Eglot)")
+      "c r" '(eglot-rename :wk "Rename")
+      "c a" '(eglot-code-actions :wk "Code Actions")
+      "c f" '(eglot-format-buffer :wk "Format Buffer")
+      "c i" '(eglot-find-implementation :wk "Find implementation"))
+
+    (lg/leader-keys
+      "d" '(:ignore t :wk "Dired")
+      "d d" '(dired :wk "Open dired")
+      "d j" '(dired-jump :wk "Dired jump to current"))
+
+    (lg/leader-keys
+      "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
+      "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
+      "e d" '(eval-defun :wk "Evaluate defun containing or after point")
+      "e e" '(eval-expression :wk "Evaluate and elisp expression")
+      "e f" '(ediff-files :wk "Run ediff on a pair of files")
+      "e F" '(ediff-files3 :wk "Run ediff on three files")
+      "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+      "e n" '(eshell-new :wk "Create new eshell buffer")
+      "e r" '(eval-region :wk "Evaluate elisp in region")
+      "e R" '(eww-reload :which-key "Reload current page in EWW")
+      "e s" '(eshell :which-key "Eshell")
+      "e w" '(eww :which-key "EWW emacs web wowser"))
+
+    (lg/leader-keys
+      "f" '(:ignore t :wk "Files")
+      "f c" '((lambda () (interactive)
+                (lg/open-init-file))
+              :wk "Open config.org"))
+
+    (lg/leader-keys
+      "h" '(:ignore t :wk "Help")
+      "h f" '(describe-function :w "Describe function"))
+
+    (lg/leader-keys
+      "t" '(:ignore t :wk "Terminal")
+      "t v" '(vterm-toggle :wk "Toggle vterm"))
+
+    (lg/leader-keys
+      "w" '(:ignore t :wk "Windows/Words")
+      ;; Window splits
+      "w c" '(evil-window-delete :wk "Close window")
+      "w n" '(evil-window-new :wk "New window")
+      "w s" '(evil-window-split :wk "Horizontal split window")
+      "w v" '(evil-window-vsplit :wk "Vertical split window")
+      ;; Window motions
+      "w h" '(evil-window-left :wk "Window left")
+      "w j" '(evil-window-down :wk "Window down")
+      "w k" '(evil-window-up :wk "Window up")
+      "w l" '(evil-window-right :wk "Window right")
+      "w w" '(evil-window-next :wk "Goto next window")
+      ;; Move Windows
+      "w H" '(buf-move-left :wk "Buffer move left")
+      "w J" '(buf-move-down :wk "Buffer move down")
+      "w K" '(buf-move-up :wk "Buffer move up")
+      "w L" '(buf-move-right :wk "Buffer move right")
+      ;; Words
+      "w d" '(downcase-word :wk "Downcase word")
+      "w u" '(upcase-word :wk "Upcase word")
+      "w =" '(count-words :wk "Count words/lines for buffer"))
+    )
 #+end_src
 
 * Misc settings
@@ -218,6 +419,24 @@ are automatically installed if they aren't on your system.
     (exec-path-from-shell-initialize))
 #+end_src
 
+* Rainbow mode
+#+begin_src emacs-lisp
+  (use-package rainbow-mode
+    :diminish
+    :hook org-mode prog-mode)
+#+end_src
+
+* Terminals
+
+** Vterm
+
+#+begin_src emacs-lisp
+  (use-package vterm)
+
+  (use-package vterm-toggle
+    :defer t)
+#+end_src
+
 * Themes
 
 #+begin_src emacs-lisp
@@ -247,253 +466,34 @@ are automatically installed if they aren't on your system.
   ;; (add-hook 'emacs-startup-hook (lambda () (load-theme 'dtmacs t)))
 #+end_src
 
-* Evil mode
+* UI
+
+Strip away the chrome we don't need. *Moved to early-init.el*
 
 #+begin_src emacs-lisp
-  (use-package evil
-    :config
-    (evil-mode 1))
-
-  ;; Using RETURN to follow links in Org/Evil 
-  ;; Unmap keys in 'evil-maps if not done, (setq org-return-follows-link t) will not work
-  (with-eval-after-load 'evil-maps
-    (define-key evil-motion-state-map (kbd "SPC") nil)
-    (define-key evil-motion-state-map (kbd "RET") nil)
-    (define-key evil-motion-state-map (kbd "TAB") nil))
-
-  ;; Setting RETURN key in org-mode to follow links
-  (setq org-return-follows-link  t)
+  ;; (scroll-bar-mode -1)             ; Disable ugly scrollbars
+  ;; (tool-bar-mode -1)               ; Disable the graphical toolbar
+  ;; (tooltip-mode -1)                ; Disable tooltips
+  ;; (set-fringe-mode 10)             ; Give some breathing room on the sides
+  ;; (menu-bar-mode -1)               ; Disable the menu bar
 #+end_src
 
-* Completions
-
-** Which-Key
-
-Pops up a panel showing available keybindings when you stall
-mid-shortcut.
+Show line numbers and the current column in the modeline.
 
 #+begin_src emacs-lisp
-  (use-package which-key
-    :init (which-key-mode)
-    :diminish
-    :config
-    (setq which-key-idle-delay 0.3))
+  (global-display-line-numbers-mode t) ; Show line numbers
+  (column-number-mode t)                ; Show column number in the modeline
+  ;;(setq org-edit-src-content-indentation 0) ;; Set src block automatic indent to 0 instead of 2.
+  (setq use-file-dialog nil)   ;; No file dialog
+  (setq use-dialog-box nil)    ;; No dialog box
+  (setq pop-up-windows nil)    ;; No popup windows
 #+end_src
 
-** Vertico
+Disable line numbers for modes where they don't make sense.
 
 #+begin_src emacs-lisp
-  (use-package vertico
-    :config
-    (vertico-mode 1))
-#+end_src
-
-** Marginalia
-
-#+begin_src emacs-lisp
-  (use-package marginalia
-    :config
-    (marginalia-mode 1))
-#+end_src
-
-** Savehist
-
-#+begin_src emacs-lisp
-  (use-package savehist
-    :config
-    (savehist-mode 1))
-#+end_src
-
-** Orderless
-
-#+begin_src emacs-lisp
-  (use-package orderless
-    :config
-    (setq completion-styles '(orderless basic))
-    (setq completion-category-defaults nil))
-#+end_src
-
-** Company
-
-A clean, modern inline auto-completion popup menu.
-
-#+begin_src emacs-lisp
-  (use-package company
-    :defer 2
-    :diminish
-    :custom
-    (company-begin-commands '(self-insert-command))
-    (company-idle-delay .1)
-    (company-minimum-prefix-length 2)
-    (company-show-numbers t)
-    (company-tooltip-align-annotations 't)
-    (global-company-mode t))
-
-  (use-package company-box
-    :after company
-    :diminish
-    :hook (company-mode . company-box-mode))
-#+end_src
-
-** Eglot
-
-#+begin_src emacs-lisp
-  (use-package eglot
-    :hook ((sh-mode . eglot-ensure)
-  	 (python-mode . eglot-ensure)
-  	 (python-ts-mode . eglot-ensure)
-  	 (rust-mode . eglot-ensure)
-  	 (markdown-mode . eglot-ensure)
-  	 (markdown-ts-mode . eglot-ensure)
-  	 (html-mode . eglot-ensure)
-  	 (css-mode . eglot-ensure)
-  	 (css-ts-mode . eglot-ensure)
-  	 (html-ts-mode . eglot-ensure)
-  	 (js-mode . eglot-ensure)
-  	 (js-ts-mode . eglot-ensure)
-  	 (typescript-ts-mode . eglot-ensure)
-  	 ;;(tsx-ts-mode . eglot-ensure)
-  	 (kotlin-ts-mode . eglot-ensure)
-  	 (yaml-mode . eglot-ensure)
-  	 (yaml-ts-mode . eglot-ensure)
-  	 ;; formatting
-  	 (before-save . eglot-format-buffer))
-    )
-
-  ;;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-#+end_src
-
-* Rainbow mode
-#+begin_src emacs-lisp
-  (use-package rainbow-mode
-    :diminish
-    :hook org-mode prog-mode)
-#+end_src
-
-* Delsel
-
-#+begin_src emacs-lisp
-  (use-package delsel
-    :config
-    (delete-selection-mode 1))
-#+end_src
-
-* Terminals
-
-** Vterm
-
-#+begin_src emacs-lisp
-  (use-package vterm)
-
-  (use-package vterm-toggle
-    :defer t)
-#+end_src
-
-* Utils
-
-Open the init file from anywhere.
-
-#+begin_src emacs-lisp
-  (defun lg/open-init-file ()
-    "Open the literal Emacs configuration file config.org."
-    (interactive)
-    (find-file (expand-file-name "config.org" user-emacs-directory)))
-
-  ;; (global-set-key (kbd "C-c i") #'lg/open-init-file)
-#+end_src
-
-* General keybindings
-
-#+begin_src emacs-lisp
-  (use-package general
-    :config
-    (general-evil-setup)
-
-    ;; set up 'SPC' as the global leader key
-    (general-create-definer lg/leader-keys
-      :states '(normal insert visual emacs)
-      :keymaps 'override
-      :prefix "SPC" ;; set leader
-      :global-prefix "M-SPC") ;; access leader in insert mode
-
-    (lg/leader-keys
-      "." '(find-file :wk "Find file"))
-
-    (lg/leader-keys
-      "b" '(:ignore t :wk "Bookmarks/Buffers")
-      "b b" '(switch-to-buffer :wk "Switch to buffer")
-      "b i" '(ibuffer :wk "Ibuffer")
-      "b k" '(kill-buffer :wk "Kill buffer")
-      "b K" '(kill-some-buffers :wk "Kill multiple buffers")
-      "b n" '(next-buffer :wk "Next buffer")
-      "b p" '(previous-buffer :wk "Previous buffer")
-      "b r" '(revert-buffer :wk "Revert buffer")
-      "b R" '(rename-buffer :wk "Rename buffer")
-      "b s" '(basic-save-buffer :wk "Save buffer")
-      "b S" '(save-some-buffers :wk "Save multiple buffers")
-      )
-
-    (lg/leader-keys
-      "c" '(:ignore t :wk "Code (Eglot)")
-      "c r" '(eglot-rename :wk "Rename")
-      "c a" '(eglot-code-actions :wk "Code Actions")
-      "c f" '(eglot-format-buffer :wk "Format Buffer")
-      "c i" '(eglot-find-implementation :wk "Find implementation"))
-
-    (lg/leader-keys
-      "d" '(:ignore t :wk "Dired")
-      "d d" '(dired :wk "Open dired")
-      "d j" '(dired-jump :wk "Dired jump to current"))
-
-    (lg/leader-keys
-      "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
-      "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
-      "e d" '(eval-defun :wk "Evaluate defun containing or after point")
-      "e e" '(eval-expression :wk "Evaluate and elisp expression")
-      "e f" '(ediff-files :wk "Run ediff on a pair of files")
-      "e F" '(ediff-files3 :wk "Run ediff on three files")
-      "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-      "e n" '(eshell-new :wk "Create new eshell buffer")
-      "e r" '(eval-region :wk "Evaluate elisp in region")
-      "e R" '(eww-reload :which-key "Reload current page in EWW")
-      "e s" '(eshell :which-key "Eshell")
-      "e w" '(eww :which-key "EWW emacs web wowser"))
-
-    (lg/leader-keys
-      "f" '(:ignore t :wk "Files")
-      "f c" '((lambda () (interactive)
-                (lg/open-init-file))
-              :wk "Open config.org"))
-
-    (lg/leader-keys
-      "h" '(:ignore t :wk "Help")
-      "h f" '(describe-function :w "Describe function"))
-
-    (lg/leader-keys
-      "t" '(:ignore t :wk "Terminal")
-      "t v" '(vterm-toggle :wk "Toggle vterm"))
-
-    (lg/leader-keys
-      "w" '(:ignore t :wk "Windows/Words")
-      ;; Window splits
-      "w c" '(evil-window-delete :wk "Close window")
-      "w n" '(evil-window-new :wk "New window")
-      "w s" '(evil-window-split :wk "Horizontal split window")
-      "w v" '(evil-window-vsplit :wk "Vertical split window")
-      ;; Window motions
-      "w h" '(evil-window-left :wk "Window left")
-      "w j" '(evil-window-down :wk "Window down")
-      "w k" '(evil-window-up :wk "Window up")
-      "w l" '(evil-window-right :wk "Window right")
-      "w w" '(evil-window-next :wk "Goto next window")
-      ;; Move Windows
-      "w H" '(buf-move-left :wk "Buffer move left")
-      "w J" '(buf-move-down :wk "Buffer move down")
-      "w K" '(buf-move-up :wk "Buffer move up")
-      "w L" '(buf-move-right :wk "Buffer move right")
-      ;; Words
-      "w d" '(downcase-word :wk "Downcase word")
-      "w u" '(upcase-word :wk "Upcase word")
-      "w =" '(count-words :wk "Count words/lines for buffer"))
-    )
+  (dolist (mode '(org-mode-hook
+                  term-mode-hook
+                  eshell-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
