@@ -9,10 +9,12 @@
   - [[#which-key][Which-Key]]
   - [[#vertico][Vertico]]
   - [[#marginalia][Marginalia]]
+  - [[#recentf][Recentf]]
   - [[#savehist][Savehist]]
   - [[#orderless][Orderless]]
   - [[#company][Company]]
   - [[#eglot][Eglot]]
+- [[#consult][Consult]]
 - [[#dashboard][Dashboard]]
 - [[#delsel][Delsel]]
 - [[#diminish][Diminish]]
@@ -84,12 +86,22 @@ mid-shortcut.
     (marginalia-mode 1))
 #+end_src
 
+** Recentf
+#+begin_src emacs-lisp
+  (recentf-mode 1)
+  (setq recentf-max-saved-items 25)
+  (setq tab-always-indent 'complete) ; Optional helpful Vertico setting
+  (setq-default read-buffer-completion-ignore-case t)
+  (setq-default read-file-name-completion-ignore-case t)
+#+end_src
+
 ** Savehist
 
 #+begin_src emacs-lisp
-  (use-package savehist
-    :config
-    (savehist-mode 1))
+    (use-package savehist
+      :config
+      (savehist-mode 1)
+      )
 #+end_src
 
 ** Orderless
@@ -149,6 +161,12 @@ A clean, modern inline auto-completion popup menu.
     )
 
   ;;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+#+end_src
+
+
+* Consult
+#+begin_src emacs-lisp
+    (use-package consult)
 #+end_src
 
 * Dashboard
@@ -235,7 +253,7 @@ Open the init file from anywhere.
 
     (lg/leader-keys
       "b" '(:ignore t :wk "Bookmarks/Buffers")
-      "b b" '(switch-to-buffer :wk "Switch to buffer")
+      "b b" '(consult-buffer :wk "Switch to buffer")
       "b i" '(ibuffer :wk "Ibuffer")
       "b k" '(kill-buffer :wk "Kill buffer")
       "b K" '(kill-some-buffers :wk "Kill multiple buffers")
@@ -277,7 +295,12 @@ Open the init file from anywhere.
       "f" '(:ignore t :wk "Files")
       "f c" '((lambda () (interactive)
                 (lg/open-init-file))
-              :wk "Open config.org"))
+              :wk "Open config.org")
+      "f g" '(consult-grep :wk "Search for string current file")
+      "f l" '(consult-locate :wk "Locate a file")
+      "f r" '(consult-recent-file :wk "Find recent files")
+      "f s" '(consult-line :wk "Search for a match line")
+      )
 
     (lg/leader-keys
       "h" '(:ignore t :wk "Help")

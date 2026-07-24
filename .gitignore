@@ -14,6 +14,7 @@ emacs/.config/emacs/custom.el
 emacs/.config/emacs/config.el
 emacs/.config/emacs/history
 emacs/.config/emacs/tramp
+emacs/.config/emacs/recentf
 
 # herdr
 herdr/.config/herdr/*.log

@@ -1,8 +1,11 @@
 ;;; init.el --- Load the literal Org-mode configuration -*- lexical-binding: t; -*-
 
+;;; Commentary:
 ;; The real configuration lives in config.org.  org-babel-load-file
 ;; tangles the Emacs Lisp source blocks out of that file and loads
 ;; them, producing a compiled config.el next to it.
+
+;;; Code:
 (org-babel-load-file
  (expand-file-name
   "config.org"
