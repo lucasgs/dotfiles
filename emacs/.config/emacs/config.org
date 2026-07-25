@@ -1,6 +1,7 @@
 #+TITLE: Emacs Config
 #+AUTHOR: Lucas Sanchez
 #+DESCRIPTION: My literal Emacs configuration.
+#+STARTUP: showeverything
 #+OPTIONS: toc:2
 
 * Table of contents :toc:
@@ -29,6 +30,10 @@
   - [[#font][Font]]
 - [[#modeline][Modeline]]
 - [[#org][Org]]
+  - [[#general-org-settings][General Org Settings]]
+  - [[#agenda][Agenda]]
+  - [[#org-todo][Org TODO]]
+  - [[#org-capture][Org Capture]]
   - [[#toc-org][Toc-Org]]
   - [[#org-tempo][Org-Tempo]]
 - [[#packages][Packages]]
@@ -237,118 +242,122 @@ Open the init file from anywhere.
 * General keybindings
 
 #+begin_src emacs-lisp
-    (use-package general
-      :config
-      (general-evil-setup)
+  (use-package general
+    :config
+    (general-evil-setup)
 
-      ;; set up 'SPC' as the global leader key
-      (general-create-definer lg/leader-keys
-        :states '(normal insert visual emacs)
-        :keymaps 'override
-        :prefix "SPC" ;; set leader
-        :global-prefix "M-SPC") ;; access leader in insert mode
+    ;; set up 'SPC' as the global leader key
+    (general-create-definer lg/leader-keys
+      :states '(normal insert visual emacs)
+      :keymaps 'override
+      :prefix "SPC" ;; set leader
+      :global-prefix "M-SPC") ;; access leader in insert mode
 
-      (lg/leader-keys
-        "." '(find-file :wk "Find file"))
+    (lg/leader-keys
+      "." '(find-file :wk "Find file"))
 
-      (lg/leader-keys
-        "b" '(:ignore t :wk "Bookmarks/Buffers")
-        "b b" '(consult-buffer :wk "Switch to buffer")
-        "b i" '(ibuffer :wk "Ibuffer")
-        "b k" '(kill-buffer :wk "Kill buffer")
-        "b K" '(kill-some-buffers :wk "Kill multiple buffers")
-        "b l" '(list-bookmarks :wk "List bookmarks")
-    	"b m" '(bookmark-set :wk "Set bookmark")
-        "b n" '(next-buffer :wk "Next buffer")
-        "b p" '(previous-buffer :wk "Previous buffer")
-        "b r" '(revert-buffer :wk "Revert buffer")
-        "b R" '(rename-buffer :wk "Rename buffer")
-        "b s" '(basic-save-buffer :wk "Save buffer")
-        "b S" '(save-some-buffers :wk "Save multiple buffers")
-	"b w" '(bookmark-save :wk "Save current bookmarks to bookmark file")
-        )
-
-      (lg/leader-keys
-        "c" '(:ignore t :wk "Code (Eglot)")
-        "c r" '(eglot-rename :wk "Rename")
-        "c a" '(eglot-code-actions :wk "Code Actions")
-        "c f" '(eglot-format-buffer :wk "Format Buffer")
-        "c i" '(eglot-find-implementation :wk "Find implementation"))
-
-      (lg/leader-keys
-        "d" '(:ignore t :wk "Dired")
-        "d d" '(dired :wk "Open dired")
-        "d j" '(dired-jump :wk "Dired jump to current"))
-
-      (lg/leader-keys
-        "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
-        "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
-        "e d" '(eval-defun :wk "Evaluate defun containing or after point")
-        "e e" '(eval-expression :wk "Evaluate and elisp expression")
-        "e f" '(ediff-files :wk "Run ediff on a pair of files")
-        "e F" '(ediff-files3 :wk "Run ediff on three files")
-        "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-        "e n" '(eshell-new :wk "Create new eshell buffer")
-        "e r" '(eval-region :wk "Evaluate elisp in region")
-        "e R" '(eww-reload :which-key "Reload current page in EWW")
-        "e s" '(eshell :which-key "Eshell")
-        "e w" '(eww :which-key "EWW emacs web wowser"))
-
-      (lg/leader-keys
-        "f" '(:ignore t :wk "Files")
-        "f c" '((lambda () (interactive)
-                  (lg/open-init-file))
-                :wk "Open config.org")
-        "f g" '(consult-grep :wk "Search for string current file")
-        "f l" '(consult-locate :wk "Locate a file")
-        "f r" '(consult-recent-file :wk "Find recent files")
-        "f s" '(consult-line :wk "Search for a match line")
-        )
-
-      (lg/leader-keys
-        "h" '(:ignore t :wk "Help")
-        "h c" '(describe-command :w "Describe command")
-        "h f" '(describe-function :w "Describe function")
-        "h F" '(describe-face :w "Describe face")
-        "h m" '(describe-mode :w "Describe mode")
-        "h v" '(describe-variable :wk "Describe variable")
-        "h r" '(lambda () (interactive) (load-file user-init-file) :wk "Reload Emacs config")
-        )
-
-      (lg/leader-keys
-        "o" '(:ignore t :wk "Org")
-        "o l" '(org-store-link :wk "Org store link")
-        "o a" '(org-agenda :wk "Org agenda")
-        "o c" '(org-capture :wk "Org capture")
-        )
-
-      (lg/leader-keys
-        "t" '(:ignore t :wk "Terminal")
-        "t v" '(vterm-toggle :wk "Toggle vterm"))
-
-      (lg/leader-keys
-        "w" '(:ignore t :wk "Windows/Words")
-        ;; Window splits
-        "w c" '(evil-window-delete :wk "Close window")
-        "w n" '(evil-window-new :wk "New window")
-        "w s" '(evil-window-split :wk "Horizontal split window")
-        "w v" '(evil-window-vsplit :wk "Vertical split window")
-        ;; Window motions
-        "w h" '(evil-window-left :wk "Window left")
-        "w j" '(evil-window-down :wk "Window down")
-        "w k" '(evil-window-up :wk "Window up")
-        "w l" '(evil-window-right :wk "Window right")
-        "w w" '(evil-window-next :wk "Goto next window")
-        ;; Move Windows
-        "w H" '(buf-move-left :wk "Buffer move left")
-        "w J" '(buf-move-down :wk "Buffer move down")
-        "w K" '(buf-move-up :wk "Buffer move up")
-        "w L" '(buf-move-right :wk "Buffer move right")
-        ;; Words
-        "w d" '(downcase-word :wk "Downcase word")
-        "w u" '(upcase-word :wk "Upcase word")
-        "w =" '(count-words :wk "Count words/lines for buffer"))
+    (lg/leader-keys
+      "b" '(:ignore t :wk "Bookmarks/Buffers")
+      "b b" '(consult-buffer :wk "Switch to buffer")
+      "b i" '(ibuffer :wk "Ibuffer")
+      "b k" '(kill-buffer :wk "Kill buffer")
+      "b K" '(kill-some-buffers :wk "Kill multiple buffers")
+      "b l" '(list-bookmarks :wk "List bookmarks")
+      "b m" '(bookmark-set :wk "Set bookmark")
+      "b n" '(next-buffer :wk "Next buffer")
+      "b p" '(previous-buffer :wk "Previous buffer")
+      "b r" '(revert-buffer :wk "Revert buffer")
+      "b R" '(rename-buffer :wk "Rename buffer")
+      "b s" '(basic-save-buffer :wk "Save buffer")
+      "b S" '(save-some-buffers :wk "Save multiple buffers")
+      "b w" '(bookmark-save :wk "Save current bookmarks to bookmark file")
       )
+
+    (lg/leader-keys
+      "c" '(:ignore t :wk "Code (Eglot)")
+      "c r" '(eglot-rename :wk "Rename")
+      "c a" '(eglot-code-actions :wk "Code Actions")
+      "c f" '(eglot-format-buffer :wk "Format Buffer")
+      "c i" '(eglot-find-implementation :wk "Find implementation"))
+
+    (lg/leader-keys
+      "d" '(:ignore t :wk "Dired")
+      "d d" '(dired :wk "Open dired")
+      "d j" '(dired-jump :wk "Dired jump to current"))
+
+    (lg/leader-keys
+      "e" '(:ignore t :wk "Ediff/Eshell/Eval/EWW")
+      "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
+      "e d" '(eval-defun :wk "Evaluate defun containing or after point")
+      "e e" '(eval-expression :wk "Evaluate and elisp expression")
+      "e f" '(ediff-files :wk "Run ediff on a pair of files")
+      "e F" '(ediff-files3 :wk "Run ediff on three files")
+      "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+      "e n" '(eshell-new :wk "Create new eshell buffer")
+      "e r" '(eval-region :wk "Evaluate elisp in region")
+      "e R" '(eww-reload :which-key "Reload current page in EWW")
+      "e s" '(eshell :which-key "Eshell")
+      "e w" '(eww :which-key "EWW emacs web wowser"))
+
+    (lg/leader-keys
+      "f" '(:ignore t :wk "Files")
+      "f c" '((lambda () (interactive)
+                (lg/open-init-file))
+              :wk "Open config.org")
+      "f g" '(consult-grep :wk "Search for string current file")
+      "f l" '(consult-locate :wk "Locate a file")
+      "f r" '(consult-recent-file :wk "Find recent files")
+      "f s" '(consult-line :wk "Search for a match line")
+      )
+
+    (lg/leader-keys
+      "h" '(:ignore t :wk "Help")
+      "h c" '(describe-command :w "Describe command")
+      "h f" '(describe-function :w "Describe function")
+      "h F" '(describe-face :w "Describe face")
+      "h m" '(describe-mode :w "Describe mode")
+      "h v" '(describe-variable :wk "Describe variable")
+      "h r" '(lambda () (interactive) (load-file user-init-file) :wk "Reload Emacs config")
+      )
+
+    (lg/leader-keys
+      "o" '(:ignore t :wk "Org")
+      "o a" '(org-agenda :wk "Org agenda")
+      "o c" '(org-capture :wk "Org capture")
+      "o f" '(make-frame :wk "Open buffer in new frame")
+      "o F" '(select-frame-by-name :wk "Select frame by name")
+      "o j" '((lambda () (interactive) (find-file (concat org-directory "journal.org"))) :wk "Journal")
+      "o n" '((lambda () (interactive) (find-file org-default-notes-file)) :wk "Notes")
+      "o t" '((lambda () (interactive) (find-file (concat org-directory "tasks.org"))) :wk "Tasks")
+    )
+
+  (lg/leader-keys
+    "t" '(:ignore t :wk "Terminal")
+    "t v" '(vterm-toggle :wk "Toggle vterm"))
+
+  (lg/leader-keys
+    "w" '(:ignore t :wk "Windows/Words")
+    ;; Window splits
+    "w c" '(evil-window-delete :wk "Close window")
+    "w n" '(evil-window-new :wk "New window")
+    "w s" '(evil-window-split :wk "Horizontal split window")
+    "w v" '(evil-window-vsplit :wk "Vertical split window")
+    ;; Window motions
+    "w h" '(evil-window-left :wk "Window left")
+    "w j" '(evil-window-down :wk "Window down")
+    "w k" '(evil-window-up :wk "Window up")
+    "w l" '(evil-window-right :wk "Window right")
+    "w w" '(evil-window-next :wk "Goto next window")
+    ;; Move Windows
+    "w H" '(buf-move-left :wk "Buffer move left")
+    "w J" '(buf-move-down :wk "Buffer move down")
+    "w K" '(buf-move-up :wk "Buffer move up")
+    "w L" '(buf-move-right :wk "Buffer move right")
+    ;; Words
+    "w d" '(downcase-word :wk "Downcase word")
+    "w u" '(upcase-word :wk "Upcase word")
+    "w =" '(count-words :wk "Count words/lines for buffer"))
+  )
 #+end_src
 
 * Misc settings
@@ -358,6 +367,12 @@ Open the init file from anywhere.
   (setq visible-bell nil)
   (setq mouse-drag-copy-region t)
   (setq bookmark-save-flag 1)
+
+  ;; Automatically reload buffers when files change on disk (e.g. via iCloud sync)
+  (global-auto-revert-mode 1)
+
+  ;; Silence the "Reverting buffer..." messages in the echo area to avoid clutter
+  (setq auto-revert-verbose nil)
 #+end_src
 
 ** macOS keys
@@ -393,9 +408,11 @@ Make "yes or no" prompts just "y or n".
 
 #+begin_src emacs-lisp
   ;;(set-face-attribute 'default nil :family "Hack Nerd Font" :height 150 :foreground 'unspecified)
-  ;;(set-face-attribute 'default nil :family "JetBrains Mono" :height 150)
-  (set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 160)
-  ;;(set-face-attribute 'default nil :family "Terminess Nerd Font" :height 140 :weight 'medium)
+  ;;(set-face-attribute 'default nil :family "JetBrains Mono" :height 140)
+  (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono" :height 160)
+  ;;(set-face-attribute 'default nil :family "IosevkaTerm Nerd Font Mono" :height 160)
+  ;;(set-face-attribute 'default nil :family "FiraMono Nerd Font Mono" :height 140 :weight 'medium)
+  ;;(set-face-attribute 'default nil :family "Monolisa" :height 130)
 #+end_src
 
 * Modeline
@@ -405,6 +422,57 @@ Make "yes or no" prompts just "y or n".
 #+end_src
 
 * Org
+
+** General Org Settings
+#+begin_src emacs-lisp
+    ;; iCloud synced folder
+    ;;(setq org-directory "~/Library/Mobile Documents/com~apple~CloudDocs/Org/")
+    (setq org-directory "~/Org/")
+#+end_src
+
+** Agenda
+#+begin_src emacs-lisp
+  (setq org-agenda-files 
+	(list (concat org-directory "journal.org")
+	      (concat org-directory "notes.org")
+	      (concat org-directory "tasks.org")))
+#+end_src
+
+** Org TODO
+#+begin_src emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "INPROGRESS(p)" "|" "DONE(d)" "WONTDO(w)")))
+#+end_src
+
+** Org Capture
+#+begin_src emacs-lisp
+  ;; Defines the global fallback destination for all your Org notes.
+  (setq org-default-notes-file (concat org-directory "notes.org"))
+
+  (setq org-capture-templates
+        `(
+          ;; Idea capture
+          ("i" "idea" entry
+           (file ,org-default-notes-file)
+           "* %? :idea:\n%U\n")
+
+          ;; Journal entry
+          ("j" "journal" entry
+           (file+olp+datetree ,(concat org-directory "journal.org"))
+           "* %U\n%?\n")
+
+          ;; Note with link to source
+          ("n" "note" entry
+           (file ,org-default-notes-file)
+           "* %? :note:\n%^t\n%a\n")
+  	
+          ;; Todo with context
+          ("t" "task" entry
+           (file+headline ,(concat org-directory "tasks.org") "Tasks")
+           "* TODO %?\n%^t\n%a\n")
+
+          ))
+#+end_src
 
 ** Toc-Org
 #+begin_src emacs-lisp
