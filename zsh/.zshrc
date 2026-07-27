@@ -34,6 +34,12 @@ bindkey -s ^n "tmux-notes\n"
 # make back-i-search work in vi mode-keys to 
 bindkey "^R" history-incremental-search-backward
 
+# Accept the entire suggestion with Ctrl + Space
+# bindkey '^ ' autosuggest-accept
+
+# Accept suggestion with Ctrl + F
+bindkey '^F' autosuggest-accept
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
