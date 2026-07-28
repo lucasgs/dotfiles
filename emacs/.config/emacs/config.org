@@ -19,6 +19,7 @@
 - [[#dashboard][Dashboard]]
 - [[#delsel][Delsel]]
 - [[#diminish][Diminish]]
+- [[#elfeed][Elfeed]]
 - [[#evil-mode][Evil mode]]
 - [[#flycheck][Flycheck]]
 - [[#functions][Functions]]
@@ -41,6 +42,7 @@
 - [[#rainbow-mode][Rainbow mode]]
 - [[#project][Project]]
 - [[#terminals][Terminals]]
+  - [[#ghostel][Ghostel]]
   - [[#vterm][Vterm]]
   - [[#vterm-toggle][Vterm-Toggle]]
 - [[#themes][Themes]]
@@ -202,6 +204,17 @@ A clean, modern inline auto-completion popup menu.
   (use-package diminish)
 #+end_src
 
+* Elfeed
+#+begin_src emacs-lisp
+  (use-package elfeed
+    :config
+    (setq elfeed-search-feed-face ":foreground #ffffff :weight bold"
+	  elfeed-feeds (quote(
+			    ("https://www.reddit.com/r/commandline.rss" reddit commandline)
+			    ("https://www.reddit.com/r/emacs.rss" reddit emacs)
+			    ("https://news.ycombinator.com/rss" hacker news)))))
+#+end_src
+
 * Evil mode
 
 #+begin_src emacs-lisp
@@ -331,11 +344,14 @@ Open the init file from anywhere.
       "o F" '(select-frame-by-name :wk "Select frame by name")
       "o i" '((lambda () (interactive) (find-file org-default-notes-file)) :wk "Inbox")
       "o j" '((lambda () (interactive) (find-file (concat org-directory "journal.org"))) :wk "Journal")
+      "o e" '(elfeed :wk "Elfeed RSS") 
     )
 
   (lg/leader-keys
     "t" '(:ignore t :wk "Terminal")
-    "t v" '(vterm-toggle :wk "Toggle vterm"))
+    "t v" '(vterm-toggle :wk "Toggle vterm")
+    "t g" '(ghostel :wk "Toggle ghostel")
+    )
 
   (lg/leader-keys
     "w" '(:ignore t :wk "Windows/Words")
@@ -541,6 +557,11 @@ are automatically installed if they aren't on your system.
 #+end_src
 
 * Terminals
+
+** Ghostel
+#+begin_src emacs-lisp
+  (use-package ghostel)
+#+end_src
 
 ** Vterm
 
