@@ -87,7 +87,7 @@ alias notes='cd ~/notes; nv'
 
 alias nnn="nnn -e"
 
-alias icat="kitty +kitten icat"
+alias icat="kitten icat"
 
 alias bf="wr && say '[[volm 0.5]] weather completed'"
 

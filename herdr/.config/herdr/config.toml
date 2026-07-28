@@ -241,8 +241,8 @@ row_gap = 1
 # accent = "#c6a0f6"
 
 # Background notification popup delivery
-[ui.toast]
-# off = disable pop-up notifications
+#[ui.toast]
+#off = disable pop-up notifications
 # herdr = show in-app toasts
 # terminal = ask the outer terminal to show a desktop notification
 # system = ask the OS notification service directly
