@@ -23,6 +23,7 @@
 - [[#flycheck][Flycheck]]
 - [[#functions][Functions]]
 - [[#general-keybindings][General keybindings]]
+- [[#git][Git]]
 - [[#misc-settings][Misc settings]]
   - [[#macos-keys][macOS keys]]
   - [[#smooth-scrolling][Smooth scrolling]]
@@ -359,6 +360,12 @@ Open the init file from anywhere.
     "w u" '(upcase-word :wk "Upcase word")
     "w =" '(count-words :wk "Count words/lines for buffer"))
   )
+#+end_src
+
+* Git
+
+#+begin_src emacs-lisp
+  (use-package magit)
 #+end_src
 
 * Misc settings
