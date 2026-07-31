@@ -112,6 +112,7 @@ alias op='opencode'
 alias tss='tailscale status'
 alias tsu='tailscale up'
 alias tsd='tailscale down'
+alias tsr='sudo brew services restart tailscale'
 
 #alias chrome-debug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 
