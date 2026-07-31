@@ -20,7 +20,7 @@
 - [[#delsel][Delsel]]
 - [[#diminish][Diminish]]
 - [[#elfeed][Elfeed]]
-- [[#evil-mode][Evil mode]]
+- [[#evil][Evil]]
 - [[#flycheck][Flycheck]]
 - [[#functions][Functions]]
 - [[#general-keybindings][General keybindings]]
@@ -41,6 +41,7 @@
 - [[#packages][Packages]]
 - [[#rainbow-mode][Rainbow mode]]
 - [[#project][Project]]
+- [[#server][Server]]
 - [[#terminals][Terminals]]
   - [[#ghostel][Ghostel]]
   - [[#vterm][Vterm]]
@@ -215,12 +216,21 @@ A clean, modern inline auto-completion popup menu.
 			    ("https://news.ycombinator.com/rss" hacker news)))))
 #+end_src
 
-* Evil mode
+* Evil
 
 #+begin_src emacs-lisp
   (use-package evil
     :config
     (evil-mode 1))
+
+  (use-package evil-surround
+    :after evil
+    :defer 2
+    :config
+    (global-evil-surround-mode 1))
+
+  (use-package evil-collection
+    :after evil)
 
   ;; Using RETURN to follow links in Org/Evil 
   ;; Unmap keys in 'evil-maps if not done, (setq org-return-follows-link t) will not work
@@ -434,9 +444,6 @@ Make "yes or no" prompts just "y or n".
   ;;(set-face-attribute 'default nil :family "Hack Nerd Font" :height 150 :foreground 'unspecified)
   ;;(set-face-attribute 'default nil :family "JetBrains Mono" :height 140)
   (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono" :height 160)
-  ;;(set-face-attribute 'default nil :family "IosevkaTerm Nerd Font Mono" :height 160)
-  ;;(set-face-attribute 'default nil :family "FiraMono Nerd Font Mono" :height 140 :weight 'medium)
-  ;;(set-face-attribute 'default nil :family "Monolisa" :height 130)
 #+end_src
 
 * Modeline
@@ -556,6 +563,18 @@ are automatically installed if they aren't on your system.
     (project-kill-buffers-display-buffer-list t))
 #+end_src
 
+* Server
+#+begin_src emacs-lisp
+  ;; Start an Emacs server. This way, I can use emacsclient from the terminal.
+  ;;(unless (server-running-p) (server-start))
+
+  ;; To enable easy emacsclient, create =~/bin/ec=:
+  ;; #!/bin/sh
+  ;; # this assumes that my regular emacs app runs the server as part of startup
+  ;; emacsclient -n "$@" || (open -a emacs "$@")
+#+end_src
+
+
 * Terminals
 
 ** Ghostel
@@ -610,6 +629,11 @@ are automatically installed if they aren't on your system.
   ;; (use-package kanagawa-themes
   ;;   :config
   ;;   (load-theme 'kanagawa-wave t))
+
+  (use-package catppuccin-theme
+    :init
+    (setq catppuccin-flavor 'macchiato)) ; Options: 'latte, 'frappe, 'macchiato, 'mocha
+  ;;(load-theme 'catppuccin :no-confirm)
 
   (use-package doom-themes
     :custom

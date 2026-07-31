@@ -9,6 +9,8 @@
 (setq gc-cons-threshold 50000000)
 
 (setq frame-background-mode 'dark)
+(add-to-list 'initial-frame-alist '(background-color . "#1a1a1a"))
+(add-to-list 'initial-frame-alist '(foreground-color . "#ffffff"))
 
 (scroll-bar-mode -1)             ; Disable ugly scrollbars
 (tool-bar-mode -1)               ; Disable the graphical toolbar
