@@ -10,7 +10,8 @@ onboarding = false
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
 # name = "catppuccin"
-name = "nord"
+# name = "nord"
+name = "vesper"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
