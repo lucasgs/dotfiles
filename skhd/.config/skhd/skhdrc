@@ -1,0 +1,21 @@
+:: leader @
+
+f12 ; leader
+
+# Exit safety hatches (returns keyboard to normal)
+# leader < f12 ; default
+leader < escape ; default
+leader < space  ; default
+
+# --- Direct Application Launches ---
+leader < a : open -a "Android Studio"; skhd -k "escape"
+leader < c : open -a "Claude"; skhd -k "escape"
+leader < f : open -a "Fork"; skhd -k "escape"
+leader < f : open -a "Fork"; skhd -k "escape"
+leader < p : open -a "Proxyman"; skhd -k "escape"
+leader < s : open -a "Spotify"; skhd -k "escape"
+leader < t : open -a "Kitty"; skhd -k "escape"
+leader < x : open -a "Xcode"; skhd -k "escape"
+leader < w : open -a "Google Chrome"; skhd -k "escape"
+
+# leader < t : open -a "kitty"; skhd -k "escape"
