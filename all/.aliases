@@ -108,6 +108,9 @@ alias fla='bundle exec fastlane android'
 alias cc='claude'
 alias cx='codex'
 alias op='opencode'
+alias hr='herdr'
+alias hrr='herdr server reload-config'
+alias hrs='herdr server stop'
 
 # Tailscale
 alias tss='tailscale status'
