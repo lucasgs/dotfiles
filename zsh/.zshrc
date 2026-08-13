@@ -35,10 +35,10 @@ bindkey -s ^n "tmux-notes\n"
 bindkey "^R" history-incremental-search-backward
 
 # Accept the entire suggestion with Ctrl + Space
-# bindkey '^ ' autosuggest-accept
+bindkey '^ ' autosuggest-accept
 
 # Accept suggestion with Ctrl + F
-bindkey '^F' autosuggest-accept
+#bindkey '^F' autosuggest-accept
 
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -92,3 +92,9 @@ export PATH="$PATH:/Users/lucas/.lmstudio/bin"
 export PATH="$PATH:/Users/lucas/.local/share/nvim/mason/bin"
 
 export HOMEBREW_REQUIRE_TAP_TRUST=1
+
+# tmux-tools 
+export PATH="$PATH:$HOME/.tmux-tools"
+
+# Docker
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
