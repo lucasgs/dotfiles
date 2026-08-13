@@ -10,8 +10,26 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 # Use colors in the completion menu
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# OS detection (used to gate platform-specific config)
+case "$(uname -s)" in
+    Darwin) export OS=macos ;;
+    Linux)  export OS=linux  ;;
+    *)      export OS=unix   ;;
+esac
+
+# zsh-autosuggestions / zsh-syntax-highlighting (Homebrew on macOS, system on Linux)
+if [ "$OS" = macos ]; then
+    source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+else
+    for _f in /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+              /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+              /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
+              /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+        [ -s "$_f" ] && source "$_f"
+    done
+    unset _f
+fi
 
 source_file() {
     local file="$1"
@@ -43,13 +61,25 @@ bindkey '^ ' autosuggest-accept
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-export ANDROID_HOME="$HOME/Library/Android/sdk"
 export FLUTTER_HOME="$HOME/sdk/flutter"
 export LOCAL="$HOME/.local"
-export RUBY_PATH="/opt/homebrew/opt/ruby"
 export MAESTRO_HOME="$HOME/.maestro"
-export PURR_HOME="/Users/lucas/src/purr/scripts"
-export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin:$RUBY_PATH/bin:$MAESTRO_HOME/bin:$PURR_HOME:$(go env GOPATH)/bin"
+export PURR_HOME="$HOME/src/purr/scripts"
+
+[ "$OS" = macos ] && export ANDROID_HOME="$HOME/Library/Android/sdk"
+[ "$OS" = linux ]  && export ANDROID_HOME="$HOME/Android/Sdk"
+
+# Ruby: Homebrew on macOS, rbenv/asdf elsewhere
+if [ "$OS" = macos ] && [ -d /opt/homebrew/opt/ruby ]; then
+    export RUBY_PATH="/opt/homebrew/opt/ruby"
+    _ruby_bin="$RUBY_PATH/bin"
+else
+    unset RUBY_PATH
+    _ruby_bin=""
+fi
+
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$LOCAL/bin:${_ruby_bin:+$_ruby_bin:}$MAESTRO_HOME/bin:$PURR_HOME:$(go env GOPATH)/bin"
+unset _ruby_bin
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -70,7 +100,7 @@ eval "$(zoxide init zsh)"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # bun completions
-[ -s "/Users/lucas/.bun/_bun" ] && source "/Users/lucas/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -82,19 +112,20 @@ eval "$(starship init zsh)"
 export PATH="$HOME/.composables/bin:$PATH"
 
 # Added by Antigravity IDE
-export PATH="/Users/lucas/.antigravity-ide/antigravity-ide/bin:$PATH"
+[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/lucas/.lmstudio/bin"
+[ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 # Mason lsp server path
-export PATH="$PATH:/Users/lucas/.local/share/nvim/mason/bin"
+export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 
-export HOMEBREW_REQUIRE_TAP_TRUST=1
+# Homebrew-only env vars
+[ "$OS" = macos ] && export HOMEBREW_REQUIRE_TAP_TRUST=1
 
 # tmux-tools 
 export PATH="$PATH:$HOME/.tmux-tools"
 
-# Docker
-export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
+# Docker (Docker Desktop app bundle on macOS, system docker on Linux)
+[ -d /Applications/Docker.app/Contents/Resources/bin ] && export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin"
