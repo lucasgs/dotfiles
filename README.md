@@ -14,10 +14,11 @@ Clone the repository
 git clone https://github.com/lucasgs/dotfiles.git
 ```
 
-Run installer 
+Run the installer for your platform
 
 ```bash
-./install
+make mac     # macOS
+make linux   # Linux
 ```
 
 or Run `stow` to symlink everything or just select what you want
