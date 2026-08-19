@@ -1,4 +1,4 @@
-.PHONY: all mac linux stow-%
+.PHONY: all mac linux clean stow-%
 
 STOW := stow
 TARGET := $(HOME)
@@ -15,6 +15,13 @@ LINUX_ONLY := x i3
 mac: $(addprefix stow-,$(SHARED) $(MAC_ONLY))
 
 linux: $(addprefix stow-,$(SHARED) $(LINUX_ONLY))
+
+# clean: unstow every package (shared + mac + linux) from $HOME
+clean: $(addprefix unstow-,$(SHARED) $(MAC_ONLY) $(LINUX_ONLY))
+
+# unstow-<package>: remove a package's symlinks from $HOME
+unstow-%:
+	$(STOW) -D --target $(TARGET) $*
 
 # stow-<package>: restow a single package into $HOME
 stow-%:
