@@ -78,7 +78,32 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+		--- Interpreter for a pyright workspace: $VIRTUAL_ENV wins, then <root>/.venv, then <root>/venv.
+		---@param root_dir string|nil
+		---@return string|nil
+		local function python_interpreter(root_dir)
+			local venvs = {}
+			if vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV ~= "" then
+				venvs[#venvs + 1] = vim.env.VIRTUAL_ENV
+			end
+			if root_dir and root_dir ~= "" then
+				venvs[#venvs + 1] = vim.fs.joinpath(root_dir, ".venv")
+				venvs[#venvs + 1] = vim.fs.joinpath(root_dir, "venv")
+			end
+			for _, venv in ipairs(venvs) do
+				for _, exe in ipairs({ "bin/python", "bin/python3", "Scripts/python.exe" }) do
+					local path = vim.fs.joinpath(venv, exe)
+					if vim.uv.fs_stat(path) then
+						return path
+					end
+				end
+			end
+			return nil
+		end
+
 		local servers = {
+			bashls = {},
+			-- pylsp = {},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -88,15 +113,31 @@ return {
 					},
 				},
 			},
-			bashls = {},
-			pylsp = {},
+			pyright = {
+				settings = {
+					python = {
+						analysis = { typeCheckingMode = "basic" },
+					},
+				},
+				-- Resolve the interpreter per workspace; fall through to pyright's own lookup when no venv exists.
+				before_init = function(_, config)
+					local folder = config.workspace_folders and config.workspace_folders[1]
+					local root_dir = folder and vim.uri_to_fname(folder.uri) or vim.uv.cwd()
+					local python = python_interpreter(root_dir)
+					if python then
+						config.settings.python = vim.tbl_deep_extend("force", config.settings.python or {}, {
+							pythonPath = python,
+						})
+					end
+				end,
+			},
 			clangd = {},
 			html = {},
 			cssls = {},
 			ts_ls = {},
 			rust_analyzer = {},
-			-- kotlin_language_server = {},
-			groovyls = {},
+			kotlin_language_server = {},
+			-- groovyls = {},
 			gopls = {},
 			jsonls = {},
 			-- harper_ls = {},
@@ -126,22 +167,35 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {}, -- explicitly set to an empty table (Populated via mason-tool-installer)
 			automatic_installation = false,
-			automatic_enable = true,
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-					-- vim.lsp.config[server_name] = server
-				end,
-			},
+			-- Keep false: `true` enables *every* mason-installed LSP (marksman, stylua, ...)
+			-- with lspconfig defaults, bypassing the `servers` opts below.
+			automatic_enable = false,
 		})
 
-		vim.lsp.config["kotlinls"] = {
-			cmd = { "kotlin-ls", "--stdio" },
-			single_file_support = true,
+		-- Nvim 0.11+ requires vim.lsp.config/vim.lsp.enable; the legacy
+		-- `require("lspconfig")[name].setup(opts)` path silently discards opts.
+		for server_name, server in pairs(servers) do
+			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+			vim.lsp.config(server_name, server)
+		end
+		vim.lsp.enable(vim.tbl_keys(servers))
+
+		-- JetBrains kotlin-lsp (homebrew cask "kotlin-lsp" -> bin/kotlin-lsp / intellij-server).
+		-- Note: lspconfig's shipped config for this server is named "kotlin_lsp";
+		-- setting vim.lsp.config is not enough, it must also be enabled.
+		vim.lsp.config("kotlin_lsp", {
+			cmd = { "kotlin-lsp", "--stdio" },
 			filetypes = { "kotlin" },
-			root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
-		}
+			root_markers = {
+				"settings.gradle",
+				"settings.gradle.kts",
+				"build.gradle",
+				"build.gradle.kts",
+				"pom.xml",
+				"workspace.json",
+				".git",
+			},
+		})
+		vim.lsp.enable("kotlin_lsp")
 	end,
 }
