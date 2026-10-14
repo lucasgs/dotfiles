@@ -110,7 +110,7 @@ alias fla='bundle exec fastlane android'
 # AI agents
 alias cc='claude'
 alias cx='codex'
-alias op='opencode'
+alias oc='opencode'
 alias hr='herdr'
 alias hrr='herdr server reload-config'
 alias hrs='herdr server stop'
